@@ -1,0 +1,12 @@
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\bin\Debug\net8.0\Evnt-Nxt(DAL).deps.json
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\bin\Debug\net8.0\Evnt-Nxt(DAL).dll
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\bin\Debug\net8.0\Evnt-Nxt(DAL).pdb
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).csproj.AssemblyReference.cache
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).AssemblyInfoInputs.cache
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).AssemblyInfo.cs
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).csproj.CoreCompileInputs.cache
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).dll
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\refint\Evnt-Nxt(DAL).dll
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).pdb
+C:\Users\wvdb\source\repos\Evnt-Nxt2\Evnt-Nxt(DAL)\obj\Debug\net8.0\ref\Evnt-Nxt(DAL).dll
