@@ -14,12 +14,17 @@ namespace Evnt_Nxt_Business_
 
         public string GetArtistName()
         {
-            return Name;
+            return this.Name;
         }
 
         public List<Genre> GetArtistGenres()
         {
-            return Genres;
+            return this.Genres;
+        }
+
+        public int GetArtistID()
+        {
+            return this.ID;
         }
     }
 }

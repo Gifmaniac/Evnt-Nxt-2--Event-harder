@@ -5,10 +5,12 @@ using Microsoft.SqlServer;
 namespace Evnt_Nxt_DAL_
 {
     public class DatabaseContext
-    { 
-        private readonly string ConnectionString;
+    {
+        private readonly string ConnectionString =
+            "Server=mssqlstud.fhict.local;Database=dbi567108_nxtevnt;User Id=dbi567108_nxtevnt;Password=Test123;TrustServerCertificate=True;";
 
-        // Constructor accepts IConfiguration to get the connection string
+
+
         public DatabaseContext(IConfiguration configuration)
         {
             ConnectionString = configuration.GetConnectionString("DefaultConnection");
@@ -18,6 +20,7 @@ namespace Evnt_Nxt_DAL_
         {
             return new SqlConnection(ConnectionString);
         }
+
 
         public bool TestConnection()
         {

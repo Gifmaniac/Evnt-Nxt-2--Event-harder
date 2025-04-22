@@ -4,21 +4,16 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Register DatabaseContext with DI
+//builder.Services.AddSingleton<DatabaseContext>(provider =>
+//    new DatabaseContext(builder.Configuration));
 
-// Add services to the container.
+//// Register the Service with DI
+//builder.Services.AddSingleton<Service>();
+
 builder.Services.AddRazorPages();
 
-
-// Register your business service (which already takes care of the DAL inside)
-builder.Services.AddSingleton<Service>();
-
-
-
-builder.Services.AddSingleton<DatabaseContext>(provider =>
-    new DatabaseContext(builder.Configuration));
-
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

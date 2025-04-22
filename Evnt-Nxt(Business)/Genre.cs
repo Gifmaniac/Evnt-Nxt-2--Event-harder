@@ -8,12 +8,17 @@ namespace Evnt_Nxt_Business_
 {
     class Genre
     {
-        private int Id { get; set; }
+        private int ID { get; set; }
         private GenreEnums Name { get; set; }
 
         public GenreEnums GetGenreName()
         {
-            return Name;
+            return this.Name;
+        }
+
+        public int GetID()
+        {
+            return this.ID;
         }
     }
 }

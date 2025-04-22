@@ -15,6 +15,7 @@ namespace Evnt_Nxt_Business_
             this.DatabaseContext = databaseContext;
         }
 
+
         public bool CheckDatabaseConnection()
         {
             return DatabaseContext.TestConnection();

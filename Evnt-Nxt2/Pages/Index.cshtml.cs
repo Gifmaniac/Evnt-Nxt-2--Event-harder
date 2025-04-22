@@ -1,6 +1,7 @@
 using Evnt_Nxt_Business_;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Evnt_Nxt2.Pages;
 
@@ -13,6 +14,20 @@ public class IndexModel : PageModel
         this.Service = service;
     }
 
+    public async Task OnGetAsync()
+    {
+        //try
+        //{
+        //    Events = await Service.GetAllEventsAsync();
+        //    IsConnected = Service.CheckDatabaseConnection();
+        //    ViewData["Message"] = "Database connection successful!";
+        //}
+        //catch (Exception ex)
+        //{
+        //    ViewData["Message"] = $"Connection failed: {ex.Message}";
+        //    IsConnected = false;
+        //}
+    }
 
     public bool IsConnected { get; set; }
 
