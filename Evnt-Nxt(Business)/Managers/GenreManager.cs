@@ -3,22 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Managers
 {
-    class GenreManager
-    {
-        private int ID { get; set; }
-        private GenreEnums Name { get; set; }
+   public  class GenreManager
+   {
+       private readonly GenreRepository GenreRepo;
 
-        public GenreEnums GetGenreName()
-        {
-            return Name;
-        }
+       public GenreManager(GenreRepository genreRepo)
+       {
+           genreRepo = GenreRepo;
+       }
 
-        public int GetID()
-        {
-            return ID;
-        }
-    }
+       public List<GenreManager> GetAllGenres()
+       {
+           var dtos = GenreRepo.GetGenreDTOs();
+           var result = new List<GenreManager>();
+           foreach (var dto in dtos)
+           {
+                result.Add(dto);
+           }
+       }
+
+   }
 }

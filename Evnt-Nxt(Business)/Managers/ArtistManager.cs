@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Evnt_Nxt_Business_.Model;
-using Evnt_Nxt_DAL_.ArtistDTO;
 using Evnt_Nxt_DAL_.Repository;
 
 
@@ -23,7 +22,7 @@ namespace Evnt_Nxt_Business_.Managers
         // Creates an artist "Object" from the dto.
         public List<ArtistViewModel> CreateArtists()
         {
-            var dtos = artistRepo.GetAllArtist();
+            var dtos = artistRepo.GetArtistDtos();
             var result = new List<ArtistViewModel>();
 
             foreach (var dto in dtos)

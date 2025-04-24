@@ -8,8 +8,13 @@ namespace Evnt_Nxt2.Pages.Artist
 {
     public class DetailsModel : PageModel
     {
-        private readonly ArtistManager artistManager;
+        private readonly ArtistManager _artistManager;
         public ArtistModel Artist { get; private set; }
+
+        public DetailsModel(ArtistManager artistManager)
+        {
+            _artistManager = artistManager;
+        }
 
     }
 }

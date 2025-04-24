@@ -3,39 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
 using Evnt_Nxt_DAL_.DTO;
-
-
+using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
-    public class ArtistRepository
+    public class GenreRepository
     {
-        // Recieves all the information from the database and puts them in a list.
-        public List<ArtistDTO.ArtistDTO> GetArtistDtos()
+        public List<GenreDTO> GetGenreDTOs()
         {
-            var Result = new List<ArtistDTO.ArtistDTO>();
+            var Result = new List<GenreDTO>();
 
             using (var Connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                string Quarry = "SELECT * FROM Artist";
+                string Quarry = "Select * FROM Genres";
                 Connection.Open();
                 using (SqlCommand Command = new SqlCommand(Quarry, Connection))
                 using (var Reader = Command.ExecuteReader())
                 {
                     while (Reader.Read())
                     {
-                        // Holds the DTO information that I want to store
-                        ArtistDTO.ArtistDTO ArtistDTO = new ArtistDTO.ArtistDTO();
+                        GenreDTO GenreDto = new GenreDTO();
                         {
-                            ArtistDTO.ID = Convert.ToInt32(Reader["ID"]);
-                            ArtistDTO.Name = Reader["Name"].ToString();
+                            GenreDto.ID = Convert.ToInt32(Reader["ID"]);
+                            GenreDto.Name = Reader["Name"].ToString();
                         }
-                        Result.Add(ArtistDTO);
+                        Result.Add(GenreDto);
                     }
                 }
-
                 Connection.Close();
             }
 

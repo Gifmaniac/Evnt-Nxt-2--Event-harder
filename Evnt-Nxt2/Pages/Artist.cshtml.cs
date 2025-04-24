@@ -12,8 +12,9 @@ namespace Evnt_Nxt2.Pages
     {
         private readonly ArtistManager artistManager;
 
-        public List<ArtistViewModel> ArtistList { get; set; } // This should be your ViewModel, not BLL model
+        public List<ArtistViewModel> ArtistList { get; set; }
 
+        // Gets the information that the ArtistModel holds.
         public ArtistModel(ArtistManager artistManager)
         {
             this.artistManager = artistManager;
