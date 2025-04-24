@@ -176,3 +176,4 @@ C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\Evnt-Nxt2.csproj.Up2Date
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\Evnt-Nxt2.genruntimeconfig.cache
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\ref\Evnt-Nxt2.dll
+C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\Evnt-Nxt2.sourcelink.json

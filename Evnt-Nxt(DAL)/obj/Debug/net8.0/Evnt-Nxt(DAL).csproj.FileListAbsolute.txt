@@ -22,3 +22,4 @@ C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(DAL)\bin\Debug\
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(DAL)\bin\Debug\net8.0\Evnt-Nxt(DAL).dll
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(DAL)\bin\Debug\net8.0\Evnt-Nxt(DAL).pdb
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(DAL)\obj\Debug\net8.0\ref\Evnt-Nxt(DAL).dll
+C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(DAL)\obj\Debug\net8.0\Evnt-Nxt(DAL).sourcelink.json

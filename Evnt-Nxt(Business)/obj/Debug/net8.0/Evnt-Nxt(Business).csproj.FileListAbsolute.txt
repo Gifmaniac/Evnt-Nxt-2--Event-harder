@@ -28,3 +28,4 @@ C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(Business)\obj\D
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(Business)\obj\Debug\net8.0\refint\Evnt-Nxt(Business).dll
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(Business)\obj\Debug\net8.0\Evnt-Nxt(Business).pdb
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(Business)\obj\Debug\net8.0\ref\Evnt-Nxt(Business).dll
+C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt(Business)\obj\Debug\net8.0\Evnt-Nxt(Business).sourcelink.json
