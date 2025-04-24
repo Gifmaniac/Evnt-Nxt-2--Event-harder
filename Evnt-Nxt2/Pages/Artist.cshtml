@@ -1,23 +1,13 @@
 ﻿@page
-@model Evnt_Nxt2.Pages.ArtistModel
+@model Evnt_Nxt2.Pages.ArtistModel;
 
+<h1>Artist List</h1>
 
-<h2>All Artists</h2>
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-    </tr>
-    </thead>
-    <tbody>
+<ul>
     @foreach (var artist in Model.ArtistList)
     {
-        <tr>
-            <td>@artist.ID</td>
-            <td>@artist.Name</td>
-        </tr>
+        <li>
+            <a asp-page="/Artist/Details" asp-route-id="@artist.ID">@artist.Name</a>
+        </li>
     }
-    </tbody>
-</table>
+</ul>

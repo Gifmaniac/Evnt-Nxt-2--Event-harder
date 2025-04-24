@@ -1,30 +1,32 @@
-﻿    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.SqlServer.Server;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Evnt_Nxt_Business_;
-    using Microsoft.Extensions.WebEncoders.Testing;
-    using Microsoft.IdentityModel.Tokens;
-    using static System.Net.Mime.MediaTypeNames;
+﻿using Evnt_Nxt_Business_.Managers;
+using Evnt_Nxt_DAL_.Repository;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Evnt_Nxt_Business_.Model;
 
 
-    namespace Evnt_Nxt2.Pages
+namespace Evnt_Nxt2.Pages
+{
+
+    public class ArtistModel : PageModel
     {
+        private readonly ArtistManager artistManager;
 
-        public class ArtistModel : PageModel
+        public List<ArtistViewModel> ArtistList { get; set; } // This should be your ViewModel, not BLL model
+
+        public ArtistModel(ArtistManager artistManager)
         {
-
-            // ArtistList will directly be a List of ArtistDTO
-            public List<ArtistBll> ArtistList { get; private set; }
-            private readonly ArtistBll artistLogic = new ArtistBll();
+            this.artistManager = artistManager;
+        }
 
         public void OnGet()
-            {   // Get the list of artists directly from BLL
-                ArtistList = artistLogic.GetAllArtistsList();
-                Console.WriteLine(ArtistList.Capacity);
-                foreach (var artist in ArtistList)
+        {
+            ArtistList = artistManager.CreateArtists()
+                .Select(a => new ArtistViewModel
                 {
-                    Console.WriteLine($"{artist.ID} {artist.Name}");
-                }
-            }
+                    ID = a.ID,
+                    Name = a.Name
+                }).ToList();
         }
     }
+}

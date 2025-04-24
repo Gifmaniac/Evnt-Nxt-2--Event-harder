@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\artistbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\artistbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\artist.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\artist.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,28 +11,60 @@
       "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\artist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\artistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\artistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\viewmodel\\artistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\viewmodel\\artistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\managers\\artistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\managers\\artistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\dto\\artistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\dto\\artistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\artist\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\artist\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\artist\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\artist\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\repository\\artistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\repository\\artistrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\managers\\genremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\managers\\genremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\dto\\artistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\dto\\artistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\evnt-nxt(dal).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\evnt-nxt(dal).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\evnt-nxt2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\evnt-nxt2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(business)\\evnt-nxt(business).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2BDAEF63-9C64-41DC-A661-5AE2178CD398}|Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj|solutionrelative:evnt-nxt(business)\\evnt-nxt(business).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,20 +75,8 @@
       "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\evnt-nxt2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\evnt-nxt2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\error.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt2\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{36D143AF-B223-47D6-AC2D-A534E4BA6A4B}|Evnt-Nxt2\\Evnt-Nxt2.csproj|solutionrelative:evnt-nxt2\\pages\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|c:\\users\\wvdb\\documents\\github\\evnt-nxt-2--event-harder\\evnt-nxt(dal)\\evnt-nxt(dal).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{3395576F-C048-456D-9325-07301039E606}|Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj|solutionrelative:evnt-nxt(dal)\\evnt-nxt(dal).csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{274D22A1-CD01-4371-864B-2F2D58160821}|UnitTestLobby\\UnitTestLobby.csproj|C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\unittestlobby\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,7 +90,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,7 +110,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
+              "Title": "ArtistViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\ViewModel\\ArtistViewModel.cs",
+              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\ViewModel\\ArtistViewModel.cs",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\ViewModel\\ArtistViewModel.cs",
+              "RelativeToolTip": "Evnt-Nxt(Business)\\ViewModel\\ArtistViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T11:23:31.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Artist\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist\\Details.cshtml.cs",
+              "RelativeToolTip": "Evnt-Nxt2\\Pages\\Artist\\Details.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAlwAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T09:52:06.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist\\Details.cshtml",
+              "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Artist\\Details.cshtml",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist\\Details.cshtml",
+              "RelativeToolTip": "Evnt-Nxt2\\Pages\\Artist\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-24T09:51:49.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Evnt-Nxt(Business)",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj",
+              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj",
+              "RelativeToolTip": "Evnt-Nxt(Business)\\Evnt-Nxt(Business).csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-24T09:32:56.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\_ViewStart.cshtml",
@@ -107,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "ArtistDTO.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\DTO\\ArtistDTO.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt(DAL)\\DTO\\ArtistDTO.cs",
@@ -120,8 +188,8 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Evnt-Nxt(DAL)",
+              "DocumentIndex": 13,
+              "Title": "Evnt-Nxt(DAL).csproj",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj",
               "RelativeDocumentMoniker": "Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj",
               "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\Evnt-Nxt(DAL).csproj",
@@ -133,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Evnt-Nxt2.csproj",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Evnt-Nxt2.csproj",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Evnt-Nxt2.csproj",
@@ -146,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Error.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Error.cshtml.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Error.cshtml.cs",
@@ -154,25 +222,24 @@
               "RelativeToolTip": "Evnt-Nxt2\\Pages\\Error.cshtml.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAUwAYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T07:31:32.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T07:31:32.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Program.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Program.cs",
               "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Program.cs",
               "RelativeToolTip": "Evnt-Nxt2\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAQAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T11:20:50.391Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Index.cshtml",
@@ -180,25 +247,24 @@
               "RelativeToolTip": "Evnt-Nxt2\\Pages\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-17T10:56:15.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T10:56:15.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "ArtistRepository.cs",
-              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\ArtistRepository.cs",
-              "RelativeDocumentMoniker": "Evnt-Nxt(DAL)\\ArtistRepository.cs",
-              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\ArtistRepository.cs",
-              "RelativeToolTip": "Evnt-Nxt(DAL)\\ArtistRepository.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAawBIAAAA3AAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\Repository\\ArtistRepository.cs",
+              "RelativeDocumentMoniker": "Evnt-Nxt(DAL)\\Repository\\ArtistRepository.cs",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\Repository\\ArtistRepository.cs",
+              "RelativeToolTip": "Evnt-Nxt(DAL)\\Repository\\ArtistRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T10:50:31.591Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Index.cshtml.cs",
@@ -206,90 +272,89 @@
               "RelativeToolTip": "Evnt-Nxt2\\Pages\\Index.cshtml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-17T10:43:20.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T10:43:20.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Artist.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist.cshtml.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Artist.cshtml.cs",
-              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist.cshtml.cs",
-              "RelativeToolTip": "Evnt-Nxt2\\Pages\\Artist.cshtml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAiwBUAAAA2AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist.cshtml.cs*",
+              "RelativeToolTip": "Evnt-Nxt2\\Pages\\Artist.cshtml.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T10:42:16.563Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Evnt-Nxt2\\Pages\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-17T10:41:55.327Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Artist.cshtml",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist.cshtml",
               "RelativeDocumentMoniker": "Evnt-Nxt2\\Pages\\Artist.cshtml",
               "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\Pages\\Artist.cshtml",
               "RelativeToolTip": "Evnt-Nxt2\\Pages\\Artist.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-17T10:41:38.692Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 12,
               "Title": "DatabaseContext.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\DatabaseContext.cs",
               "RelativeDocumentMoniker": "Evnt-Nxt(DAL)\\DatabaseContext.cs",
               "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(DAL)\\DatabaseContext.cs",
               "RelativeToolTip": "Evnt-Nxt(DAL)\\DatabaseContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T10:04:10.724Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Genre.cs",
-              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Genre.cs",
-              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\Genre.cs",
-              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Genre.cs",
-              "RelativeToolTip": "Evnt-Nxt(Business)\\Genre.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAADwvxUAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "GenreManager.cs",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Managers\\GenreManager.cs",
+              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\Managers\\GenreManager.cs",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Managers\\GenreManager.cs",
+              "RelativeToolTip": "Evnt-Nxt(Business)\\Managers\\GenreManager.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAswBUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T09:45:42.567Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ArtistBLL.cs",
-              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\ArtistBLL.cs",
-              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\ArtistBLL.cs",
-              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\ArtistBLL.cs",
-              "RelativeToolTip": "Evnt-Nxt(Business)\\ArtistBLL.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAswCcAAAANAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ArtistManager.cs",
+              "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Managers\\ArtistManager.cs",
+              "RelativeDocumentMoniker": "Evnt-Nxt(Business)\\Managers\\ArtistManager.cs",
+              "ToolTip": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt(Business)\\Managers\\ArtistManager.cs*",
+              "RelativeToolTip": "Evnt-Nxt(Business)\\Managers\\ArtistManager.cs*",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAtwA8AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-17T09:44:48.255Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "UnitTest1.cs",
               "DocumentMoniker": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\UnitTestLobby\\UnitTest1.cs",
               "RelativeDocumentMoniker": "UnitTestLobby\\UnitTest1.cs",

@@ -1,15 +1,11 @@
 using Evnt_Nxt_Business_;
+using Evnt_Nxt_Business_.Managers;
 using Evnt_Nxt_DAL_;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register DatabaseContext with DI
-//builder.Services.AddSingleton<DatabaseContext>(provider =>
-//    new DatabaseContext(builder.Configuration));
-
-//// Register the Service with DI
-//builder.Services.AddSingleton<Service>();
+builder.Services.AddScoped<ArtistManager>();
 
 builder.Services.AddRazorPages();
 

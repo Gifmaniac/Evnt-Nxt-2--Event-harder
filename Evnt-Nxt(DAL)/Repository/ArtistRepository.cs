@@ -8,19 +8,16 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 
-namespace Evnt_Nxt_DAL_
+namespace Evnt_Nxt_DAL_.Repository
 {
     public class ArtistRepository
     {
-        private static readonly string ConnectionString =
-            "Server=mssqlstud.fhict.local;Database=dbi567108_nxtevnt;User Id=dbi567108_nxtevnt;Password=Test123;TrustServerCertificate=True;";
-
         // Recieves all the information from the database and puts them in a list.
         public List<ArtistDTO.ArtistDTO> GetAllArtist()
         {
             var result = new List<ArtistDTO.ArtistDTO>();
 
-            using (var Connection = new SqlConnection(ConnectionString))
+            using (var Connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
                 string Quarry = "SELECT * FROM Artist";
                 Connection.Open();

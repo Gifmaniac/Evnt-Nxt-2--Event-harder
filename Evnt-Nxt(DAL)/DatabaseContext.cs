@@ -7,7 +7,7 @@ namespace Evnt_Nxt_DAL_
 {
     public class DatabaseContext
     {
-        private readonly static string ConnectionString =
+        public readonly static string ConnectionString =
             "Server=mssqlstud.fhict.local;Database=dbi567108_nxtevnt;User Id=dbi567108_nxtevnt;Password=Test123;TrustServerCertificate=True;";
     }
 }

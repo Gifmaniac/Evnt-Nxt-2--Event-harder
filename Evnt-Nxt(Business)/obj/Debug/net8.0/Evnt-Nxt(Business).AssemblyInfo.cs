@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Evnt-Nxt(Business)")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b112e00bb0451b1080d02c0988aab918001c5276")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05f4a6d53fc6ce7782cca8b80207762909308839")]
 [assembly: System.Reflection.AssemblyProductAttribute("Evnt-Nxt(Business)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Evnt-Nxt(Business)")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
