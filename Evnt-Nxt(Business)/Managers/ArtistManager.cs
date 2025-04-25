@@ -11,35 +11,37 @@ namespace Evnt_Nxt_Business_.Managers
 {
     public class ArtistManager
     {
-        private readonly ArtistRepository artistRepo;
-       
+        private readonly ArtistRepository ArtistRepo;
+        private readonly ArtistGenreRepository ArtistGenreRepo;
 
-        public ArtistManager()
+        public ArtistManager(ArtistRepository artistRepo, ArtistGenreRepository artistGenreRepository)
         {
-            artistRepo = new ArtistRepository();
+            ArtistRepo = artistRepo;
+            ArtistGenreRepo = artistGenreRepository;
         }
 
         // Creates an artist "Object" from the dto.
         public List<ArtistViewModel> CreateArtists()
         {
-            var dtos = artistRepo.GetArtistDtos();
-            var result = new List<ArtistViewModel>();
+            var dtos = ArtistRepo.GetArtistDtos();
+            var artistGenres = ArtistGenreRepo.GetArtistGenresDTOs();
+            var Result = new List<ArtistViewModel>();
 
             foreach (var dto in dtos)
             {
-                result.Add(new ArtistViewModel
+                var genres = artistGenres
+                    .Where(artistGenres => artistGenres.ArtistID == dto.ID)
+                    .Select(artistGenres => artistGenres.GenreName)
+                    .Distinct()
+                    .ToList();
+                Result.Add(new ArtistViewModel
                 {
                     ID = dto.ID,
-                    Name = dto.Name
+                    Name = dto.Name,
+                    Genres = genres
                 });
             }
-            return result;
-        }
-
-        public ArtistViewModel GetArtistByID(int id)
-        {
-            var artists = CreateArtists();
-            return artists.FirstOrDefault(a => a.ID == id);
+            return Result;
         }
     }
 }

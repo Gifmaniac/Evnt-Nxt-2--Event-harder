@@ -3,11 +3,20 @@
 
 <h1>Artist List</h1>
 
+
 <ul>
     @foreach (var artist in Model.ArtistList)
     {
         <li>
-            <a asp-page="/Artist/Details" asp-route-id="@artist.ID">@artist.Name</a>
+            <ul>
+                @foreach (var genre in artist.Genres)
+                {
+                    <li>
+                        <a asp-page="/Artist/Details" asp-route-id="@artist.Name">@artist.Name</a>
+                        <a asp-page="/Artist/Genre" asp-route-genreName="@genre">@genre</a>
+                    </li>
+                }
+            </ul>
         </li>
     }
 </ul>

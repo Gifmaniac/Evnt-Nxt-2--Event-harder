@@ -10,5 +10,7 @@ namespace Evnt_Nxt_Business_.Model
     {
         public int ID { get; set; }
         public string Name { get; set; }
+
+        public List<string> Genres { get; set; } = new();
     }
 }
