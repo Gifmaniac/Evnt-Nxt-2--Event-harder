@@ -10,11 +10,11 @@ using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Managers
 {
-    public class ArtistGenreManager
+    public class ArtistGenreService
     {
         private readonly ArtistGenreRepository ArtistGenreRepo;
 
-        public ArtistGenreManager(ArtistGenreRepository ArtistGenrerepo)
+        public ArtistGenreService(ArtistGenreRepository ArtistGenrerepo)
         {
             ArtistGenreRepo = ArtistGenrerepo;
         }

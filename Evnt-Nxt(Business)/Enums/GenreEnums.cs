@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evnt_Nxt_Business_
+namespace Evnt_Nxt_Business_.Enums
 {
     public enum GenreEnums
     {

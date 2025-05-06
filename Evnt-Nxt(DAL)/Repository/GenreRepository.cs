@@ -23,12 +23,12 @@ namespace Evnt_Nxt_DAL_.Repository
                 {
                     while (Reader.Read())
                     {
-                        GenreDTO GenreDto = new GenreDTO();
+                        GenreDTO genreDTO = new GenreDTO();
                         {
-                            GenreDto.ID = Convert.ToInt32(Reader["ID"]);
-                            GenreDto.Name = Reader["Name"].ToString();
+                            genreDTO.ID = Convert.ToInt32(Reader["ID"]);
+                            genreDTO.Name = Reader["Name"].ToString();
                         }
-                        Result.Add(GenreDto);
+                        Result.Add(genreDTO);
                     }
                 }
                 Connection.Close();

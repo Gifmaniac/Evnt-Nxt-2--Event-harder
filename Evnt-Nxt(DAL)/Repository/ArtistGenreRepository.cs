@@ -16,9 +16,9 @@ namespace Evnt_Nxt_DAL_.Repository
 
             using (var Connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                string Quarry = " SELECT DISTINCT Artist.ID as ArtistID, Artist.Name as ArtistName, Genre.ID as GenreID, Genre.Name as GenreName FROM Artist JOIN ArtistGenre on Artist.ID = ArtistGenre.ArtistID JOIN Genre on Genre.ID = ArtistGenre.GenreID;";
+                string Query = " SELECT DISTINCT Artist.ID as ArtistID, Artist.Name as ArtistName, Genre.ID as GenreID, Genre.Name as GenreName FROM Artist JOIN ArtistGenre on Artist.ID = ArtistGenre.ArtistID JOIN Genre on Genre.ID = ArtistGenre.GenreID;";
                 Connection.Open();
-                using (SqlCommand Command = new SqlCommand(Quarry, Connection))
+                using (SqlCommand Command = new SqlCommand(Query, Connection))
                 using (var Reader = Command.ExecuteReader())
                 {
                     while (Reader.Read())

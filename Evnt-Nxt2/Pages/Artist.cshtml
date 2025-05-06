@@ -5,18 +5,14 @@
 
 
 <ul>
-    @foreach (var artist in Model.ArtistList)
+    @foreach (var Artist in Model.ArtistList)
     {
         <li>
-            <ul>
-                @foreach (var genre in artist.Genres)
-                {
-                    <li>
-                        <a asp-page="/Artist/Details" asp-route-id="@artist.Name">@artist.Name</a>
-                        <a asp-page="/Artist/Genre" asp-route-genreName="@genre">@genre</a>
-                    </li>
-                }
-            </ul>
+            <a asp-page="/Events/Details" asp-route-id="@Artist.ID">@Artist.Name</a>
+            @foreach (var genre in Artist.Genres)
+            {
+                <a asp-page="/Genres" asp-route-id="@genre">@genre</a>
+            }
         </li>
     }
 </ul>

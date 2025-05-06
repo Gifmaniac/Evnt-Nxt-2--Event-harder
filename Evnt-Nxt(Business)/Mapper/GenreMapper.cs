@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Evnt_Nxt_Business_.Enums;
 using Evnt_Nxt_Business_.ViewModel;
 using Evnt_Nxt_DAL_.DTO;
 using Microsoft.VisualBasic;
@@ -12,9 +13,9 @@ namespace Evnt_Nxt_Business_.Mapper
 {
     public static class GenreMapper
     {
-        public static GenreEnums ToEnum(string name)
+        public static GenreEnums ToEnum(string genreName)
         {
-            return name switch
+            return genreName switch
             {
                 "Techno" => GenreEnums.Techno,
                 "RawStyle" => GenreEnums.RawStyle,
@@ -25,7 +26,7 @@ namespace Evnt_Nxt_Business_.Mapper
                 "EDM" => GenreEnums.EDM,
                 "HardStyle" => GenreEnums.HardStyle,
                 "Hard Techno" => GenreEnums.HardTechno,
-                _ => throw new ArgumentException($"Genre '{name}' is not recognized.")
+                _ => throw new ArgumentException($"Genre '{genreName}' is not recognized.")
             };
         }
 
@@ -42,14 +43,6 @@ namespace Evnt_Nxt_Business_.Mapper
                 GenreEnums.EDM => "EDM",
                 GenreEnums.HardStyle => "Hardstyle",
                 GenreEnums.HardTechno => "Hard Techno",
-            };
-        }
-
-        public static GenreViewModel ToViewModel(GenreDTO dto)
-        {
-            return new GenreViewModel()
-            {
-                Name = ToEnum(dto.Name)
             };
         }
     }

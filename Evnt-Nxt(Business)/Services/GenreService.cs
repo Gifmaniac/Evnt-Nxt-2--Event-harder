@@ -9,11 +9,11 @@ using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Managers
 {
-   public  class GenreManager
+   public  class GenreService
    {
        private readonly GenreRepository GenreRepo;
 
-       public GenreManager(GenreRepository genreRepo)
+       public GenreService(GenreRepository genreRepo)
        {
            GenreRepo = genreRepo;
         }

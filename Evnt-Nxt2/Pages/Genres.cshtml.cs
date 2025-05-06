@@ -6,10 +6,10 @@ namespace Evnt_Nxt2.Pages.Artist
 {
     public class GenresModel : PageModel
     {
-        private readonly GenreManager genreManager;
-        public GenreManager Genre { get; private set; }
+        private readonly GenreService GenreManager;
+        public GenreService Genre { get; private set; }
 
-        public GenresModel(GenreManager GenreManager)
+        public GenresModel(GenreService genreManager)
         {
             GenreManager = genreManager;
         }

@@ -26,12 +26,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Artist/Genres.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXJ0aXN0XEdlbnJlcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Events.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXZlbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Events/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXZlbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Genres.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VucmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/wvdb/Documents/GitHub/Evnt-Nxt-2--Event-harder/Evnt-Nxt2/Pages/Index.cshtml]
