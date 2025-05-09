@@ -38,16 +38,6 @@ namespace Evnt_Nxt2.Pages
                     Name = genre.Name,
                 }).ToList()
             }).ToList();
-
-            foreach (var a in ArtistList)
-            {
-                Debug.WriteLine($"ARTIST: {a.Name} (ID: {a.ID})");
-
-                foreach (var g in a.Genres)
-                {
-                    Debug.WriteLine($"   GENRE: {g.Name} (ID: {g.ID})");
-                }
-            }
         }
     }
 }
