@@ -4,14 +4,14 @@ using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
-    public class GenreRepository : IGenreRepository
+    public class GenreRepository
     {
         public List<GenreDTO> GetGenresByArtistID(int artistId)
         {
             var result = new List<GenreDTO>();
 
-            string query = " SELECT Genre.ID, Genre.Name FROM Genre JOIN ArtistGenre " +
-                           "ON Genre.ID = ArtistGenre.GenreID WHERE ArtistGenre.ArtistID = @ArtistID;";
+            string query = @"SELECT Genre.ID, Genre.Name FROM Genre JOIN ArtistGenre
+                           ON Genre.ID = ArtistGenre.GenreID WHERE ArtistGenre.ArtistName";
 
             using var connection = new SqlConnection(DatabaseContext.ConnectionString);
             using var command = new SqlCommand(query, connection);

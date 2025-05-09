@@ -8,10 +8,10 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IArtistRepository, ArtistRepository>();
+builder.Services.AddScoped<ArtistRepository>();
 builder.Services.AddScoped<ArtistService>();
 builder.Services.AddScoped<GenreService>();
-builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<GenreRepository>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<EventRepository>();
 

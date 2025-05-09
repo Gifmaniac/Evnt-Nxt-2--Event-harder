@@ -1,4 +1,5 @@
-﻿using Evnt_Nxt_Business_.DomainClass;
+﻿using System.Net;
+using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
@@ -7,48 +8,46 @@ using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Services
 {
-    public class ArtistService : IArtistService
+    public class ArtistService
 
     {
-    private readonly IArtistRepository _artistRepo;
-    private readonly IGenreRepository _genreRepo;
+        private readonly ArtistRepository _artistRepo;
+        private readonly GenreRepository _genreRepo;
 
-    public ArtistService(IArtistRepository artistRepo, IGenreRepository genreRepo)
-    {
-        _artistRepo = artistRepo;
-        _genreRepo = genreRepo;
-    }
-
-    public List<ArtistDTO> GetAllArtists()
-    {
-        return _artistRepo.GetAllArtist();
-    }
-
-
-    public ArtistDTO GetArtistByName(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name))
+        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo)
         {
-            throw new ArgumentException("Artist name has not bin found please try again.");
+            _artistRepo = artistRepo;
+            _genreRepo = genreRepo;
         }
 
-        return _artistRepo.GetArtistByName(name);
-    }
 
-    public List<Artist> CreateAllArtist()
-    {
-        var dtoList = _artistRepo.GetAllArtist();
-        var artistList = new List<Artist>();
-
-        foreach (var dto in dtoList)
+        public ArtistDTO GetArtistByName(string name)
         {
-            var genreDtos = _genreRepo.GetGenresByArtistID(dto.ID);
-            var genres = genreDtos.Select(g => new Genre(g.ID, g.Name)).ToList();
-            var artist = new Artist(dto.ID, dto.Name, genres);
-            artistList.Add(artist);
+
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Artist name has not bin found please try again.");
+            }
+
+            var artistList = _artistRepo.GetArtistByName(name);
+            return artistList;
         }
 
-        return artistList;
-    }
+        public List<Artist> CreateAllArtistsWithGenre()
+        {
+            var dtoList = _artistRepo.GetArtistWithGenresList();
+            var artistList = new List<Artist>();
+
+            foreach (var dto in dtoList)
+            {
+                var genreList = dto.Genres.Select(genre => new Genre(genre.ID, genre.Name)).ToList();
+
+                var artist = new Artist(dto.ID, dto.Name, genreList);
+
+                artistList.Add(artist);
+            }
+            return artistList;
+        }
     }
 }

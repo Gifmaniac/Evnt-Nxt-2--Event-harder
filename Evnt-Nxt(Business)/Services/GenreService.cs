@@ -12,9 +12,9 @@ namespace Evnt_Nxt_Business_.Services
 {
    public  class GenreService
    {
-       private readonly IGenreRepository GenreRepo;
+       private readonly GenreRepository GenreRepo;
 
-       public GenreService(IGenreRepository genreRepo)
+       public GenreService(GenreRepository genreRepo)
        {
            GenreRepo = genreRepo;
        }

@@ -11,6 +11,6 @@ namespace Evnt_Nxt_Prest.ViewModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<string?> Genres { get; set; }
+        public List<GenreViewModel> Genres { get; set; } = new();
     }
 }

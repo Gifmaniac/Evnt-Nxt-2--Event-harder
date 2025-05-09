@@ -26,7 +26,7 @@ namespace Evnt_Nxt2.Pages.Artist
                 result.Add(new GenreViewModel
                 {
                     ID = dto.ID,
-                    Name = Enum.Parse<GenreEnums>(dto.Name)
+                    Name = dto.name
 
                 });
             }

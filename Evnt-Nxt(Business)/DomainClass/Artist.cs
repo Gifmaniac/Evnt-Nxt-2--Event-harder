@@ -12,13 +12,18 @@ namespace Evnt_Nxt_Business_.DomainClass
         public int ID { get; }
         public string Name { get;}
 
-        public List<Genre> Genre { get; }
+        public List<Genre> Genres { get; set; } = new();
 
-        public Artist(int id, string name, List<Genre> genre)
+        public Artist(int id, string name)
         {
             ID = id;
             Name = name;
-            Genre = genre;
+        }
+        public Artist(int id, string name, List<Genre> genres)
+        {
+            ID = id;
+            Name = name;
+            Genres = genres;
         }
     }
 }

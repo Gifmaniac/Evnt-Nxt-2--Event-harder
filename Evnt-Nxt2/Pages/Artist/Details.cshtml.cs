@@ -1,9 +1,8 @@
-using Evnt_Nxt_DAL_.Repository;
-using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt_Business_.Services;
-using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Prest.ViewModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Evnt_Nxt2.Pages.Artist
 {
@@ -18,22 +17,27 @@ namespace Evnt_Nxt2.Pages.Artist
             _artistService = artistService;
         }
 
-        public void OnGet(string name)
+        public IActionResult OnGet(string name)
         {
-            var dto = _artistService.GetArtistByName(name);
-
-            if (dto != null)
+            if (string.IsNullOrWhiteSpace(name))
             {
-                Artist = new ArtistViewModel
-                {
-                    ID = dto.ID,
-                    Name = dto.Name
-                };
+                return NotFound();
+            }
+            var artist = _artistService.GetArtistByName(name);
+
+            if (artist == null)
+            {
+                return NotFound();
             }
             else
             {
-                Artist = null;
+                Artist = new ArtistViewModel()
+                {
+                    ID = artist.ID,
+                    Name = artist.Name,
+                };
             }
+            return Page();
         }
     }
 }
