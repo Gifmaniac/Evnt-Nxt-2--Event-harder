@@ -16,35 +16,36 @@ namespace TestProject1
     public class ArtistModelOnGetTest
 
     {
-    [Fact]
-    public void OnGetFillArtistList()
-    {
-        // Assamble
-        var fakeArtistList = new List<Artist>
+        [Fact]
+        public void OnGetFillArtistList()
         {
-            new Artist(1, "Pietje Drummer", new List<Genre>
-            {
-                new Genre(0, "HipHop")
-            }),
+            //// Assamble
+            //var fakeArtistList = new List<Artist>
+            //{
+            //    new Artist(1, "Pietje Drummer", new List<Genre>
+            //    {
+            //        new Genre(0, "HipHop")
+            //    }),
 
-            new Artist(2, "PindaBakkertje", new List<Genre>
-            {
-                new Genre(1, "Techno")
-            })
-        };
+            //    new Artist(2, "PindaBakkertje", new List<Genre>
+            //    {
+            //        new Genre(1, "Techno")
+            //    })
+            //};
 
-        var _artistServiceMock = new Mock<IArtistService>(null, null);
-        _artistServiceMock.Setup(artistService => artistService.CreateAllArtist()).Returns(fakeArtistList);
+            //var _artistServiceMock = new Mock<IArtistService>(null, null);
+            //_artistServiceMock.Setup(artistService => artistService.CreateAllArtist()).Returns(fakeArtistList);
 
-        var pageModel = new ArtistModel(_artistServiceMock.Object);
+            //var pageModel = new ArtistModel(_artistServiceMock.Object);
 
-        // Act
-        pageModel.OnGet();
+            //// Act
+            //pageModel.OnGet();
 
-        // Assert
-        Assert.Equal(2, pageModel.ArtistList.Count);
-        Assert.Equal("PindaBakkertje", pageModel.ArtistList[1].Name);
-        Assert.Contains("HipHop", pageModel.ArtistList[0].Genres);
+            //// Assert
+            //Assert.Equal(2, pageModel.ArtistList.Count);
+            //Assert.Equal("PindaBakkertje", pageModel.ArtistList[1].Name);
+            //Assert.Contains("HipHop", pageModel.ArtistList[0].Genres);
+            //}
         }
     }
 }

@@ -1,45 +1,47 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
+using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
 using Evnt_Nxt_DAL_.DTO;
 
 namespace Evnt_Nxt_Business_.Services;
 
 public class EventService
+{
+    private readonly EventRepository _eventRepo;
+
+    public EventService(EventRepository eventRepo)
     {
-        private readonly EventRepository _eventRepo;
+        _eventRepo = eventRepo;
+    }
 
-        public EventService(EventRepository eventRepo)
+    public EventDTO GetEventByName(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
         {
-            _eventRepo = eventRepo;
+            throw new ArgumentException("Event has not bin found please try again.");
         }
 
-        public List<Event> GetEvent()
+        var eventList = _eventRepo.GetEventByName(name);
+        return eventList;
+    }
+
+    public List<Event> CreateEventsWithOrganizerAndGenre()
+    {
+        var dtoList = _eventRepo.GetEventsWithOrganizerAndGenreDtos();
+        var EventList = new List<Event>();
+
+        foreach (var dto in dtoList)
         {
-            return null;
+            var province = ProvinceMapper.ToEnum(dto.Province);
+
+            var genreList = dto.Genre.Select(genre => new Genre(genre.ID, genre.Name)).ToList();
+            var organizer = new Organizer(dto.Organizer.ID, dto.Organizer.Name, dto.Organizer.Tel);
+            var domainEvent = new Event(dto.ID, dto.Name, organizer, province, dto.Date, genreList);
+
+            EventList.Add(domainEvent);
         }
 
-
-    //public List<EventViewModel> GetAllEvents()
-    //{
-    //    var dtos = EventRepo.GetEventDtos();
-    //    var result = new List<EventViewModel>();
-
-    //    foreach (var dto in dtos)
-    //    {
-    //        result.Add(new EventViewModel
-    //        {
-    //            ID = dto.ID,
-    //            LineUpID = dto.LineUpID,
-    //            Name = dto.Name,
-    //            Date = dto.Date,
-    //            GenreID = dto.GenreID,
-    //            Location = dto.Location,
-    //            Organizer = dto.Organizer,
-    //            Price = dto.Price,
-    //            Province = ProvinceMapper.ToEnum(dto.Province)
-    //        });
-    //    }
-    //    return result;
-    //}
+        return EventList;
+    }
 }

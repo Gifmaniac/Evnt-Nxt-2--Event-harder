@@ -8,28 +8,31 @@ using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
+
     public class EventRepository
     {
-        public List<EventDTO> GetEvents()
+        public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
-            var resultEvent = new List<EventDTO>();
+            var result = new List<EventWithOrganizerAndGenreDTO>();
+            var eventDict = new Dictionary<int, EventWithOrganizerAndGenreDTO>();
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
-                string query = 
-                    @"Select Event.ID as EventID
+                string query =
+                    @"SELECT 
                     Event.ID AS EventID,
                     Event.Name AS EventName,
                     Event.Date AS EventDate,
                     Event.Location AS EventLocation,
-                    Event.Province AS EventProvince
-                    Event.OrganizerID as OrganizerID,
-                    Organizer.OrganizerID as 
+                    Event.Province AS EventProvince,
+                    Organizer.ID AS OrganizerID,
+                    Organizer.Name AS OrganizerName,
                     Genre.ID AS GenreID,
                     Genre.Name AS GenreName
-                    FROM Artist
-                    JOIN ArtistGenre ON Artist.ID = ArtistGenre.ArtistID
-                    JOIN Genre ON Genre.ID = ArtistGenre.GenreID;";
+                    FROM Event
+                    JOIN EventGenre ON Event.ID = EventGenre.EventID
+                    JOIN Genre ON Genre.ID = EventGenre.GenreID
+                    JOIN Organizer ON Event.OrganizerID = Organizer.ID;";
 
                 connection.Open();
 
@@ -38,28 +41,65 @@ namespace Evnt_Nxt_DAL_.Repository
                 {
                     while (reader.Read())
                     {
-                        var eventDTO = new EventDTO
-                        {
-                            ID = Convert.ToInt32(reader["EventID"]),
-                            Name = (string)reader["EventName"],
-                            Date = DateOnly.FromDateTime(Convert.ToDateTime(reader["Date"])),
-                            Organiser = (string)reader["Organiser"],
-                            Province = (string)reader["Province"],
+                        int eventID = Convert.ToInt32(reader["EventID"]);
 
-                        };
-                        resultEvent.Add(eventDTO);
-
-                        var genreDTO = new GenreDTO
+                        if (!eventDict.TryGetValue(eventID, out var eventDTO))
                         {
-                            ID = Convert.ToInt32(reader["ID"]),
-                            Name = (string)reader["Name"]
+
+                            eventDTO = new EventWithOrganizerAndGenreDTO
+                            {
+                                ID = Convert.ToInt32(reader["EventID"]),
+                                Name = (string)reader["EventName"],
+                                Date = DateOnly.FromDateTime(Convert.ToDateTime(reader["EventDate"])),
+                                Province = (string)reader["EventProvince"],
+                            };
+                        eventDict[eventID] = eventDTO;
+                        result.Add(eventDTO);
+                        }
+
+                        var genre = new GenreDTO
+                        {
+                            ID = Convert.ToInt32(reader["GenreID"]),
+                            Name = (string)reader["GenreName"]
                         };
-                    }
+                        eventDTO.Genre.Add(genre);
+
+                        var organizer = new OrganizerDTO
+                        {
+                            ID = Convert.ToInt32(reader["OrganizerID"]),
+                            Name = (string)reader["OrganizerName"]
+                        };
+                        eventDTO.Organizer = organizer;
+                    };
                 }
                 connection.Close();
             }
 
-            return resultEvent;
+            return result;
+        }
+
+        public EventDTO GetEventByName(string name)
+        {
+            using var connection = new SqlConnection(DatabaseContext.ConnectionString);
+            string query = "SELECT ID, Name FROM Event WHERE Name = @Name";
+
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Name", name);
+
+            connection.Open();
+
+            EventDTO eventDTO = null;
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                eventDTO = new EventDTO
+                {
+                    ID = Convert.ToInt32(reader["ID"]),
+                    Name = (string)reader["Name"]
+                };
+            }
+            return eventDTO;
         }
     }
 }

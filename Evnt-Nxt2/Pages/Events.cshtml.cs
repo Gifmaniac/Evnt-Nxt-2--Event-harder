@@ -1,6 +1,3 @@
-using Evnt_Nxt_Business_.Enums;
-using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Business_.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -20,16 +17,13 @@ namespace Evnt_Nxt2.Pages
 
         public void OnGet()
         {
-            var dtos = _eventService.GetEvent();
-            Events = dtos.Select(dtos => new EventViewModel
+            var eventObject = _eventService.CreateEventsWithOrganizerAndGenre();
+            Events = eventObject.Select(dtos => new EventViewModel
             {
                 ID = dtos.ID,
                 Name = dtos.Name,
                 Location = dtos.Location,
-                //Province = Enum.Parse<ProvinceEnums>(dtos.Province),
                 Date = dtos.Date,
-                LineUpID = dtos.LineUpID
-                
             }).ToList();
         }
     }

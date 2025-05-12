@@ -1,4 +1,5 @@
-﻿using Evnt_Nxt_Business_.Mapper;
+﻿using Evnt_Nxt_Business_.Enums;
+using Evnt_Nxt_Business_.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,22 @@ namespace Evnt_Nxt_Business_.DomainClass
     public class Event
     {
         public int ID { get; set; }
-        public int LineUpID { get; set; }
         public string Name { get; set; }
-        public Genre GenreID { get; set; }
-        public string Organizer { get; set; }
+        public Organizer OrganizerID { get; set; }
         public string Location { get; set; }
-        public ProvinceMapper Province { get; set; }
+        public ProvinceEnums Province { get; set; }
         public DateOnly Date { get; set; }
-        public int Price { get; set; }
 
+        public List<Genre> Genres { get; set; }
+
+        public Event(int id, string name, Organizer organizer, ProvinceEnums province, DateOnly date, List<Genre> genres)
+        {
+            ID = id;
+            Name = name;
+            OrganizerID = organizer;
+            Province = province;
+            Date = date;
+            Genres = genres;
+        }
     }
 }

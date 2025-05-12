@@ -1,4 +1,12 @@
-﻿@page "{Name}"
+﻿@page
 @model Evnt_Nxt2.Pages.Events.DetailsModel
 @{
+    @if (Model.Event != null)
+    {
+        <h1>@Model.Event.Name</h1>
+    }
+    else
+    {
+        <p>Geen artiest gevonden.</p>
+    }
 }

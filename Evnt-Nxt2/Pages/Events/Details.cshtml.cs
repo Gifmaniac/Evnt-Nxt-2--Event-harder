@@ -11,29 +11,35 @@ namespace Evnt_Nxt2.Pages.Events
     {
         private readonly EventService _eventService;
 
-        public EventViewModel Event { get; set;}
+        public EventViewModel Event { get; set; }
 
         public DetailsModel(EventService eventService)
         {
             _eventService = eventService;
         }
-        //public void OnGet(string name)
-        //{
-            //{
-            //    var dto = _eventService.GetEventByName(name);
 
-            //    if (dto != null)
-            //    {
-            //        Event = new EventViewModel()
-            //        {
-            //            ID = dto.ID,
-            //            Name = dto.Name
-            //        };
-            //    }
-            //    else
-            //    {
-            //        return null;
-            //    }
-            //}
+        public IActionResult OnGet(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return NotFound();
+            }
+
+            var domainEvent = _eventService.GetEventByName(name);
+
+            if (domainEvent == null)
+            {
+                return NotFound();
+            }
+
+            Event = new EventViewModel
+            {
+                ID = domainEvent.ID,
+                Name = domainEvent.Name
+            };
+
+            return Page();
+        }
+    
     }
 }

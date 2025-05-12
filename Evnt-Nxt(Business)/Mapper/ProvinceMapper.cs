@@ -9,17 +9,17 @@ namespace Evnt_Nxt_Business_.Mapper
 {
     public class ProvinceMapper
     {
-        public ProvinceEnums ToEnum(string provinceName)
+        public static ProvinceEnums ToEnum(string provinceName)
         {
             return provinceName switch
             {
-                "Noord-Brabant" => ProvinceEnums.NoordBrabant,
+                "NoordBrabant" => ProvinceEnums.NoordBrabant,
                 "Zeeland" => ProvinceEnums.Zeeland,
                 "Limburg" => ProvinceEnums.Limburg,
                 "Gelderland" => ProvinceEnums.Gelderland,
                 "Utrecht" => ProvinceEnums.Utrecht,
-                "Zuid-Holland" => ProvinceEnums.ZuidHolland,
-                "Noord-Holland" => ProvinceEnums.NoordHolland,
+                "ZuidHolland" => ProvinceEnums.ZuidHolland,
+                "NoordHolland" => ProvinceEnums.NoordHolland,
                 "Flevoland" => ProvinceEnums.Flevoland,
                 "Overijssel" => ProvinceEnums.Overijssel,
                 "Drenthe" => ProvinceEnums.Drenthe,
