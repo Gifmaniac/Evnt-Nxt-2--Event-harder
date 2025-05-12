@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>@ViewData["Title"] - Evnt_Nxt</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+
+<body>
+<header class="navbar">
+    <div class="logo">Evnt-Nxt</div>
+    <nav class="nav-links">
+        <a asp-page="/Index">Home Page</a>
+        <a asp-page="/Artist">Artist</a>
+        <a asp-page="/Events">Events</a>
+    </nav>
+    <div class="search-bar">
+        <input type="Text" placeholder="Type here!"/>
+    </div>
+</header>
+
+<main class="main">
+    @RenderBody()
+    </main>
+
+<footer class="footer">
+    <h3>Menu</h3>
+    <ul>
+        <li><a asp-page="/Index">Home Page</a></li>
+        <li><a asp-page="/Artist">Artist</a></li>
+    </ul>
+</footer>
+</body>
+</html>
