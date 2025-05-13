@@ -10,5 +10,6 @@ namespace Evnt_Nxt_Business_.Interfaces
     public interface IArtistService
     {
         public List<Artist> CreateAllArtist();
+        public List<Artist> CreateAllArtistsWithGenre();
     }
 }
