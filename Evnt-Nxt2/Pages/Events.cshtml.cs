@@ -24,6 +24,7 @@ namespace Evnt_Nxt2.Pages
                 Name = dtos.Name,
                 Location = dtos.Location,
                 Date = dtos.Date,
+                Organizer = dtos.OrganizerID,
             }).ToList();
         }
     }

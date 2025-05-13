@@ -1,0 +1,18 @@
+﻿.artist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .artist-list li {
+        background-color: black;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+        .artist-list li a {
+            color: white;
+            font-size: 14px;
+            margin-right: 10px;
+        }

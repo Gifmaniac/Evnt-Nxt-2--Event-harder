@@ -70,6 +70,7 @@ namespace Evnt_Nxt_DAL_.Repository
                             Name = (string)reader["OrganizerName"]
                         };
                         eventDTO.Organizer = organizer;
+                        Console.WriteLine(eventDTO.Organizer.Name);
                     };
                 }
                 connection.Close();

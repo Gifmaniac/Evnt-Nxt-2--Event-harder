@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8"/>
     <title>@ViewData["Title"] - Evnt_Nxt</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
 </head>
 
 <body>
@@ -21,7 +23,7 @@
 
 <main class="main">
     @RenderBody()
-    </main>
+</main>
 
 <footer class="footer">
     <h3>Menu</h3>
