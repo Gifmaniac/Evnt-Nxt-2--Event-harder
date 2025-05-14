@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Evnt-Nxt2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34577acf488232cba2865c7547458b10b44a683b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb9bb89f3663fa49cc08de71ad84473b3db64a95")]
 [assembly: System.Reflection.AssemblyProductAttribute("Evnt-Nxt2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Evnt-Nxt2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
