@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Evnt_Nxt_DAL_
 {
-    class SQLQueries
+    public class SQLQueries
     {
     }
 }

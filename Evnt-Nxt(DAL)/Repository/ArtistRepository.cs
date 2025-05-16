@@ -9,60 +9,84 @@ namespace Evnt_Nxt_DAL_.Repository
     public class ArtistRepository
 
     {
-    // Recieves the artist with genre and puts them in a list. It also checks if an artist has multiple genres, if so we save the ID in a dictionary and add the genre to the id. 
-    public List<ArtistWithGenresDTO> GetArtistWithGenresList()
-    {
-        const string query =
-            @" SELECT 
-            Artist.ID AS ArtistID,
-            Artist.Name AS ArtistName,
-            Genre.ID AS GenreID,
-            Genre.Name AS GenreName
-            FROM Artist
-            JOIN ArtistGenre ON Artist.ID = ArtistGenre.ArtistID
-            JOIN Genre ON Genre.ID = ArtistGenre.GenreID;";
+        // Recieves the artist with genre and puts them in a list. It also checks if an artist has multiple genres, if so we save the ID in a dictionary and add the genre to the id. 
 
-        
-        var result = new List<ArtistWithGenresDTO>();
-        var artistDict = new Dictionary<int, ArtistWithGenresDTO>();
-
-        using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+        public List<ArtistDTO> GetAllArtistDtos()
         {
-            connection.Open();
+            const string query =
+                "SELECT ID, Name FROM Artist;";
 
-            using (var command = new SqlCommand(query, connection))
-            using (var reader = command.ExecuteReader())
+            List<ArtistDTO> result = new List<ArtistDTO>();
+
+            using var connection = DatabaseContext.CreateOpenConnection();
+            using var command = new SqlCommand(query, connection);
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
             {
-                while (reader.Read())
+                ArtistDTO artistDto = new ArtistDTO()
                 {
-                    int artistID = Convert.ToInt32(reader["ArtistID"]);
-
-                    if (!artistDict.TryGetValue(artistID, out var artistDto))
-                    {
-                        artistDto = new ArtistWithGenresDTO
-                        {
-                            ID = artistID,
-                            Name = (string)reader["ArtistName"]
-                        };
-                        artistDict[artistID] = artistDto;
-                        result.Add(artistDto);
-                    }
-
-                    var genre = new GenreDTO
-                    {
-                        ID = Convert.ToInt32(reader["GenreID"]),
-                        Name = (string)reader["GenreName"]
-                    };
-                    artistDto.Genres.Add(genre);
-                }
+                    ID = Convert.ToInt32(reader["ID"]),
+                    Name = (string)reader["ArtistName"]
+                };
+                result.Add(artistDto);
             }
-            connection.Close();
+            return result;
         }
 
-        return result;
-    }
 
-    public ArtistDTO GetArtistByName(string name)
+
+        //public List<ArtistWithGenresDTO> GetArtistWithGenresList()
+        //{
+        //    const string query =
+        //        @" SELECT 
+        //Artist.ID AS ArtistID,
+        //Artist.Name AS ArtistName,
+        //Genre.ID AS GenreID,
+        //Genre.Name AS GenreName
+        //FROM Artist
+        //JOIN ArtistGenre ON Artist.ID = ArtistGenre.ArtistID
+        //JOIN Genre ON Genre.ID = ArtistGenre.GenreID;";
+
+        //    var result = new List<ArtistWithGenresDTO>();
+        //    var artistDict = new Dictionary<int, ArtistWithGenresDTO>();
+
+        //    using (var connection = DatabaseContext.CreateOpenConnection())
+        //    using (var command = new SqlCommand(query, connection))
+        //    using (var reader = command.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //            int artistID = Convert.ToInt32(reader["ArtistID"]);
+
+        //            if (!artistDict.TryGetValue(artistID, out var artistDto))
+        //            {
+        //                artistDto = new ArtistWithGenresDTO
+        //                {
+        //                    ID = artistID,
+        //                    Name = (string)reader["ArtistName"]
+        //                };
+        //                artistDict[artistID] = artistDto;
+        //                result.Add(artistDto);
+        //            }
+
+        //            var genre = new GenreDTO
+        //            {
+        //                ID = Convert.ToInt32(reader["GenreID"]),
+        //                Name = (string)reader["GenreName"]
+        //            };
+        //            artistDto.Genres.Add(genre);
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
+
+
+
+
+        public ArtistDTO GetArtistByName(string name)
     {
         using var connection = new SqlConnection(DatabaseContext.ConnectionString);
         string query = "SELECT ID, Name FROM artist WHERE Name = @Name";

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Evnt_Nxt_DAL_.DTO
 {
-    class ArtistGenreDTO
+    public class ArtistGenreDTO
     {
+        public int ArtistId { get; set; }
+        public int GenreId { get; set; }
     }
 }

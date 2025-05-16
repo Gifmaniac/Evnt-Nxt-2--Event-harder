@@ -1,5 +1,6 @@
 ﻿@page
 
+@using Evnt_Nxt_Prest.ViewModel
 @model Evnt_Nxt2.Pages.ArtistModel
 
 @section Styles {
@@ -9,7 +10,7 @@
 
 
 <ul class="artist-list">
-    @foreach (var artist in Model.ArtistList)
+    @foreach (ArtistViewModel artist in Model.ArtistList)
     {
         <li>
             <a asp-page="/Artist/Details" asp-route-name="@artist.Name">@artist.Name</a>

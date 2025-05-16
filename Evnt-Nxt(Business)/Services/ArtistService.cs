@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
+using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
@@ -13,11 +14,13 @@ namespace Evnt_Nxt_Business_.Services
     {
         private readonly ArtistRepository _artistRepo;
         private readonly GenreRepository _genreRepo;
+        private readonly ArtistGenreRepository _artistGenreRepo;
 
-        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo)
+        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo, ArtistGenreRepository artistGenreRepo)
         {
             _artistRepo = artistRepo;
             _genreRepo = genreRepo;
+            _artistGenreRepo = artistGenreRepo;
         }
 
 
@@ -32,20 +35,18 @@ namespace Evnt_Nxt_Business_.Services
             return new Artist(artist.ID, artist.Name);
         }
 
-        public List<Artist> CreateAllArtistsWithGenre()
+        public List<ArtistWithGenresDTO> GetAllArtistsWithGenres()
         {
-            var dtoList = _artistRepo.GetArtistWithGenresList();
-            var artistList = new List<Artist>();
+            List<ArtistDTO> artistDtos = _artistRepo.GetAllArtistDtos();
+            List<GenreDTO> genreDtos = _genreRepo.GetAllGenreDtos();
+            List<ArtistGenreDTO> artistsGenreLinks = _artistGenreRepo.GetAllArtistGenreLinks();
 
-            foreach (var dto in dtoList)
-            {
-                var genreList = dto.Genres.Select(genre => new Genre(genre.ID, genre.Name)).ToList();
+            return ArtistGenreMapper.MapToDto(artistDtos, genreDtos, artistsGenreLinks);
+        }
 
-                var artist = new Artist(dto.ID, dto.Name, genreList);
+        public List<Artist> MapToDomain()
+        {
 
-                artistList.Add(artist);
-            }
-            return artistList;
         }
     }
 }

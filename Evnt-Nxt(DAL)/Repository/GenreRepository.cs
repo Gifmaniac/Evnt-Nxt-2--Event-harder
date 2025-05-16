@@ -6,6 +6,30 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class GenreRepository
     {
+
+        public List<GenreDTO> GetAllGenreDtos()
+        {
+            const string query = "SELECT ID, Name FROM Genre;";
+
+            List<GenreDTO> result = new List<GenreDTO>();
+
+            using var connection = DatabaseContext.CreateOpenConnection();
+            using var command = new SqlCommand(query, connection);
+            using var reader = command.ExecuteReader();
+            {
+                while (reader.Read())
+                {
+                    GenreDTO genreDto = new GenreDTO
+                    {
+                        ID = Convert.ToInt32(reader["ID"]),
+                        Name = (string)reader["Name"]
+                    };
+                    result.Add(genreDto);
+                }
+            }
+            return result;
+        }
+
         public List<GenreDTO> GetGenresByArtistID(int artistId)
         {
             var result = new List<GenreDTO>();
