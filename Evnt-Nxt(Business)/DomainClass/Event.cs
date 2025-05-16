@@ -10,20 +10,25 @@ namespace Evnt_Nxt_Business_.DomainClass
 {
     public class Event
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public Organizer OrganizerID { get; set; }
-        public string Location { get; set; }
-        public ProvinceEnums Province { get; set; }
-        public DateOnly Date { get; set; }
+        public int ID { get; }
+        public string Name { get; }
+        public Organizer Organizer { get; }
+        public string Location { get; }
+        public ProvinceEnums Province { get; }
+        public DateOnly Date { get; }
 
-        public List<Genre> Genres { get; set; }
+        public List<Genre> Genres { get; }
 
+        public Event(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
         public Event(int id, string name, Organizer organizer, ProvinceEnums province, DateOnly date, List<Genre> genres)
         {
             ID = id;
             Name = name;
-            OrganizerID = organizer;
+            Organizer = organizer;
             Province = province;
             Date = date;
             Genres = genres;

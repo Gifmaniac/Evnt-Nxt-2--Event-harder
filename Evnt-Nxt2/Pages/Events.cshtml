@@ -2,18 +2,19 @@
 @model Evnt_Nxt2.Pages.EventsModel
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/Artist.css" />
+    <link rel="stylesheet" href="~/css/event.css" />
 }
 
 @{
-    <ul class ="artist-list">
+    <ul class ="event-list">
         @foreach (var Event in Model.Events)
         {
-                <li>
-                <a asp-page="/Events/Details" asp-route-Name="@Event.Name">@Event.Name</a>
+            <li>
+                <a asp-page="/Events/Details" asp-route-id="@Event.ID">@Event.Name</a>
                 <a asp-page="/Organizer/Details" asp-route-Name="@Event.Organizer.Name">@Event.Organizer.Name</a>
-                <span>@Event.Date</span>
-                </li>
+                <span class="span">Province: @Event.Province</span>
+                <span class="span">Datum: @Event.Date</span>
+            </li>
         }
         </ul>
 }

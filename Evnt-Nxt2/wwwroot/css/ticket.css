@@ -1,0 +1,8 @@
+.fakebtn {
+    display: inline-block;
+    background-color: orangered;
+    width: 300px;
+    border-radius: 98px;
+    color: white;
+    text-align: center;
+}

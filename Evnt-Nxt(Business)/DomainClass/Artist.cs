@@ -12,7 +12,7 @@ namespace Evnt_Nxt_Business_.DomainClass
         public int ID { get; }
         public string Name { get;}
 
-        public List<Genre> Genres { get; set; } = new();
+        public List<Genre> Genres { get; } = new();
 
         public Artist(int id, string name)
         {

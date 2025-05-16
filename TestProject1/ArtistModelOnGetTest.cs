@@ -27,9 +27,9 @@ namespace TestProject1
                 })
             };
 
-            var _artistServiceMock = new Mock<IArtistService>();
+            var _artistServiceMock = new Mock<ArtistService>();
 
-            _artistServiceMock.Setup(artistService => artistService.CreateAllArtist()).Returns(fakeArtistList);
+            //_artistServiceMock.Setup(artistService => artistService.CreateAllArtist()).Returns(fakeArtistList);
 
             var artistModel = new ArtistModel(_artistServiceMock.Object);
 

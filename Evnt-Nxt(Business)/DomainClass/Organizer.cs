@@ -8,9 +8,9 @@ namespace Evnt_Nxt_Business_.DomainClass
 {
     public class Organizer
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int Tel { get; set; }
+        public int ID { get; }
+        public string Name { get; }
+        public int Tel { get; }
 
         public Organizer(int iD, string name, int tel)
         {

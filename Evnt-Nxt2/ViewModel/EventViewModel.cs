@@ -15,7 +15,7 @@ namespace Evnt_Nxt_Business_.ViewModel
         public Organizer Organizer { get; set; }
         public string Location { get; set; }
         public string Province { get; set; }
-        public DateOnly Date { get; set; }
+        public string Date { get; set; }
 
         public List<Genre> Genres { get; set; }
     }

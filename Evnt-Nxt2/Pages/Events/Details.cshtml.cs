@@ -1,6 +1,7 @@
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Business_.ViewModel;
+using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_Prest.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,31 +12,26 @@ namespace Evnt_Nxt2.Pages.Events
     {
         private readonly EventService _eventService;
 
-        public EventViewModel Event { get; set; }
+        public EventViewModel EventViewModel { get; set; }
 
         public DetailsModel(EventService eventService)
         {
             _eventService = eventService;
         }
 
-        public IActionResult OnGet(string name)
+        public IActionResult OnGet(int id)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            var eventDomain = _eventService.GetEventByID(id);
+
+            if (eventDomain == null)
             {
                 return NotFound();
             }
 
-            var domainEvent = _eventService.GetEventByName(name);
-
-            if (domainEvent == null)
+           EventViewModel = new EventViewModel
             {
-                return NotFound();
-            }
-
-            Event = new EventViewModel
-            {
-                ID = domainEvent.ID,
-                Name = domainEvent.Name
+                ID = eventDomain.ID,
+                Name = eventDomain.Name,
             };
 
             return Page();

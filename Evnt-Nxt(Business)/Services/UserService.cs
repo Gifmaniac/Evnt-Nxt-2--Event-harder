@@ -19,6 +19,5 @@ namespace Evnt_Nxt_Business_.Services
             _passwordHasher = passwordHasher;
         }
 
-
     }
 }

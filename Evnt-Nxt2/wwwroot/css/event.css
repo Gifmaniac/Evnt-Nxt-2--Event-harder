@@ -1,18 +1,24 @@
-﻿.artist-list {
+.event-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-    .artist-list li {
-        background-color: slategray;
+    .event-list li {
+        background-color: slategrey;
         width: 100%;
         padding: 15px;
         margin-bottom: 10px;
     }
 
-        .artist-list li a {
+        .event-list li a {
             color: white;
             font-size: 14px;
             margin-right: 10px;
         }
+
+    .event-list span {
+        color: white;
+        font-size: 14px;
+        margin-right: 10px;
+    }

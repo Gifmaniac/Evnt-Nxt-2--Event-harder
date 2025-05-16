@@ -10,12 +10,12 @@ namespace Evnt_Nxt2.Pages
 
     public class ArtistModel : PageModel
     {
-        private readonly IArtistService _artistServices;
+        private readonly ArtistService _artistServices;
 
         public List<ArtistViewModel> ArtistList { get; set; }
 
         // Gets the information that the ArtistModel holds.
-        public ArtistModel(IArtistService artistService)
+        public ArtistModel(ArtistService artistService)
         {
             _artistServices = artistService;
         }

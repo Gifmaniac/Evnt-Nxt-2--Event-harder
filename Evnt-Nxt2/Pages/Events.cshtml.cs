@@ -1,6 +1,7 @@
+using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Business_.ViewModel;
-using Microsoft.AspNetCore.Mvc;
+using Evnt_Nxt2.Mapper;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Evnt_Nxt2.Pages
@@ -17,15 +18,8 @@ namespace Evnt_Nxt2.Pages
 
         public void OnGet()
         {
-            var eventObject = _eventService.CreateEventsWithOrganizerAndGenre();
-            Events = eventObject.Select(dtos => new EventViewModel
-            {
-                ID = dtos.ID,
-                Name = dtos.Name,
-                Location = dtos.Location,
-                Date = dtos.Date,
-                Organizer = dtos.OrganizerID,
-            }).ToList();
+            var eventPage = _eventService.CreateEventsWithOrganizerAndGenre();
+            Events = EventViewModelMapper.ToEventViewModelList(eventPage);
         }
     }
 }

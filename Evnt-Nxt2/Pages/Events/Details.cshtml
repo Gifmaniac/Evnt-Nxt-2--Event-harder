@@ -1,12 +1,19 @@
-﻿@page
+﻿@page "/Events/{ID}"
 @model Evnt_Nxt2.Pages.Events.DetailsModel
+@section Styles{
+<link rel="stylesheet" href="~/css/ticket.css" />
+}
 @{
-    @if (Model.Event != null)
+    @if (Model.EventViewModel != null)
     {
-        <h1>@Model.Event.Name</h1>
+        <h1>@Model.EventViewModel.Name</h1>
+
+       
+        <a asp-page="/Ticket" asp-route-id="@Model.EventViewModel.ID" class="fakebtn"> Buy Tickets for @Model.EventViewModel.Name </a>
+
     }
     else
     {
-        <p>Geen artiest gevonden.</p>
+        <p>No Event Found.</p>
     }
 }

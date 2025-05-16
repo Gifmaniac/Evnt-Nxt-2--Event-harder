@@ -20,19 +20,19 @@ namespace Evnt_Nxt_DAL_.Repository
             {
                 string query =
                     @"SELECT 
-                    Event.ID AS EventID,
-                    Event.Name AS EventName,
-                    Event.Date AS EventDate,
-                    Event.Location AS EventLocation,
-                    Event.Province AS EventProvince,
-                    Organizer.ID AS OrganizerID,
-                    Organizer.Name AS OrganizerName,
-                    Genre.ID AS GenreID,
-                    Genre.Name AS GenreName
+                        Event.ID AS EventID,
+                        Event.Name AS EventName,
+                        Event.Date AS EventDate,
+                        Event.Location AS EventLocation,
+                        Event.Province AS EventProvince,
+                        Organizer.ID AS OrganizerID,
+                        Organizer.Name AS OrganizerName,
+                        Genre.ID AS GenreID,
+                        Genre.Name AS GenreName
                     FROM Event
                     JOIN EventGenre ON Event.ID = EventGenre.EventID
                     JOIN Genre ON Genre.ID = EventGenre.GenreID
-                    JOIN Organizer ON Event.OrganizerID = Organizer.ID;";
+                    JOIN Organizer ON Event.OrganizerID = Organizer.ID";
 
                 connection.Open();
 
@@ -53,8 +53,8 @@ namespace Evnt_Nxt_DAL_.Repository
                                 Date = DateOnly.FromDateTime(Convert.ToDateTime(reader["EventDate"])),
                                 Province = (string)reader["EventProvince"],
                             };
-                        eventDict[eventID] = eventDTO;
-                        result.Add(eventDTO);
+                            eventDict[eventID] = eventDTO;
+                            result.Add(eventDTO);
                         }
 
                         var genre = new GenreDTO
@@ -69,8 +69,8 @@ namespace Evnt_Nxt_DAL_.Repository
                             ID = Convert.ToInt32(reader["OrganizerID"]),
                             Name = (string)reader["OrganizerName"]
                         };
+
                         eventDTO.Organizer = organizer;
-                        Console.WriteLine(eventDTO.Organizer.Name);
                     };
                 }
                 connection.Close();
@@ -79,13 +79,13 @@ namespace Evnt_Nxt_DAL_.Repository
             return result;
         }
 
-        public EventDTO GetEventByName(string name)
+        public EventDTO GetEventByID(int ID)
         {
             using var connection = new SqlConnection(DatabaseContext.ConnectionString);
-            string query = "SELECT ID, Name FROM Event WHERE Name = @Name";
+            string query = "SELECT ID, Name FROM Event WHERE ID = @ID";
 
             using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Name", name);
+            command.Parameters.AddWithValue("@ID", ID);
 
             connection.Open();
 

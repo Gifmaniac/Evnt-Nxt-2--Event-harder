@@ -21,15 +21,15 @@ namespace Evnt_Nxt_Business_.Services
         }
 
 
-        public ArtistDTO GetArtistByName(string name)
+        public Artist GetArtistByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentException("Artist name has not bin found please try again.");
             }
+            var artist = _artistRepo.GetArtistByName(name);
 
-            var artistList = _artistRepo.GetArtistByName(name);
-            return artistList;
+            return new Artist(artist.ID, artist.Name);
         }
 
         public List<Artist> CreateAllArtistsWithGenre()
