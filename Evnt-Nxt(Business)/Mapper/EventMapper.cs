@@ -11,12 +11,12 @@ namespace Evnt_Nxt_Business_.Mapper
 {
     public static class EventMapper
     {
-        public static Event CreateDomainFromDto(EventDTO dto)
+        public static Event CreateEventWithIDAndNameFromDto(EventDTO dto)
         {
             return new Event(dto.ID, dto.Name);
         }
 
-        public static EventDTO CreateDtoFromDomain(Event domain)
+        public static EventDTO CreateDtoFromEventIDAndName(Event domain)
         {
             return new EventDTO
             {

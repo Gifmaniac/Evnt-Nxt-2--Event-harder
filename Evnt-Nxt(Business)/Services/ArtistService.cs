@@ -14,13 +14,11 @@ namespace Evnt_Nxt_Business_.Services
     {
         private readonly ArtistRepository _artistRepo;
         private readonly GenreRepository _genreRepo;
-        private readonly ArtistGenreRepository _artistGenreRepo;
 
-        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo, ArtistGenreRepository artistGenreRepo)
+        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo)
         {
             _artistRepo = artistRepo;
             _genreRepo = genreRepo;
-            _artistGenreRepo = artistGenreRepo;
         }
 
 
@@ -35,18 +33,18 @@ namespace Evnt_Nxt_Business_.Services
             return new Artist(artist.ID, artist.Name);
         }
 
-        public List<ArtistWithGenresDTO> GetAllArtistsWithGenres()
+        public List<Artist> CreateAllArtistsWithGenre()
         {
-            List<ArtistDTO> artistDtos = _artistRepo.GetAllArtistDtos();
-            List<GenreDTO> genreDtos = _genreRepo.GetAllGenreDtos();
-            List<ArtistGenreDTO> artistsGenreLinks = _artistGenreRepo.GetAllArtistGenreLinks();
+            var dtoList = _artistRepo.GetArtistWithGenresList();
+            var artistList = new List<Artist>();
 
-            return ArtistGenreMapper.MapToDto(artistDtos, genreDtos, artistsGenreLinks);
-        }
-
-        public List<Artist> MapToDomain()
-        {
-
+            foreach (var dto in dtoList)
+            {
+                var genreList = dto.Genres.Select(genre => new Genre(genre.ID, genre.Name)).ToList();
+                var artist = new Artist(dto.ID, dto.Name, genreList);
+                artistList.Add(artist);
+            }
+            return artistList;
         }
     }
 }

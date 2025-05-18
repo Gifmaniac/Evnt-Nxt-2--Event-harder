@@ -5,14 +5,15 @@
 }
 
     .artist-list li {
-        background-color: slategray;
+        background-color: darkgrey;
         width: 100%;
         padding: 15px;
         margin-bottom: 10px;
     }
 
         .artist-list li a {
-            color: white;
+            color: black;
             font-size: 14px;
+            font-weight: bold;
             margin-right: 10px;
         }

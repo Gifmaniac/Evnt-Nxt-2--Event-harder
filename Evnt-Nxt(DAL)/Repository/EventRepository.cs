@@ -11,24 +11,23 @@ namespace Evnt_Nxt_DAL_.Repository
 
     public class EventRepository
     {
+        private SQLQueries _query = new();
         public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
             var result = new List<EventWithOrganizerAndGenreDTO>();
             var eventDict = new Dictionary<int, EventWithOrganizerAndGenreDTO>();
+            string eventquery = _query.GetEventIDNameDateLocationProvince();
+            string organizerquery = _query.GetOrganizerIDName();
+            string genrequery = _query.GetGenreIDName();
+
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
                 string query =
-                    @"SELECT 
-                        Event.ID AS EventID,
-                        Event.Name AS EventName,
-                        Event.Date AS EventDate,
-                        Event.Location AS EventLocation,
-                        Event.Province AS EventProvince,
-                        Organizer.ID AS OrganizerID,
-                        Organizer.Name AS OrganizerName,
-                        Genre.ID AS GenreID,
-                        Genre.Name AS GenreName
+                    $@"SELECT
+                        {eventquery},
+                        {organizerquery},
+                        {genrequery}        
                     FROM Event
                     JOIN EventGenre ON Event.ID = EventGenre.EventID
                     JOIN Genre ON Genre.ID = EventGenre.GenreID

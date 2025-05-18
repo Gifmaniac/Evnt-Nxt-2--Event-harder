@@ -24,6 +24,14 @@ namespace Evnt_Nxt_Business_.DomainClass
             ID = id;
             Name = name;
         }
+
+        public Event(int id, string name, DateOnly date)
+        {
+            ID = id;
+            Name = name;
+            Date = date;
+        }
+
         public Event(int id, string name, Organizer organizer, ProvinceEnums province, DateOnly date, List<Genre> genres)
         {
             ID = id;

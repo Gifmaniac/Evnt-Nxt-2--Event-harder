@@ -16,7 +16,6 @@ namespace Evnt_Nxt_Business_.Mapper
             Dictionary<int, GenreDTO> genreMap = genreDtoList.ToDictionary(genreDto => genreDto.ID, genreDto => genreDto);
 
             // Groups the artistID with their genreID in a dictionary.
-
             Dictionary<int, List<int>> artistGenreMap = artistGenreLinks
                 .GroupBy(artistGenreLinks => artistGenreLinks.ArtistId)
                 .ToDictionary(
@@ -25,7 +24,6 @@ namespace Evnt_Nxt_Business_.Mapper
                 );
 
             //Loops through the ArtistDto and turns it into an ArtistWithGenre.
-
             List<ArtistWithGenresDTO> result = artistDtoList
                 .Select(artistDto =>
                 {

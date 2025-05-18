@@ -25,7 +25,7 @@ public class EventService
             throw new ArgumentException("Event has not been found please try again.");
         }
 
-        var domainEvent = EventMapper.CreateDomainFromDto(dto);
+        var domainEvent = EventMapper.CreateEventWithIDAndNameFromDto(dto);
 
         return domainEvent;
     }

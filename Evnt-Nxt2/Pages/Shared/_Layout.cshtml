@@ -9,28 +9,30 @@
 </head>
 
 <body>
-<header class="navbar">
-    <div class="logo">Evnt-Nxt</div>
-    <nav class="nav-links">
-        <a asp-page="/Index">Home Page</a>
-        <a asp-page="/Artist">Artist</a>
-        <a asp-page="/Events">Events</a>
-    </nav>
-    <div class="search-bar">
-        <input type="Text" placeholder="Type here!"/>
-    </div>
-</header>
+    <header class="navbar-wrapper">
+        <div class="navbar">
+            <div class="logo">Evnt-Nxt</div>
+            <nav class="nav-links">
+                <a asp-page="/Index">Home Page</a>
+                <a asp-page="/Artist">Artist</a>
+                <a asp-page="/Events">Events</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Type here!" />
+            </div>
+        </div>
+    </header>
 
-<main class="main">
-    @RenderBody()
-</main>
+    <main class="main">
+        @RenderBody()
+    </main>
 
-<footer class="footer">
-    <h3>Menu</h3>
-    <ul>
-        <li><a asp-page="/Index">Home Page</a></li>
-        <li><a asp-page="/Artist">Artist</a></li>
-    </ul>
-</footer>
-</body>
+        <footer class="footer">
+            <h3>Menu</h3>
+                <ul>
+                    <li class="footer.li"><a asp-page="/Index">Home Page</a></li>
+                    <li class="footer.li"><a asp-page="/Artist">Artist</a></li>
+                </ul>
+        </footer>
+    </body>
 </html>
