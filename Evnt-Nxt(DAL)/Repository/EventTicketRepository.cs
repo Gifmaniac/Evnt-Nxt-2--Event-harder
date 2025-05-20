@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
-    public class TicketRepository
+    public class EventTicketRepository
     {
         private SQLQueries _query = new();
 
-        public List<EventTicketDTO> GetTicketTypesDto()
+        public List<EventTicketDTO> GetTicketTypesWithEventIDNameDateDto()
         {
             string getEventTicketNamePriceAmountIsAvailable = _query.GetEventTicketNamePriceAmountIsAvailable();
             string getEventIDNameDate = _query.GetEventIDNameDate();

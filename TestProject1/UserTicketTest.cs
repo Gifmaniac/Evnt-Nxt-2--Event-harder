@@ -7,16 +7,16 @@ using Moq;
 
 namespace TestProject1
 {
-    public class ArtistModelOnGetTest
+    public class UserTicketTest
 
     {
         [Fact]
         public void OnGetFillArtistListTest()
         {
             // Assamble
-            var fakeArtistList = new List<Artist>
+            var FakeTicketList = new List<EventTicket>
             {
-                new Artist(1, "Pietje Drummer", new List<Genre>
+                new EventTicket(1, "LakeDance", "test");
                 {
                     new Genre(0, "HipHop")
                 }),

@@ -33,7 +33,7 @@ namespace Evnt_Nxt_Business_.Mapper
             {
                 var organizer = new Organizer(dto.Organizer.ID, dto.Organizer.Name, dto.Organizer.Tel);
                 var province = Enum.Parse<ProvinceEnums>(dto.Province);
-                var genres = dto.Genre.Select(g => new Genre(g.ID, g.Name)).ToList();
+                var genres = dto.Genre.Select(genre => new Genre(genre.ID, genre.Name)).ToList();
                 var domainEvent = new Event(dto.ID, dto.Name, organizer, province, dto.Date, genres);
 
                 result.Add(domainEvent);
