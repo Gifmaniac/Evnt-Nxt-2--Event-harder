@@ -1,9 +1,11 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
+using Evnt_Nxt_DAL_.Repository;
 using Evnt_Nxt2.Interface;
 using Evnt_Nxt2.Pages;
-using Moq;
+using Xunit.Abstractions;
+
 
 namespace TestProject1
 {
@@ -11,34 +13,35 @@ namespace TestProject1
 
     {
         [Fact]
-        public void OnGetFillArtistListTest()
+        public void BuyTicket_ShouldAddTicketToUser()
         {
-            // Assamble
-            var FakeTicketList = new List<EventTicket>
-            {
-                new EventTicket(1, "LakeDance", "test");
-                {
-                    new Genre(0, "HipHop")
-                }),
 
-                new Artist(2, "PindaBakkertje", new List<Genre>
-                {
-                    new Genre(1, "Techno")
-                })
+            // Arrange
+            var user = new User
+            {
+                ID = 1,
+                Username = "Test",
+                FirstName = "Willem",
+                LastName = "Van den Broek"
             };
 
-            var _artistServiceMock = new Mock<ArtistService>();
+            var ticket = new Ticket(12, "Normal", 49);
 
-            //_artistServiceMock.Setup(artistService => artistService.CreateAllArtist()).Returns(fakeArtistList);
+            var @event = new Event(13, "Lake Dance");
 
-            var artistModel = new ArtistModel(_artistServiceMock.Object);
+
+            var eventTicket = new EventTicket(@event, ticket);
+            
+            ITicketService ticketService = new TicketService();
 
             // Act
-            artistModel.OnGet();
+            ticketService.BuyTicket(user, eventTicket);
 
             // Assert
-            Assert.Equal(2, artistModel.ArtistList.Count);
-            Assert.Equal("PindaBakkertje", artistModel.ArtistList[1].Name);
+            Assert.Single(user.PurchasedTickets);
+            Assert.Equal(ticket, user.PurchasedTickets[0]);
+            Assert.True(user.PurchasedTickets.Any(ticket => ticket.Name == "Normal"));
+            Assert.True(user.PurchasedTickets.Any(ticket => eventTicket.Event.Name == "Lake Dance"));
         }
     }
 }

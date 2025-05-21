@@ -18,6 +18,7 @@ namespace Evnt_Nxt_Business_.DomainClass
         public DateOnly Date { get; }
 
         public List<Genre> Genres { get; }
+        public List<EventTicket> AllEventTickets { get; } = new();
 
         public Event(int id, string name)
         {

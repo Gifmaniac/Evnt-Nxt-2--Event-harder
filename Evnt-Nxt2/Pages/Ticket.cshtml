@@ -1,35 +1,50 @@
 ﻿@page
+@using Evnt_Nxt_Business_.DomainClass
 @model Evnt_Nxt2.Pages.TicketModel
 @section Styles {
     <link rel="stylesheet" href="~/css/ticket.css" />
 }
 @{
+    var ticketsByName = Model.EventTickets
+        .GroupBy(tickets => tickets.Ticket.Name)
+        .OrderBy(group => group.Min(tickets => tickets.Ticket.Price));
 
-    <div class="container">
-        <div class="ticket-early-bird">
-            <h1 class="text-white"> Early Birds</h1>
-            <lu>
-                <li>
+        @foreach (var group in ticketsByName)
+        {
+            <div class="container ticket-type-block">
+                <h1 class="text-white">@group.Key</h1>
+                <ul>
+                    @foreach (var ticket in group)
+                    {
+                        <li>@ticket.Ticket.Price</li>
+                    }
+                </ul>
+            </div>
+        }
+        // <div class="container">
+        //     <div class="">
+        //         <h1 class="text-white"> @group.Key</h1>
+        //         <lu>
+        //             <li>
+        //                 @ticket.Ticket.Price;
+        //             </li>
+        //         </lu>
+        //     </div>
+        //     <div class="ticket-normal">
+        //         <h1 class="text-white"> Normal Tickets</h1>
+        //         <lu>
+        //             <li>
 
-                </li>
-            </lu>
-        </div>
-        <div class="ticket-normal">
-            <h1 class="text-white"> Normal Tickets</h1>
-            <lu>
-                <li>
+        //             </li>
+        //         </lu>
+        //     </div>
+        //     <div class="ticket-late">
+        //         <h1 class="text-white"> Late Tickets</h1>
+        //         <lu>
+        //             <li>
 
-                </li>
-            </lu>
-        </div>
-        <div class="ticket-late">
-            <h1 class="text-white"> Late Tickets</h1>
-            <lu>
-                <li>
-
-                </li>
-            </lu>
-        </div>
-    </div>
-
+        //             </li>
+        //         </lu>
+        //     </div>
+        // </div>
 }

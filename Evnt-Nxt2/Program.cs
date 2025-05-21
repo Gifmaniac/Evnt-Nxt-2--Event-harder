@@ -14,6 +14,8 @@ builder.Services.AddScoped<GenreService>();
 builder.Services.AddScoped<GenreRepository>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<EventRepository>();
+builder.Services.AddScoped<EventTicketRepository>();
+builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 
 
 builder.Services.AddRazorPages();

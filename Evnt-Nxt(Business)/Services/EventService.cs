@@ -10,6 +10,7 @@ namespace Evnt_Nxt_Business_.Services;
 public class EventService
 {
     private readonly EventRepository _eventRepo;
+    private readonly Event _event;
 
     public EventService(EventRepository eventRepo)
     {
@@ -22,7 +23,7 @@ public class EventService
 
         if (dto == null)
         {
-            throw new ArgumentException("Event has not been found please try again.");
+            throw new ArgumentException($"Event has not been found please try again.{id}");
         }
 
         var domainEvent = EventMapper.CreateEventWithIDAndNameFromDto(dto);
@@ -38,4 +39,5 @@ public class EventService
 
         return events;
     }
+
 }

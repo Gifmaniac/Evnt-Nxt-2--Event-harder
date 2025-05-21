@@ -22,5 +22,20 @@ namespace Evnt_Nxt_Business_.DomainClass
             Amount = amount;
             IsAvailable = isAvailable;
         }
+
+        public Ticket(int id, string name, decimal price, bool isAvailable)
+        {
+            ID = id;
+            Name = name;
+            Price = price;
+            IsAvailable = isAvailable;
+        }
+
+        public Ticket(int id, string name, decimal price)
+        {
+            ID = id;
+            Name = name;
+            Price = price;
+        }
     }
 }

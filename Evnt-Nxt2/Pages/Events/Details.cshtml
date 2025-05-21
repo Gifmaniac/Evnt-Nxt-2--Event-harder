@@ -9,7 +9,7 @@
         <h1>@Model.EventViewModel.Name</h1>
 
        
-        <a asp-page="/Ticket" asp-route-id="@Model.EventViewModel.ID" class="fakebtn"> Buy Tickets for @Model.EventViewModel.Name </a>
+        <a asp-page="/Ticket" asp-route-eventid="@Model.EventViewModel.ID" class="fakebtn"> Buy Tickets for @Model.EventViewModel.Name </a>
 
     }
     else

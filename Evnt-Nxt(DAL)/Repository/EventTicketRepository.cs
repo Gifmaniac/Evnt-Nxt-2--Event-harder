@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,7 +55,50 @@ namespace Evnt_Nxt_DAL_.Repository
                     result.Add(dto);
                 }
             }
+
+            return result;
+        }
+
+        public List<EventTicketDTO> GetEventTicketsByID(int eventTicketID)
+        {
+
+            string query = "SELECT ID, Name, Price FROM EventTicket WHERE ID = @ID";
+
+            var result = new List<EventTicketDTO>();
+
+            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ID", eventTicketID);
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var dto = new EventTicketDTO
+                            {
+                                Event = new EventDTO
+                                {
+                                    ID = Convert.ToInt32(reader["EventID"]),
+                                    Name = (string)reader["EventName"],
+                                    Date = DateOnly.FromDateTime((DateTime)reader["EventDate"])
+                                },
+                                Ticket = new TicketDTO
+                                {
+                                    ID = Convert.ToInt32(reader["TicketTypeID"]),
+                                    Name = (string)reader["TicketTypeName"],
+                                    Price = Convert.ToDecimal(reader["Price"]),
+                                    Amount = Convert.ToInt32(reader["Amount"]),
+                                    IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
+                                }
+                            };
+                            result.Add(dto);
+                        }
+                    }
+                }
+            }
             return result;
         }
     }
 }
+

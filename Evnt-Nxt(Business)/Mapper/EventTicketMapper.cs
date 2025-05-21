@@ -26,5 +26,10 @@ namespace Evnt_Nxt_Business_.Mapper
             }
             return result;
         }
+
+        public static EventTicket CreateEventWithIDAndNameFromDto(EventTicketDTO dto)
+        {
+            return new EventTicket(dto.Ticket.Price, dto.Ticket.Name, dto.Ticket.Amount, dto.Ticket.IsAvailable);
+        }
     }
 }
