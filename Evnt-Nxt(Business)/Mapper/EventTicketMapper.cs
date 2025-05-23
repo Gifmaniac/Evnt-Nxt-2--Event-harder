@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Evnt_Nxt_Business_.Mapper
 {
@@ -18,18 +19,39 @@ namespace Evnt_Nxt_Business_.Mapper
             foreach (var dto in dtoList)
             {
                 var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
-                var ticket = new Ticket(dto.Ticket.ID, dto.Ticket.Name, dto.Ticket.Price, dto.Ticket.Amount, dto.Ticket.IsAvailable);
-                var domainEventTicket = new EventTicket(@event, ticket);
-
-
+                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
+                
                 result.Add(domainEventTicket);
             }
             return result;
         }
 
-        public static EventTicket CreateEventWithIDAndNameFromDto(EventTicketDTO dto)
+        public static List<EventTicket> CreateEventTicketsBuyPage(List<EventTicketDTO> dtoList)
         {
-            return new EventTicket(dto.Ticket.Price, dto.Ticket.Name, dto.Ticket.Amount, dto.Ticket.IsAvailable);
+            var result = new List<EventTicket>();
+
+            foreach (var dto in dtoList)
+            {
+                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.IsAvailable, dto.Amount);
+                result.Add(domainEventTicket);
+            }
+            return result;
+        }
+
+        public static List<EventTicket> CreateEventTicketsFromDtoList(List<EventTicketDTO> dtoList)
+        {
+            var result = new List<EventTicket>();
+
+            foreach (var dto in dtoList)
+            {
+                var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
+                var domainEventTicket =
+                    new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
+
+                result.Add(domainEventTicket);
+            }
+
+            return result;
         }
     }
 }

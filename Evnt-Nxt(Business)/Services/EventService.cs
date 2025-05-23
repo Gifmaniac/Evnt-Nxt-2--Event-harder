@@ -23,7 +23,7 @@ public class EventService
 
         if (dto == null)
         {
-            throw new ArgumentException($"Event has not been found please try again.{id}");
+            throw new ArgumentException($"Event has not been found please try again.");
         }
 
         var domainEvent = EventMapper.CreateEventWithIDAndNameFromDto(dto);
@@ -33,8 +33,8 @@ public class EventService
 
     public List<Event> CreateEventsWithOrganizerAndGenre()
     {
-        var dtos = _eventRepo.GetEventsWithOrganizerAndGenreDtos();
-        var events = EventMapper.CreateEventsWithOrganizerAndGenreFromDto(dtos);
+        var dtoList = _eventRepo.GetEventsWithOrganizerAndGenreDtos();
+        var events = EventMapper.CreateEventsWithOrganizerAndGenreFromDto(dtoList);
 
 
         return events;

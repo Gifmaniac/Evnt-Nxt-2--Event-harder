@@ -11,12 +11,12 @@ namespace Evnt_Nxt2.Pages
 {
     public class TicketModel : PageModel
     {
-        private readonly IEventTicketService _eventTicketService;
+        private readonly EventTicketService _eventTicketService;
         private readonly EventService _eventService;
         public List<EventTicketViewModel> EventTickets { get; set; } = new();
         public EventViewModel Event { get; set; }
 
-        public TicketModel(IEventTicketService eventTicketService, EventService eventService)
+        public TicketModel(EventTicketService eventTicketService, EventService eventService)
         {
             _eventTicketService = eventTicketService;
             _eventService = eventService;

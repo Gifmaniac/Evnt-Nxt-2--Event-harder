@@ -6,8 +6,8 @@
 }
 @{
     var ticketsByName = Model.EventTickets
-        .GroupBy(tickets => tickets.Ticket.Name)
-        .OrderBy(group => group.Min(tickets => tickets.Ticket.Price));
+        .GroupBy(tickets => tickets.Name)
+        .OrderBy(group => group.Min(tickets => tickets.Price));
 
         @foreach (var group in ticketsByName)
         {
@@ -16,35 +16,17 @@
                 <ul>
                     @foreach (var ticket in group)
                     {
-                        <li>@ticket.Ticket.Price</li>
+                        if (ticket.Amount > 0)
+                        {
+                        <li class="text-white">@ticket.Price.ToString("C")</li>
+                        }
+
+                        else
+                        {
+                        <li class="text-white">Sold Out("C")</li>
+                        }
                     }
                 </ul>
             </div>
         }
-        // <div class="container">
-        //     <div class="">
-        //         <h1 class="text-white"> @group.Key</h1>
-        //         <lu>
-        //             <li>
-        //                 @ticket.Ticket.Price;
-        //             </li>
-        //         </lu>
-        //     </div>
-        //     <div class="ticket-normal">
-        //         <h1 class="text-white"> Normal Tickets</h1>
-        //         <lu>
-        //             <li>
-
-        //             </li>
-        //         </lu>
-        //     </div>
-        //     <div class="ticket-late">
-        //         <h1 class="text-white"> Late Tickets</h1>
-        //         <lu>
-        //             <li>
-
-        //             </li>
-        //         </lu>
-        //     </div>
-        // </div>
 }

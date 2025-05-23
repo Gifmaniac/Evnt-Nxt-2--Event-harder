@@ -15,17 +15,6 @@
     grid-row-gap: 0px;
 }
 
-.ticket-early-bird {
-    grid-area: 1 / 1 / 2 / 4;
-    background-color: darkgray;
-}
-
-.ticket-normal {
-    grid-area: 2 / 1 / 3 / 4;
-    background-color: darkgray;
-}
-
-.ticket-late {
-    grid-area: 3 / 1 / 4 / 4;
-    background-color: darkgray;
+.text-white {
+    color: white;
 }

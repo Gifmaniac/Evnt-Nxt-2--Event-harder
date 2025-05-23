@@ -37,39 +37,40 @@ namespace Evnt_Nxt_DAL_.Repository
                 {
                     var dto = new EventTicketDTO
                     {
+                        ID = Convert.ToInt32(reader["ID"]),
+                        EventID = Convert.ToInt32(reader["EventID"]),
+                        Name = (string)reader["Name"],
+                        Price = Convert.ToDecimal(reader["Price"]),
+                        Amount = Convert.ToInt32(reader["Amount"]),
+                        IsAvailable = Convert.ToBoolean(reader["IsAvailable"]),
+
                         Event = new EventDTO
                         {
                             ID = Convert.ToInt32(reader["EventID"]),
                             Name = (string)reader["EventName"],
                             Date = DateOnly.FromDateTime((DateTime)reader["EventDate"])
-                        },
-                        Ticket = new TicketDTO
-                        {
-                            ID = Convert.ToInt32(reader["TicketTypeID"]),
-                            Name = (string)reader["TicketTypeName"],
-                            Price = Convert.ToDecimal(reader["Price"]),
-                            Amount = Convert.ToInt32(reader["Amount"]),
-                            IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
                         }
                     };
                     result.Add(dto);
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
-        public List<EventTicketDTO> GetEventTicketsByID(int eventTicketID)
+
+            public List<EventTicketDTO> GetEventTicketsByEventID(int eventTicketID)
         {
 
-            string query = "SELECT ID, Name, Price FROM EventTicket WHERE ID = @ID";
+            string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable FROM EventTicket 
+                            WHERE EventID = @EventID AND isAvailable = 1";
 
             var result = new List<EventTicketDTO>();
 
             using (var connection = DatabaseContext.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ID", eventTicketID);
+                command.Parameters.AddWithValue("@EventID", eventTicketID);
                 {
                     using (var reader = command.ExecuteReader())
                     {
@@ -77,20 +78,11 @@ namespace Evnt_Nxt_DAL_.Repository
                         {
                             var dto = new EventTicketDTO
                             {
-                                Event = new EventDTO
-                                {
-                                    ID = Convert.ToInt32(reader["EventID"]),
-                                    Name = (string)reader["EventName"],
-                                    Date = DateOnly.FromDateTime((DateTime)reader["EventDate"])
-                                },
-                                Ticket = new TicketDTO
-                                {
-                                    ID = Convert.ToInt32(reader["TicketTypeID"]),
-                                    Name = (string)reader["TicketTypeName"],
-                                    Price = Convert.ToDecimal(reader["Price"]),
-                                    Amount = Convert.ToInt32(reader["Amount"]),
-                                    IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
-                                }
+                                ID = Convert.ToInt32(reader["ID"]),
+                                Name = (string)reader["Name"],
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                Amount = Convert.ToInt32(reader["Amount"]),
+                                IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
                             };
                             result.Add(dto);
                         }
