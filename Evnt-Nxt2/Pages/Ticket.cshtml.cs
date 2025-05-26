@@ -11,12 +11,18 @@ namespace Evnt_Nxt2.Pages
 {
     public class TicketModel : PageModel
     {
-        private readonly EventTicketService _eventTicketService;
+        private readonly IEventTicketService _eventTicketService;
         private readonly EventService _eventService;
+        
+        [BindProperty]
+        public int EventID { get; set; }
+        [BindProperty]
+        public int TicketsToBuy { get; set; }
+
         public List<EventTicketViewModel> EventTickets { get; set; } = new();
         public EventViewModel Event { get; set; }
 
-        public TicketModel(EventTicketService eventTicketService, EventService eventService)
+        public TicketModel(IEventTicketService eventTicketService, EventService eventService)
         {
             _eventTicketService = eventTicketService;
             _eventService = eventService;
@@ -24,11 +30,14 @@ namespace Evnt_Nxt2.Pages
 
         public void OnGet(int eventID)
         {
+            EventID = eventID;
+
             var @event = _eventService.GetEventByID(eventID);
             Event = EventViewModelMapper.ToEventViewModel(@event);
 
             var availableTickets = _eventTicketService.GetAvailableEventTickets(eventID);
             EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
         }
+
     }
 }

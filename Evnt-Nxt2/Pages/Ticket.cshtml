@@ -8,23 +8,26 @@
     var ticketsByName = Model.EventTickets
         .GroupBy(tickets => tickets.Name)
         .OrderBy(group => group.Min(tickets => tickets.Price));
+}
+        <h1> </h1>
 
         @foreach (var group in ticketsByName)
         {
             <div class="container ticket-type-block">
-                <h1 class="text-white">@group.Key</h1>
+            <h1 class="text-white">@group.Key</h1>
                 <ul>
                     @foreach (var ticket in group)
                     {
-                        if (ticket.Amount > 0)
-                        {
-                        <li class="text-white">@ticket.Price.ToString("C")</li>
-                        }
-
-                        else
-                        {
-                        <li class="text-white">Sold Out("C")</li>
-                        }
+                        <li class="text-white">
+                            @if (ticket.Amount > 0)
+                            { 
+                                @ticket.Price.ToString("C")
+                            }
+                            else
+                            {
+                            <span>Sold Out</span> 
+                            }
+                        </li>
                     }
                 </ul>
             </div>
