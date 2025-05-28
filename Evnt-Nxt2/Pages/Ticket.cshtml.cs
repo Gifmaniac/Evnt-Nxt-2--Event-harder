@@ -17,7 +17,7 @@ namespace Evnt_Nxt2.Pages
     {
         private readonly IEventTicketService _eventTicketService;
         private readonly EventService _eventService;
-        private readonly TicketService _ticketService;
+        private readonly ITicketService _ticketService;
         private readonly UserService _userService;
 
         [BindProperty]
@@ -30,11 +30,12 @@ namespace Evnt_Nxt2.Pages
         public List<EventTicketViewModel> EventTickets { get; set; } = new();
         public EventViewModel Event { get; set; }
 
-        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService)
+        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService, ITicketService ticketService)
         {
             _eventTicketService = eventTicketService;
             _eventService = eventService;
             _userService = userService;
+            _ticketService = ticketService;
         }
 
         public void OnGet(int eventID)

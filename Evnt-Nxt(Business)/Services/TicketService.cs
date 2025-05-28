@@ -7,34 +7,39 @@ using System.Threading.Tasks;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_DAL_.DTO;
+using Evnt_Nxt_DAL_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Services
 {
     public class TicketService : ITicketService
     {
-        private readonly TicketRepository _ticketRepository;
+        public List<TicketDTO> TesTicketDtos = new();
+        private readonly ITicketRepository _ticketRepository;
 
-        public TicketService(TicketRepository ticketRepository)
+        public TicketService(ITicketRepository ticketRepository)
         {
             _ticketRepository = ticketRepository;
         }
-        public void BuyTicket(User user, int eventID, int quantity)
+
+        public void BuyTicket(User user, int eventTicketID, int quantity)
         {
-            if (user == null || eventID == null || quantity < 1)
+            if (user == null || eventTicketID == null || quantity < 1)
             {
                 return;
             }
 
             for (int i = 0; i < quantity; i++)
             {
-                TicketDTO ticket = new TicketDTO
+                var ticket = new TicketDTO
                 {
                     UserID = user.ID,
-                    EventTicketID = eventID,
+                    EventTicketID = eventTicketID,
                     PurchaseDate = DateOnly.FromDateTime(DateTime.Today)
                 };
-                _ticketRepository.AddTicketToUser(ticket);
+
+                _ticketRepository.AddTicketToUser(ticket, 1);
+                _ticketRepository.DecreaseAvailableTickets(eventTicketID, 1);
             }
         }
     }

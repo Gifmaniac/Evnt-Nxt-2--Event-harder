@@ -1,4 +1,5 @@
 using Evnt_Nxt_Business_;
+using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_DAL_;
@@ -19,11 +20,13 @@ builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 
 builder.Services.AddRazorPages();
 
-var app = builder.Build();
+ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
