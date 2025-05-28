@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evnt-Nxt(Business)", "Evnt-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D6BF848B-89EA-45D4-9ED7-492F65727888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBuysTicketTest", "UserBuysTicketTest\UserBuysTicketTest.csproj", "{94A09FA8-BFFF-4283-BC3E-E655D3AB0731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserBuysTicketTest", "UserBuysTicketTest\UserBuysTicketTest.csproj", "{94A09FA8-BFFF-4283-BC3E-E655D3AB0731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

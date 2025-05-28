@@ -11,13 +11,19 @@ namespace Evnt_Nxt_Business_.DomainClass
         public int ID { get; }
         public int RoleID { get; }
         public string Username { get; }                 
-        public string Hashedpassword { get; }
+        public string HashedPassword { get; }
         public string Email { get; }
         public string FirstName { get; }
         public string LastName { get; }
         public DateTime Birthday { get; }
 
         public List<Ticket> PurchasedTickets = new ();
+
+        public User(string email, string hashedPassword)
+        {
+            Email = email;
+            HashedPassword = hashedPassword;
+        }
 
         public User(int id, string email, string firstName, string lastName)
         {

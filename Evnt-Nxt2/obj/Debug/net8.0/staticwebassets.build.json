@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FI7n4ykUxy9zbE3IHajR6v5oc0K5fITfl8EK3rUE9wE=",
+  "Hash": "kZXvshT6aD+zXvo8z+J+fvXBjPZt+/TJsRedzVHV2mY=",
   "Source": "Evnt-Nxt2",
   "BasePath": "_content/Evnt-Nxt2",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\event.css"
+    },
+    {
+      "Identity": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\wwwroot\\css\\login.css",
+      "SourceId": "Evnt-Nxt2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\wwwroot\\",
+      "BasePath": "_content/Evnt-Nxt2",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
       "Identity": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\wwwroot\\css\\site.css",

@@ -11,11 +11,16 @@ namespace Evnt_Nxt_Business_.Mapper
     public static class UserMapper
     {
 
-        public static User GetUserIDMailFirstAndLastName(UserDTO user)
+        public static User MapIDMailFirstAndLastName(UserDTO user)
         {
-            var result = new User(user.ID, user.Email, user.FirstName, user.LastName);
-
-            return result;
+            return new User(user.ID, user.Email, user.FirstName, user.LastName);
         }
+
+        public static User MapByMailAndPassWord(UserDTO user)
+        {
+            return new User(user.Email, user.Hashedpassword);
+        }
+
+
     }
 }

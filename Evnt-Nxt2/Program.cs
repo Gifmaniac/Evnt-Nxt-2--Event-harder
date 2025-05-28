@@ -9,19 +9,25 @@ using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Repositories
 builder.Services.AddScoped<ArtistRepository>();
-builder.Services.AddScoped<ArtistService>();
-builder.Services.AddScoped<GenreService>();
 builder.Services.AddScoped<GenreRepository>();
-builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<EventRepository>();
 builder.Services.AddScoped<EventTicketRepository>();
-builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+
+// Services
+builder.Services.AddScoped<ArtistService>();
+builder.Services.AddScoped<GenreService>();
+builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IEventTicketService, EventTicketService>();
+
+// Utilities
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 
 builder.Services.AddRazorPages();
