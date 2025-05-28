@@ -8,7 +8,7 @@ using Evnt_Nxt_Business_.Interfaces;
 
 namespace Evnt_Nxt_Business_
 {
-    public class PasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
         public string HashPassword(string password)
         {
@@ -18,6 +18,11 @@ namespace Evnt_Nxt_Business_
                 byte[] hashBytes = sha256.ComputeHash(bytes);
                 return Convert.ToBase64String(hashBytes);
             }
+        }
+
+        public bool VerifyPassword(string inputPassword, string hashedPassword)
+        {
+            return true;
         }
     }
 }

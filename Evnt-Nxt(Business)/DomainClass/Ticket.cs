@@ -10,7 +10,7 @@ namespace Evnt_Nxt_Business_.DomainClass
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public int TicketType { get; set; }
+        public int EventTicketID { get; set; }
         public DateOnly PurchaseDate { get; set; }
     }
 }

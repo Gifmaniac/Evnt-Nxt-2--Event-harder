@@ -4,6 +4,10 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/ticket.css" />
 }
+@section Scripts {
+    <script src="~/js/ticket.js"></script>
+}   
+
 @{
     var ticketsByName = Model.EventTickets
         .GroupBy(tickets => tickets.Name)
@@ -13,16 +17,32 @@
 
         @foreach (var group in ticketsByName)
         {
-            <div class="container ticket-type-block">
-            <h1 class="text-white">@group.Key</h1>
-                <ul>
-                    @foreach (var ticket in group)
-                    {
-                        <li class="text-white">
-                            @if (ticket.Amount > 0)
-                            { 
-                                @ticket.Price.ToString("C")
-                            }
+                <div class="container ticket-type-block">
+                <h1 class="text-white">@group.Key</h1>
+                    <ul>
+                        @foreach (var ticket in group)
+                        {
+                            <li class="text-white">
+                                @if (ticket.Amount > 0)
+                                { 
+                                    <form method="post">
+                                        <input type="hidden" name="EventTicketID" value="@ticket.ID" />
+                                        <input type="hidden" name="EventID" value="@Model.EventID" />
+
+                                        <input type="number"
+                                               id="quantity-@ticket.ID"
+                                               name="TicketsToBuy"
+                                               value="1"
+                                               min="1"
+                                               max="5"
+                                               oninput="updateTotalPrice(@ticket.ID, @ticket.Price)" />
+                                        <p id="totalPrice-@ticket.ID">Total: € @ticket.Price</p>
+
+                                        <p id="availabilityMessage-@ticket.ID" class="text-white"></p>
+
+                                        <button type="submit">Buy Now</button>
+                                    </form>
+                                }
                             else
                             {
                             <span>Sold Out</span> 

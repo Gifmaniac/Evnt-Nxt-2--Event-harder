@@ -17,31 +17,21 @@ namespace TestProject1
         {
 
             // Arrange
-            var user = new User
-            {
-                ID = 1,
-                Username = "Test",
-                FirstName = "Willem",
-                LastName = "Van den Broek"
-            };
+            var user = new User(1, "test@test.nl", "Willem", "Van den Broek");
 
-            var ticket = new Ticket(12, "Normal", 49);
-
-            var @event = new Event(13, "Lake Dance");
-
-
-            var eventTicket = new EventTicket(@event, ticket);
+            var eventTicket = new Event(1, "Normal", "10-10-2025");
             
             ITicketService ticketService = new TicketService();
 
             // Act
-            ticketService.BuyTicket(user, eventTicket);
+            ticketService.BuyTicket(user, eventTicket, 2);
 
             // Assert
             Assert.Single(user.PurchasedTickets);
-            Assert.Equal(ticket, user.PurchasedTickets[0]);
-            Assert.True(user.PurchasedTickets.Any(ticket => ticket.Name == "Normal"));
-            Assert.True(user.PurchasedTickets.Any(ticket => eventTicket.Event.Name == "Lake Dance"));
+            Ticket purchasedTicket = user.PurchasedTickets[0];
+            Assert.Equal(user.ID, purchasedTicket.UserID);
+            Assert.Equal(eventTicket.ID, purchasedTicket.EventTicketID);
+            Assert.Equal(DateOnly.FromDateTime(DateTime.Today), purchasedTicket.PurchaseDate);
         }
     }
 }

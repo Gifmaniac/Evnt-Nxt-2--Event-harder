@@ -44,15 +44,33 @@ namespace Evnt_Nxt_Business_.DomainClass
             Amount = amount;
         }
 
-        public EventTicket(int id, string name, decimal price, int amount, bool isAvailable, Event @event)
+        public EventTicket(int id, string name, decimal price, int amount, bool isAvailable)
         {
             ID = id;
             Name = name;
             Price = price;
             IsAvailable = isAvailable;
             Amount = amount;
+        }
+
+        public EventTicket(EventTicket ticketInfo, Event @event)
+        {
+            ID = ticketInfo.ID;
+            Name = ticketInfo.Name;
+            Price = ticketInfo.Price;
+            Amount = ticketInfo.Amount;
+            IsAvailable = ticketInfo.IsAvailable;
             Event = @event;
         }
 
+        public EventTicket(Event @event, EventTicket eventTicket)
+        {
+            Event = @event;
+            ID = eventTicket.ID;
+            Name = eventTicket.Name;
+            Price = eventTicket.Price;
+            Amount = eventTicket.Amount;
+            IsAvailable = eventTicket.IsAvailable;
+        }
     }
 }

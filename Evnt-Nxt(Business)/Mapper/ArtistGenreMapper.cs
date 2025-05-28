@@ -9,7 +9,7 @@ using Evnt_Nxt_DAL_.DTO;
 
 namespace Evnt_Nxt_Business_.Mapper
 {
-    public class ArtistGenreMapper
+    public static class ArtistGenreMapper
     {
         public static List<ArtistWithGenresDTO> MapToDto(List<ArtistDTO> artistDtoList, List<GenreDTO> genreDtoList, List<ArtistGenreDTO> artistGenreLinks)
         {

@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace Evnt_Nxt_Business_.Mapper
 {
-    public class EventTicketMapper
+    public static class EventTicketMapper
     {
         public static List<EventTicket> CreateEventTicketWithEventIDNameDate(List<EventTicketDTO> dtoList)
         {
@@ -19,7 +19,8 @@ namespace Evnt_Nxt_Business_.Mapper
             foreach (var dto in dtoList)
             {
                 var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
-                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
+                var EventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable);
+                var domainEventTicket = new EventTicket(EventTicket, @event);
                 
                 result.Add(domainEventTicket);
             }
@@ -45,8 +46,8 @@ namespace Evnt_Nxt_Business_.Mapper
             foreach (var dto in dtoList)
             {
                 var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
-                var domainEventTicket =
-                    new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
+                var ticketInfo = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable);
+                var domainEventTicket = new EventTicket(ticketInfo, @event);
 
                 result.Add(domainEventTicket);
             }

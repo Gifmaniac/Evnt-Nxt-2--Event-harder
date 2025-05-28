@@ -162,3 +162,4 @@ C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\TestProject1\bin\Debug\n
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\TestProject1\bin\Debug\net8.0\Evnt-Nxt2.exe
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\TestProject1\bin\Debug\net8.0\Evnt-Nxt2.dll
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\TestProject1\bin\Debug\net8.0\Evnt-Nxt2.pdb
+C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\TestProject1\bin\Debug\net8.0\Evnt-Nxt2.staticwebassets.endpoints.json

@@ -16,6 +16,9 @@ builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<EventRepository>();
 builder.Services.AddScoped<EventTicketRepository>();
 builder.Services.AddScoped<IEventTicketService, EventTicketService>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<UserService>();
 
 
 builder.Services.AddRazorPages();

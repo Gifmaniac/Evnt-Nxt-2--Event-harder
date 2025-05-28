@@ -11,20 +11,21 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class EventTicketRepository
     {
-        private SQLQueries _query = new();
+
+
 
         public List<EventTicketDTO> GetTicketTypesWithEventIDNameDateDto()
         {
-            string getEventTicketNamePriceAmountIsAvailable = _query.GetEventTicketNamePriceAmountIsAvailable();
-            string getEventIDNameDate = _query.GetEventIDNameDate();
+            string getEventTicketNamePriceAmountIsAvailable = SQLQueries.GetEventTicketNamePriceAmountIsAvailable;
+            string getEventIDNameDate = SQLQueries.GetEventIDNameDate;
             string query = $@"
-                            SELECT 
+                            SELECT
                                 {getEventTicketNamePriceAmountIsAvailable}
                                 {getEventIDNameDate}
                            FROM EventTicket
                            JOIN Event ON EventTicket.EventID = Event.ID
                            WHERE EventTicket.IsAvailable = 1 AND Event.Date >= GETDATE()
-                           ORDER BY Event.Date, EventTicket.Price;
+                           ORDER BY Event.Date, EventTicket.Price
                             ";
 
             var result = new List<EventTicketDTO>();
@@ -59,7 +60,7 @@ namespace Evnt_Nxt_DAL_.Repository
         }
 
 
-            public List<EventTicketDTO> GetEventTicketsByEventID(int eventTicketID)
+            public List<EventTicketDTO> GetEventTicketsByEventID(int eventID)
         {
 
             string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable FROM EventTicket 
@@ -70,7 +71,8 @@ namespace Evnt_Nxt_DAL_.Repository
             using (var connection = DatabaseContext.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@EventID", eventTicketID);
+                command.Parameters.AddWithValue("@EventID", eventID);
+                //command.Parameters.AddWithValue("@ID", ticketID);
                 {
                     using (var reader = command.ExecuteReader())
                     {

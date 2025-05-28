@@ -11,14 +11,13 @@ namespace Evnt_Nxt_DAL_.Repository
 
     public class EventRepository
     {
-        private SQLQueries _query = new();
         public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
             var result = new List<EventWithOrganizerAndGenreDTO>();
             var eventDict = new Dictionary<int, EventWithOrganizerAndGenreDTO>();
-            string eventquery = _query.GetEventIDNameDateLocationProvince();
-            string organizerquery = _query.GetOrganizerIDName();
-            string genrequery = _query.GetGenreIDName();
+            string eventquery = SQLQueries.GetEventIDNameDateLocationProvince;
+            string organizerquery = SQLQueries.GetOrganizerIDName;
+            string genrequery = SQLQueries.GetGenreIDName;
 
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))

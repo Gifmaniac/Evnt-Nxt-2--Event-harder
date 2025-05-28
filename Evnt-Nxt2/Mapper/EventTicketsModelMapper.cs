@@ -6,7 +6,7 @@ namespace Evnt_Nxt2.Mapper
 {
     public class EventTicketsModelMapper
     {
-        public static EventTicketViewModel ToEventViewModel(EventTicket domain)
+        public static EventTicketViewModel ToEventTicketViewModel(EventTicket domain)
         {
             return new EventTicketViewModel
             {
@@ -23,7 +23,7 @@ namespace Evnt_Nxt2.Mapper
         public static List<EventTicketViewModel> ToEventTicketsViewModelList(List<EventTicket> domainList)
         {
             return domainList
-                .Select(ToEventViewModel)
+                .Select(ToEventTicketViewModel)
                 .ToList();
         }
     }

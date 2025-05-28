@@ -9,6 +9,6 @@ namespace Evnt_Nxt_Business_.Interfaces
 {
     public interface ITicketService
     {
-        public void BuyTicket(User user, EventTicket eventTicket);
+        public void BuyTicket(User user, int eventID, int quantity);
     }
 }

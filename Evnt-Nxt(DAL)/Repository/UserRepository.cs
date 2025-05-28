@@ -45,5 +45,38 @@ namespace Evnt_Nxt_DAL_.Repository
             return result;
         }
 
+        public UserDTO GetUserById(int id)
+        {
+            const string query = "SELECT * FROM [User] WHERE ID = @id";
+
+            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new UserDTO
+                            {
+                                ID = Convert.ToInt32(reader["ID"]),
+                                RoleID = Convert.ToInt32(reader["Role"]),
+                                Username = (string)reader["Username"],
+                                Hashedpassword = (string)reader["Password"],
+                                FirstName = (string)reader["FirstName"],
+                                LastName = (string)reader["LastName"],
+                                Birthday = (DateTime)reader["BirthDay"],
+                                Email = (string)reader["Email"]
+                            };
+                        }
+                    }
+                }
+            }
+            throw new Exception("User not found");
+        }
     }
 }

@@ -11,13 +11,12 @@ namespace Evnt_Nxt_DAL_.Repository
     {
         // Recieves the artist with genre and puts them in a list. It also checks if an artist has multiple genres, if so we save the ID in a dictionary and add the genre to the id. 
 
-        private readonly SQLQueries _query = new();
 
         public List<ArtistWithGenresDTO> GetArtistWithGenresList()
         {
-            string getArtistAndGenreQuery = _query.GetArtistAndGenreDto();
+            string getArtistAndGenreQuery = SQLQueries.GetArtistAndGenreIDWithName;
             string query = $@"SELECT 
-                            {getArtistAndGenreQuery};";
+                            {getArtistAndGenreQuery}";
 
             var result = new List<ArtistWithGenresDTO>();
             var artistDict = new Dictionary<int, ArtistWithGenresDTO>();
