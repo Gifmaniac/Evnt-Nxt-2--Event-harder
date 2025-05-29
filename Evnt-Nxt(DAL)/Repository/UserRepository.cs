@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,34 @@ namespace Evnt_Nxt_DAL_.Repository
             }
 
             return result;
+        }
+
+        public void RegisterUser(UserDTO user)
+        {
+            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            {
+                string query =
+                    @"INSERT INTO [User]
+                        (Role, Username, Password, FirstName, LastName, Birthday, Email)
+                    VALUES 
+                        (@Role, @Username, @Password, @FirstName, @LastName, @Birthday, @Email)";
+
+
+                connection.Open();
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Role", user.RoleID);
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Password", user.Hashedpassword);
+                    command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    command.Parameters.AddWithValue("@LastName", user.LastName);
+                    command.Parameters.AddWithValue("@Birthday", user.Birthday.ToDateTime(TimeOnly.MinValue));
+                    command.Parameters.AddWithValue("@Email", user.Email);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public UserDTO GetUserById(int id)
@@ -66,7 +95,8 @@ namespace Evnt_Nxt_DAL_.Repository
                 return null;
             }
 
-            const string query = "SELECT Password FROM [User] WHERE Email = @email";
+            const string query = @"SELECT Password FROM [User] 
+                                    WHERE Email = @email";
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
@@ -80,7 +110,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     {
                         if (reader.Read())
                         {
-                            new UserDTO
+                            return new UserDTO
                             {
                                 Email = email,
                                 Hashedpassword = (string)reader["Password"]
@@ -106,8 +136,10 @@ namespace Evnt_Nxt_DAL_.Repository
             }
 
             const string query = @"SELECT 1
-                                    From [user] 
-                                    WHERE Email = @email AND Username = @username";
+                                 From [user] 
+                                 WHERE 
+                                    Email = @email OR 
+                                    Username = @username";
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {

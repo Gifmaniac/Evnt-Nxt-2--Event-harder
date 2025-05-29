@@ -15,6 +15,6 @@ namespace Evnt_Nxt_DAL_.DTO
         public string Email { get; set; }
         public string FirstName {get; set; }
         public string LastName { get; set; }
-        public DateTime Birthday {get; set; }
+        public DateOnly Birthday {get; set; }
     }
 }

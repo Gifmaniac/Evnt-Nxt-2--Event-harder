@@ -25,20 +25,25 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IEventTicketService, EventTicketService>();
+builder.Services.AddScoped<RegisterService>();
 
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<RegisterValidator>();
 
 
 builder.Services.AddRazorPages();
+builder.Services.AddSession();
 
- var app = builder.Build();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.UseSession();
 }
 
 app.UseHttpsRedirection();

@@ -1,4 +1,6 @@
-﻿using Evnt_Nxt_Business_.Interfaces;
+﻿using Evnt_Nxt_Business_.DomainClass;
+using Evnt_Nxt_Business_.Interfaces;
+using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
 
 namespace Evnt_Nxt_Business_.Services
@@ -24,9 +26,9 @@ namespace Evnt_Nxt_Business_.Services
             return errors;
         }
 
-        public bool VerifyRegister(string email, string username, string password, string fristName, string lastName, DateOnly birthday)
+        public bool VerifyRegister(string email, string username, string password)
         {
-            if (_userRepository.CheckUserByEmailAndUserName(email, username) != null)
+            if (_userRepository.CheckUserByEmailAndUserName(email, username))
             {
                 return false;
             }
@@ -39,6 +41,14 @@ namespace Evnt_Nxt_Business_.Services
             }
 
             return true;
+        }
+
+        public void RegisterUser(string email, string username, string password, string firstName, string lastName, DateOnly birthday)
+        {
+            string hashedPassword = _passwordHasher.HashPassword(password);
+            User domainUser = UserMapper.FromViewModel(email, username, hashedPassword, firstName, lastName, birthday);
+            var dto = UserMapper.RegisterToDto(domainUser);
+            _userRepository.RegisterUser(dto);
         }
     }
 }

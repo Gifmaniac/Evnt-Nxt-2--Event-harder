@@ -3,3 +3,24 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/login.css" />
 }
+<form method="post">
+    <input asp-for="UserRegisterViewModel.Email" placeholder="Email" />
+    <span asp-validation-for="UserRegisterViewModel.Email"></span>
+
+    <input asp-for="UserRegisterViewModel.UserName" placeholder="Username" />
+    <span asp-validation-for="UserRegisterViewModel.UserName"></span>
+
+    <input asp-for="UserRegisterViewModel.Password" placeholder="Password" type="password" />
+    <span asp-validation-for="UserRegisterViewModel.Password"></span>
+
+    <input asp-for="UserRegisterViewModel.FirstName" placeholder="First Name" />
+    <span asp-validation-for="UserRegisterViewModel.FirstName"></span>
+
+    <input asp-for="UserRegisterViewModel.LastName" placeholder="Last Name" />
+    <span asp-validation-for="UserRegisterViewModel.LastName"></span>
+
+    <input asp-for="UserRegisterViewModel.BirthDay" type="date" />
+    <span asp-validation-for="UserRegisterViewModel.BirthDay"></span>
+
+    <button type="submit">Register</button>
+</form>

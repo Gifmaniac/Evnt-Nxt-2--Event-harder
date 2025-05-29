@@ -1,9 +1,8 @@
 using Evnt_Nxt_Business_.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
-using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt2.ViewModel;
+using Microsoft.AspNetCore.Http;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -26,13 +25,17 @@ namespace Evnt_Nxt2.Pages
         }
 
         public IActionResult OnPost()
-        {
+        { 
+
             bool isLoginValid = _loginService.VerifyLogin(UserLogin.Email, UserLogin.Password);
+
             var user = _userService.GetByEmail(UserLogin.Email);
 
             if (isLoginValid)
             {
-                // To Do Work on sessions/ cookies.
+                HttpContext.Session.SetInt32("UserID", user.ID);
+                HttpContext.Session.SetString("Email", user.Email);
+                HttpContext.Session.SetInt32("RoleID", user.RoleID);
                 return RedirectToPage("/Index");
             }
 

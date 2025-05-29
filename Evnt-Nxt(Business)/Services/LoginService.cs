@@ -15,7 +15,7 @@ namespace Evnt_Nxt_Business_.Services
 
         public bool VerifyLogin(string email, string password)
         {
-            User user = _userService.GetUserByEmailAndPassword(email);
+            User user = _userService.GetByEmail(email);
 
             if (user == null) 
                 return false;

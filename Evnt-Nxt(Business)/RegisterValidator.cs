@@ -52,7 +52,7 @@ namespace Evnt_Nxt_Business_
             if (username.Length > 20)
                 errors.Add("Username must not exceed 20 characters.");
 
-            if (Regex.IsMatch(username, "^[a-zA-Z0-9_.]+$"))
+            if (!Regex.IsMatch(username, "^[a-zA-Z0-9_.]+$"))
                 errors.Add("Username can only contain letters, numbers, underscores, and dots.");
 
             if (username.StartsWith(".") || username.StartsWith("_") ||
@@ -85,7 +85,7 @@ namespace Evnt_Nxt_Business_
             if (!password.Any(char.IsUpper))
                 errors.Add("Password must contain at least one uppercase letter.");
 
-            if (Regex.IsMatch(password, "[!@#$%^&*]"))
+            if (!Regex.IsMatch(password, "[!@#$%^&*]"))
                 errors.Add("Password must contain at least one special character (!, @, #, etc.).");
 
 

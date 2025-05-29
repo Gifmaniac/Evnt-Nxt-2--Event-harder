@@ -17,7 +17,7 @@ namespace Evnt_Nxt_Business_.Services
         public User GetUserIDEmailFirstAndLastName(int userID)
         {
             UserDTO dto = _userRepository.GetUserById(userID);
-            var user = UserMapper.MapIDMailFirstAndLastName(dto);
+            var user = UserMapper.FromDtoToBasic(dto);
 
             return user;
         }
@@ -29,7 +29,7 @@ namespace Evnt_Nxt_Business_.Services
             if (dto == null)
                 return null;
 
-            User user = UserMapper.MapByMailAndPassWord(dto);
+            User user = UserMapper.FromDtoToLogin(dto);
 
             return user;
         }

@@ -15,7 +15,7 @@ namespace Evnt_Nxt_DAL_.Mapper
                 Hashedpassword = (string)reader["Password"],
                 FirstName = (string)reader["FirstName"],
                 LastName = (string)reader["LastName"],
-                Birthday = (DateTime)reader["BirthDate"],
+                Birthday = (DateOnly)reader["BirthDate"],
                 Email = (string)reader["Email"]
             };
         }
