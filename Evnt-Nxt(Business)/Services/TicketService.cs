@@ -42,5 +42,6 @@ namespace Evnt_Nxt_Business_.Services
                 _ticketRepository.DecreaseAvailableTickets(eventTicketID, 1);
             }
         }
+
     }
 }

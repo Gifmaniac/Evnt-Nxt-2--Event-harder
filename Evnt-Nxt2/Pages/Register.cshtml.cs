@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt_Business_.Services;
@@ -15,7 +16,7 @@ namespace Evnt_Nxt2.Pages
             _registerService = registerService;
         }
 
-        [BindProperty] 
+        [BindProperty] [Required]
         public RegisterViewModel UserRegisterViewModel { get; set; }
 
         public void OnGet()
@@ -26,8 +27,7 @@ namespace Evnt_Nxt2.Pages
         public IActionResult OnPost()
         {
 
-            bool isValid = _registerService.VerifyRegister(UserRegisterViewModel.Email, UserRegisterViewModel.UserName,
-                UserRegisterViewModel.Password);
+            bool isValid = _registerService.VerifyRegister(UserRegisterViewModel);
 
             if (!isValid)
             {

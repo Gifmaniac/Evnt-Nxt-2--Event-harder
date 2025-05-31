@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using System.Net.Sockets;
+using System.Security.Claims;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -51,33 +52,41 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
-            // Gets the available ticket from the event.
-            var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
-            EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
 
-            // Selects the tickets that user wants to buy
-            var selectedTicket = EventTickets.FirstOrDefault(ticket => ticket.ID == EventTicketID);
-
-            // Validates if there are enough tickets.
-            if (TicketsToBuy < 1 || TicketsToBuy > 5 || TicketsToBuy > selectedTicket.Amount)
-            {
-                ModelState.AddModelError("", "Invalid ticket selection or not enough tickets available.");
-                return Page();
-            }
             // Gets the user (currently hard coded since I dont have a login yet)
-            var currentUser = _userService.GetUserIDEmailFirstAndLastName(1);
-            
-            // Checks if the purchase went through and the ticket has been created.
-            try
-            {
-                _ticketService.BuyTicket(currentUser, selectedTicket.ID, TicketsToBuy);
-                return RedirectToPage("TicketConfirmation");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Something went wrong while processing your ticket.");
-                return Page();
-            }
+            var userID = User.FindFirst("userID")?.Value;
+            int parsedID = int.Parse(userID);
+            var currentUser = _userService.GetUserIDEmailFirstAndLastName(parsedID);
+
+            //// Gets the available ticket from the event.
+            //var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
+            //EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
+
+            //// Sets the ID for the ticket that the user wants to buy
+            //var selectedTicket = EventTickets.FirstOrDefault(ticket => ticket.ID == EventTicketID);
+
+            //// Validates if there are tickets selected by the user and if there are enough tickets for the order.
+            //if (TicketsToBuy < 1 || TicketsToBuy > 5 || TicketsToBuy > selectedTicket.Amount)
+            //{
+            //    ModelState.AddModelError("", "Invalid ticket selection or not enough tickets available.");
+            //    return Page();
+            //}
+            //// Gets the user (currently hard coded since I dont have a login yet)
+            //var userID = User.FindFirst("userID")?.Value;
+            //int parsedID = int.Parse(userID);
+            //var currentUser = _userService.GetUserIDEmailFirstAndLastName(parsedID);
+
+            //// Checks if the purchase went through and the ticket has been created.
+            //try
+            //{
+            //    _ticketService.BuyTicket(currentUser, selectedTicket.ID, TicketsToBuy);
+            //    return RedirectToPage("TicketConfirmation");
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("", "Something went wrong while processing your ticket.");
+            //    return Page();
+            //}
 
         }
 

@@ -6,41 +6,16 @@ namespace Evnt_Nxt_Business_
     public class RegisterValidator
     {
 
-        public List<string> ValidateAll(string email, string password, string username)
+        public List<string> ValidateAll(string password, string username)
         {
             var errors = new List<string>();
 
-            errors.AddRange(IsMailValidated(email));
             errors.AddRange(ValidateUsername(username));
             errors.AddRange(ValidatePassWordCheck(password));
 
             return errors;
         }
-
-        private bool ValidateEmail(string email)
-        {
-            try
-            {
-                var newMail = new System.Net.Mail.MailAddress(email);
-                return newMail.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private List<string> IsMailValidated(string email)
-        {
-            List<string> errors = new();
-
-            if (!ValidateEmail(email))
-            {
-                errors.Add("Invalid email address.");
-            }
-            return errors;
-        }
-
+        
 
         private List<string> ValidateUsername(string username)
         {
