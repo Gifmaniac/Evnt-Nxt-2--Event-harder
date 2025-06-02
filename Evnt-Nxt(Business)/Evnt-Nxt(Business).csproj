@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Evnt-Nxt(DAL)\Evnt-Nxt(DAL).csproj" />
+    <ProjectReference Include="..\EvntNxtDTO\EvntNxtDTO.csproj" />
   </ItemGroup>
 
 </Project>

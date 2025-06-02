@@ -1,0 +1,29 @@
+﻿@page
+@model Evnt_Nxt2.Pages.LoginModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+<div class="login-box text-white">
+    <h2>Login</h2>
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="UserLogin.Email" class="text-white">Email</label>
+            <input asp-for="UserLogin.Email" class="form-input" />
+            <span asp-validation-for="UserLogin.Email" class="text-white"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="UserLogin.Password" class="text-white">Password</label>
+            <input asp-for="UserLogin.Password" class="form-input" type="password" />
+            <span asp-validation-for="UserLogin.Password" class="text-white"></span>
+        </div>
+
+        <div class="form-group">
+            <a class="text-white" asp-page="/Register"> Create a new account </a>
+        </div>
+
+        <button type="submit" class="login-button">Log In</button>
+    </form>
+</div>

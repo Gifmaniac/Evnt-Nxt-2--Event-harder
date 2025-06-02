@@ -20,9 +20,13 @@ namespace Evnt_Nxt_Business_
             }
         }
 
-        public bool VerifyPassword(string inputPassword, string hashedPassword)
+        public bool VerifyPassword(string password, string hashedPassword)
         {
-            return true;
+            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(hashedPassword))
+                return false;
+
+            string hashedInput = HashPassword(password);
+            return hashedInput == hashedPassword;
         }
     }
 }

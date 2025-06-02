@@ -11,13 +11,19 @@ namespace Evnt_Nxt_Business_.DomainClass
         public int ID { get; }
         public int RoleID { get; }
         public string Username { get; }                 
-        public string Hashedpassword { get; }
+        public string HashedPassword { get; }
         public string Email { get; }
         public string FirstName { get; }
         public string LastName { get; }
-        public DateTime Birthday { get; }
+        public DateOnly Birthday { get; }
 
         public List<Ticket> PurchasedTickets = new ();
+
+        public User(string email, string hashedPassword)
+        {
+            Email = email;
+            HashedPassword = hashedPassword;
+        }
 
         public User(int id, string email, string firstName, string lastName)
         {
@@ -25,6 +31,18 @@ namespace Evnt_Nxt_Business_.DomainClass
             Email = email;
             FirstName = firstName;
             LastName = lastName;
+        }
+
+        public User(string username, string hashedPassword, string email, string firstName, string lastName,
+            DateOnly birthday)
+        {
+            Username = username;
+            HashedPassword = hashedPassword;
+            Email = email;
+            FirstName = firstName;
+            LastName = lastName;
+            Birthday = birthday;
+            RoleID = 1; // Default role = Basic User
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Evnt_Nxt_DAL_.DTO;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_DAL_.Interfaces
 {

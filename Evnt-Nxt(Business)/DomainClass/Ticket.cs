@@ -12,5 +12,12 @@ namespace Evnt_Nxt_Business_.DomainClass
         public int UserID { get; set; }
         public int EventTicketID { get; set; }
         public DateOnly PurchaseDate { get; set; }
+
+        public Ticket(int userID, int eventTicketID, DateOnly purchaseDate)
+        {
+            UserID = userID;
+            EventTicketID = eventTicketID;
+            PurchaseDate = purchaseDate;
+        }
     }
 }

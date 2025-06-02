@@ -1,0 +1,18 @@
+﻿@page
+@model Evnt_Nxt2.Pages.RegisterModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-white"></div>
+
+    <input asp-for="UserRegisterViewModel.Email" placeholder="Email" />
+    <input asp-for="UserRegisterViewModel.UserName" placeholder="Username" />
+    <input asp-for="UserRegisterViewModel.Password" placeholder="Password" type="password" />
+    <input asp-for="UserRegisterViewModel.FirstName" placeholder="First Name" />
+    <input asp-for="UserRegisterViewModel.LastName" placeholder="Last Name" />
+    <input asp-for="UserRegisterViewModel.BirthDay" type="date" />
+
+    <button type="submit">Register</button>
+</form>

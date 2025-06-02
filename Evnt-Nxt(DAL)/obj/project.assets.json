@@ -681,6 +681,16 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "EvntNxtDTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/EvntNxtDTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EvntNxtDTO.dll": {}
+        }
       }
     }
   },
@@ -1742,10 +1752,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "EvntNxtDTO/1.0.0": {
+      "type": "project",
+      "path": "../EvntNxtDTO/EvntNxtDTO.csproj",
+      "msbuildProject": "../EvntNxtDTO/EvntNxtDTO.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "EvntNxtDTO >= 1.0.0",
       "Microsoft.Data.SqlClient >= 6.0.1",
       "Microsoft.Extensions.Configuration >= 9.0.4",
       "System.Configuration.ConfigurationManager >= 9.0.4"
@@ -1783,7 +1799,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\EvntNxtDTO\\EvntNxtDTO.csproj": {
+              "projectPath": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\EvntNxtDTO\\EvntNxtDTO.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -1795,7 +1815,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -1830,7 +1851,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
