@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using System.Net.Sockets;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -22,7 +23,7 @@ namespace Evnt_Nxt2.Pages
 
         [BindProperty]
         public int EventID { get; set; }
-        [BindProperty]
+        [BindProperty]  
         public int TicketsToBuy { get; set; }
         [BindProperty]
         public int EventTicketID { get; set; }
@@ -51,6 +52,18 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
+
+            var userRequest = new TicketPurchaseRequestDto
+            {
+                UserId = 1,
+                EventId = EventID,
+                TicketId = EventTicketID,
+                Quantity = TicketsToBuy
+            };
+
+            var ticketOrder = _ticketService.TryTicketPurchase(userRequest);
+
+
             // Gets the available ticket from the event.
             var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
             EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);

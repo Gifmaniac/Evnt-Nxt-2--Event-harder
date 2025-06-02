@@ -3,6 +3,8 @@ using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
+using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
 
@@ -11,11 +13,12 @@ namespace UserBuysTicketTest
     public class UnitTest1
     {
         private readonly Mock<ITicketRepository> _ticketRepoMock = new();
+        private readonly Mock<UserService> _userServiceMock = new();
         [Fact]
         public void BuyTicket()
         {
             // Arrange
-            var ticketService = new TicketService(_ticketRepoMock.Object);
+            var ticketService = new TicketService(_ticketRepoMock.Object, _userServiceMock.Object);
 
             User user = new User(1, "test@test.nl", "Willem", "van den Broek");
             int eventTicketID = 12;

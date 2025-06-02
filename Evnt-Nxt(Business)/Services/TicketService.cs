@@ -1,7 +1,9 @@
-﻿using Evnt_Nxt_Business_.DomainClass;
+﻿using System.ComponentModel.DataAnnotations;
+using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_DAL_.Interfaces;
 using EvntNxt.DTO;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
@@ -9,10 +11,33 @@ namespace Evnt_Nxt_Business_.Services
     {
         public List<TicketDTO> TesTicketDtos = new();
         private readonly ITicketRepository _ticketRepository;
+        private readonly IEventTicketService _eventTicketService;
+        private readonly UserService _userService;
 
-        public TicketService(ITicketRepository ticketRepository)
+        public TicketService(ITicketRepository ticketRepository, UserService userService, IEventTicketService eventTicketService)
         {
             _ticketRepository = ticketRepository;
+            _userService = userService;
+            _eventTicketService = eventTicketService;
+
+        }
+
+        public TicketPurchaseValidator TryTicketPurchase(TicketPurchaseRequestDto request)
+        {
+            List<EventTicket> availableTickets = _eventTicketService.GetAvailableEventTickets(request.EventId);
+
+            EventTicket selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketId);
+
+            var TicketPurchaseResult = TicketPurchaseValidator.Validate(request, selectedTicket);
+
+            if (!TicketPurchaseResult.Success)
+            {
+                return new TicketPurchaseValidator
+                {
+                    Success = false,
+                    ErrorMessage = TicketPurchaseResult.ErrorMessage
+                };
+            }
         }
 
         public void BuyTicket(User user, int eventTicketID, int quantity)

@@ -173,9 +173,5 @@ C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\Evnt-Nxt2.genruntimeconfig.cache
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\ref\Evnt-Nxt2.dll
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\Evnt-Nxt2.sourcelink.json
-C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\bin\Debug\net8.0\Evnt-Nxt2.staticwebassets.endpoints.json
-C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\staticwebassets\msbuild.Evnt-Nxt2.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\bin\Debug\net8.0\EvntNxtDTO.dll
 C:\Users\wvdb\Documents\GitHub\Evnt-Nxt-2--Event-harder\Evnt-Nxt2\bin\Debug\net8.0\EvntNxtDTO.pdb
