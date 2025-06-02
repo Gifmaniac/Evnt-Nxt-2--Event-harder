@@ -1,7 +1,7 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Mapper;
-using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Services
 {

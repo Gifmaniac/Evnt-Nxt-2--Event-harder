@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt2.ViewModel;
+using Evnt_Nxt2.Mapper;
+using EvntNxt.DTO;
 
 
 namespace Evnt_Nxt2.Pages
@@ -26,20 +28,27 @@ namespace Evnt_Nxt2.Pages
         public IActionResult OnPost()
         {
 
-            bool isValid = _registerService.VerifyRegister(UserRegisterViewModel.Email, UserRegisterViewModel.UserName,
-                UserRegisterViewModel.Password);
+            if (!ModelState.IsValid)
+            return Page();
 
-            if (!isValid)
+            UserDTO userDto = UserModelMapper.RegisterDto(UserRegisterViewModel);
+
+            try
             {
-                List<string> errors = _registerService.GetValidationErrors(UserRegisterViewModel.Email, UserRegisterViewModel.UserName, UserRegisterViewModel.Password);
+                _registerService.VerifyRegister(userDto);
+                _registerService.RegisterUser(userDto);
+
+                return RedirectToPage("/Index");
+            }
+            catch(ArgumentException exception)
+            {
+                var errors = exception.Message.Split(" | ");
+                foreach (var error in errors)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                }
                 return Page();
             }
-
-            _registerService.RegisterUser(UserRegisterViewModel.Email, UserRegisterViewModel.UserName,
-                UserRegisterViewModel.Password, UserRegisterViewModel.FirstName, UserRegisterViewModel.LastName,
-                UserRegisterViewModel.BirthDay);
-
-            return RedirectToPage("/Index");
         }
     }
 }

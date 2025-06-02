@@ -1,7 +1,9 @@
-﻿using Evnt_Nxt_Business_.DomainClass;
+﻿using System.Configuration;
+using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
@@ -19,35 +21,25 @@ namespace Evnt_Nxt_Business_.Services
 
         }
 
-        public List<string> GetValidationErrors(string email, string username, string password)
+        public void VerifyRegister(UserDTO newUser)
         {
-            List<string> errors = _registerValidator.ValidateAll(email, password, username);
-
-            return errors;
-        }
-
-        public bool VerifyRegister(string email, string username, string password)
-        {
-            if (_userRepository.CheckUserByEmailAndUserName(email, username))
+            if (_userRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.Username))
             {
-                return false;
+                throw new ArgumentException("A user already exist with this mail and or username");
             }
-
-            List<string> errors = _registerValidator.ValidateAll(email, password, username);
+            
+            List<string> errors = _registerValidator.ValidateAll(newUser.Email, newUser.Hashedpassword, newUser.Username);
 
             if (errors.Any())
             {
-                return false;
+                throw new ArgumentException(string.Join(" | ", errors));
             }
-
-            return true;
         }
 
-        public void RegisterUser(string email, string username, string password, string firstName, string lastName, DateOnly birthday)
+        public void RegisterUser(UserDTO newUser)
         {
-            string hashedPassword = _passwordHasher.HashPassword(password);
-            User domainUser = UserMapper.FromViewModel(email, username, hashedPassword, firstName, lastName, birthday);
-            var dto = UserMapper.RegisterToDto(domainUser);
+            string hashedPassword = _passwordHasher.HashPassword(newUser.Hashedpassword);
+            var dto = UserMapper.RegisterToDto(newUser, hashedPassword);
             _userRepository.RegisterUser(dto);
         }
     }

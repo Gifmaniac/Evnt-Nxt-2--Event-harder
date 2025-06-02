@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_DAL_.DTO;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Mapper
 {
@@ -24,18 +25,10 @@ namespace Evnt_Nxt_Business_.Mapper
             return new User(username, password, email, firstName, lastName, birthday);
         }
 
-        public static UserDTO RegisterToDto(User user)
+        public static UserDTO RegisterToDto(UserDTO user, string hashedPassword)
         {
-            return new UserDTO
-            {
-                Email = user.Email,
-                Birthday = user.Birthday,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Hashedpassword = user.HashedPassword,
-                Username = user.Username,
-                RoleID = user.RoleID
-            };
+            return new UserDTO(user.Username, hashedPassword, user.Email, user.FirstName, user.LastName, user.Birthday,
+                1); // RoleID 1 == Default user.
         }
 
     }
