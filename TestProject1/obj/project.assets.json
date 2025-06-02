@@ -1262,6 +1262,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Evnt-Nxt(DAL)": "1.0.0",
+          "EvntNxtDTO": "1.0.0",
           "Microsoft.Data.SqlClient": "6.0.1",
           "System.Configuration.ConfigurationManager": "9.0.4",
           "System.Resources.ResourceManager": "4.3.0"
@@ -1277,6 +1278,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "EvntNxtDTO": "1.0.0",
           "Microsoft.Data.SqlClient": "6.0.1",
           "Microsoft.Extensions.Configuration": "9.0.4",
           "System.Configuration.ConfigurationManager": "9.0.4"
@@ -1293,6 +1295,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Evnt-Nxt(Business)": "1.0.0",
+          "EvntNxtDTO": "1.0.0",
           "Microsoft.Data.SqlClient": "6.0.1",
           "System.Configuration.ConfigurationManager": "9.0.4"
         },
@@ -1305,6 +1308,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "EvntNxtDTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/EvntNxtDTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EvntNxtDTO.dll": {}
+        }
       }
     }
   },
@@ -3539,6 +3552,11 @@
       "type": "project",
       "path": "../Evnt-Nxt2/Evnt-Nxt2.csproj",
       "msbuildProject": "../Evnt-Nxt2/Evnt-Nxt2.csproj"
+    },
+    "EvntNxtDTO/1.0.0": {
+      "type": "project",
+      "path": "../EvntNxtDTO/EvntNxtDTO.csproj",
+      "msbuildProject": "../EvntNxtDTO/EvntNxtDTO.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3607,7 +3625,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -3652,7 +3671,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

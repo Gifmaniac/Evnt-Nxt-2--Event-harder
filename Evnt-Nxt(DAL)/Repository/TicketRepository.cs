@@ -1,5 +1,6 @@
 ﻿using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
+using EvntNxt.DTO;
 using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository

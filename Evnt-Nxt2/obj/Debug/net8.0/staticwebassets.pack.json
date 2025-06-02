@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Evnt-Nxt2.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Evnt-Nxt2.bundle.scp.css"
+      "PackagePath": "staticwebassets\\Evnt-Nxt2.gy7qsnzr17.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\wwwroot\\css\\artist.css",
@@ -263,6 +263,10 @@
     {
       "Id": "C:\\Users\\wvdb\\Documents\\GitHub\\Evnt-Nxt-2--Event-harder\\Evnt-Nxt2\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Evnt-Nxt2.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Evnt-Nxt2.Microsoft.AspNetCore.StaticWebAssets.props",

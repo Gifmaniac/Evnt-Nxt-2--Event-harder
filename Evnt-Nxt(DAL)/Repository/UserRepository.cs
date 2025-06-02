@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
@@ -110,11 +111,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     {
                         if (reader.Read())
                         {
-                            return new UserDTO
-                            {
-                                Email = email,
-                                Hashedpassword = (string)reader["Password"]
-                            };
+                            return new UserDTO(email, (string)reader["Passpword"]);
                         }
 
                         return null;
