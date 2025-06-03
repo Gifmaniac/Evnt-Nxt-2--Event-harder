@@ -14,7 +14,7 @@ namespace Evnt_Nxt_Business_.Services
             _userRepository = userRepository;
         }
 
-        public User GetUserIDEmailFirstAndLastName(int userID)
+        public User GetID(int userID)
         {
             UserDTO dto = _userRepository.GetUserById(userID);
             var user = UserMapper.FromDtoToBasic(dto);

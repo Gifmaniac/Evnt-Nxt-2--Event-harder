@@ -23,10 +23,11 @@ namespace Evnt_Nxt_Business_
         public bool VerifyPassword(string password, string hashedPassword)
         {
             if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(hashedPassword))
-                return false;
+                throw new ArgumentException("Incorrect password.");
 
             string hashedInput = HashPassword(password);
             return hashedInput == hashedPassword;
+
         }
     }
 }

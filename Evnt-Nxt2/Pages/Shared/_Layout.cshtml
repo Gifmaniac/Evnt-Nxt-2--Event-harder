@@ -24,7 +24,7 @@
                 <a asp-page="/Events">Events</a>
                 @if (Context.Session.GetInt32("UserID") != null)
                 {
-                    <a asp-page="/User/Profile" asp-route-id="@Context.Session.GetInt32("UserID")">My Profile</a>
+                    <a asp-page="/Profile" asp-route-username="@Context.Session.GetString("UserName")">My Profile</a>
                     <a asp-page="/Logout">Logout</a>
                 }
                 else

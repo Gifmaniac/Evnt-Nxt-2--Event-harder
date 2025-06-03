@@ -8,9 +8,9 @@ namespace EvntNxtDTO
 {
     public class TicketPurchaseRequestDto
     {
-        public int UserId { get; set; }
-        public int EventId { get; set; }
-        public int TicketId { get; set; }
+        public int UserID { get; set; }
+        public int EventID { get; set; }
+        public int TicketID { get; set; }
         public int Quantity { get; set; }
     }
 }

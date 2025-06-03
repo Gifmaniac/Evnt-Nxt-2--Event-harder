@@ -33,9 +33,6 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public bool CheckUserByEmailAndUserName(string email, string username)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username))
-                return false;
-
             const string query = @"SELECT 1 FROM [User]
                                     WHERE Email = @email OR Username = @username";
 

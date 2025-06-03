@@ -18,16 +18,16 @@ namespace Evnt_Nxt_Business_.Services
 
         public void ValidateLogin(LoginDTO loginDto)
         {
+            // Fetches the user login data. (Email + Password)
             LoginDTO dto = _userLoginRepository.FetchUserLoginData(loginDto.Email);
-
-            bool isPasswordCorrect = _passwordHasher.VerifyPassword(loginDto.Password, dto.Password);
             
-            if (!isPasswordCorrect)
-                throw new ArgumentException("Incorrect password.");
+            // If the user exist verifies the password.
+            _passwordHasher.VerifyPassword(loginDto.Password, dto.Password);
         }
 
         public LoggedInUserDTO GetLoginInfo(string email)
         {
+            // Gets the user info (ID, UserID, Username)
             return _userLoginRepository.GetLoginInfoByEmail(email);
         }
     }

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserBuysTicketTest", "UserBuysTicketTest\UserBuysTicketTest.csproj", "{94A09FA8-BFFF-4283-BC3E-E655D3AB0731}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvntNxtDTO", "EvntNxtDTO\EvntNxtDTO.csproj", "{7CBB37C9-506B-4FE2-A085-7263466824D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvntNxtDTO", "EvntNxtDTO\EvntNxtDTO.csproj", "{7CBB37C9-506B-4FE2-A085-7263466824D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

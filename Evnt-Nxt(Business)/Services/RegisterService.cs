@@ -24,9 +24,9 @@ namespace Evnt_Nxt_Business_.Services
 
         public void VerifyRegister(RegisterDTO newUser)
         {
+            // Verifies the user info
             if (_registerRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-                throw new ArgumentException("A user already exist with this mail and or username");
-            
+                throw new ArgumentException("A user already exists with this email or username.");
             
             List<string> errors = _registerValidator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName);
 

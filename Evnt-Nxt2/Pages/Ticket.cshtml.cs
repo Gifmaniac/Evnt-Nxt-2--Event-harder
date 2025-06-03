@@ -47,11 +47,19 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
+            var sessionUserId = HttpContext.Session.GetInt32("UserID");
+
+            if (sessionUserId == null)
+            {
+                ModelState.AddModelError(string.Empty, "User not logged in.");
+                return RedirectToPage("/Login");
+            }
+
             var userRequest = new TicketPurchaseRequestDto
             {
-                UserId = 1, // placeholder
-                EventId = EventID,
-                TicketId = EventTicketID,
+                UserID = sessionUserId.Value, 
+                EventID = EventID,
+                TicketID = EventTicketID,
                 Quantity = TicketsToBuy
             };
 

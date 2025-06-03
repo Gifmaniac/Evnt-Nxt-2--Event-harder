@@ -12,12 +12,10 @@ namespace Evnt_Nxt2.Pages
     public class LoginModel : PageModel
     {
         private readonly LoginService _loginService;
-        private readonly UserService _userService;
 
-        public LoginModel(LoginService loginService, UserService userService)
+        public LoginModel(LoginService loginService)
         {
             _loginService = loginService;
-            _userService = userService;
         }
 
 
@@ -50,7 +48,7 @@ namespace Evnt_Nxt2.Pages
                 HttpContext.Session.SetString("UserName", user.UserName);
                 HttpContext.Session.SetInt32("RoleID", user.RoleID);
 
-                    return RedirectToPage("/Index");
+                return RedirectToPage("/Index");
             }
 
             catch (ArgumentException exception)
