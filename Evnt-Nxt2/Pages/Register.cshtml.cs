@@ -4,6 +4,7 @@ using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt2.ViewModel;
 using Evnt_Nxt2.Mapper;
 using EvntNxt.DTO;
+using EvntNxtDTO;
 
 
 namespace Evnt_Nxt2.Pages
@@ -31,15 +32,27 @@ namespace Evnt_Nxt2.Pages
             if (!ModelState.IsValid)
                 return Page();
 
-            UserDTO userDto = UserModelMapper.RegisterDto(UserRegisterViewModel);
+            RegisterDTO userDto = new RegisterDTO
+            {
+                Email = UserRegisterViewModel.Email,
+                Password = UserRegisterViewModel.Password,
+                UserName = UserRegisterViewModel.UserName,
+                BirthDay = UserRegisterViewModel.BirthDay,
+                FirstName = UserRegisterViewModel.FirstName,
+                LastName = UserRegisterViewModel.LastName,
+            };
 
             try
             {
+                // Validates all the register info
                 _registerService.VerifyRegister(userDto);
+
+                // If validated registers the user with all the register info
                 _registerService.RegisterUser(userDto);
 
                 return RedirectToPage("/Index");
             }
+
             catch(ArgumentException exception)
             {
                 var errors = exception.Message.Split(" | ");

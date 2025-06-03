@@ -16,6 +16,8 @@ builder.Services.AddScoped<EventRepository>();
 builder.Services.AddScoped<EventTicketRepository>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<LoginRepository>();
+builder.Services.AddScoped<RegisterRepository>();
 
 // Services
 builder.Services.AddScoped<ArtistService>();
@@ -26,6 +28,7 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 builder.Services.AddScoped<RegisterService>();
+
 
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
@@ -43,8 +46,9 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-    app.UseSession();
 }
+
+app.UseSession();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -21,28 +21,5 @@ namespace Evnt_Nxt_Business_.Services
 
             return user;
         }
-
-        public User GetByEmail(string email)
-        {
-            UserDTO dto = _userRepository.GetPasswordByMail(email);
-
-            if (dto == null)
-                return null;
-
-            User user = UserMapper.FromDtoToLogin(dto);
-
-            return user;
-        }
-
-        public bool CheckUserByEmailAndUserName(string email, string userName)
-        {
-            bool doesUserExist = _userRepository.CheckUserByEmailAndUserName(email, userName);
-
-            if (doesUserExist)
-                return false;
-
-            return doesUserExist;
-
-        }
     }
 }

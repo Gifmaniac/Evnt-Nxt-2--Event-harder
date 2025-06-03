@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Http;
+using Evnt_Nxt_DAL_.Repository;
+using Evnt_Nxt2.Mapper;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -26,27 +29,35 @@ namespace Evnt_Nxt2.Pages
         }
 
         public IActionResult OnPost()
-        { 
+        {
+            if (!ModelState.IsValid)
+                return Page();
 
-            bool isLoginValid = _loginService.VerifyLogin(UserLogin.Email, UserLogin.Password);
-
-            var user = _userService.GetByEmail(UserLogin.Email);
-
-            if (isLoginValid)
+            var loginDto = new LoginDTO
             {
-                HttpContext.Session.SetInt32("UserID", user.ID);
-                HttpContext.Session.SetString("Email", user.Email);
+                Email = UserLogin.Email,
+                Password = UserLogin.Password
+            };
+
+            try
+            {
+                // Validates the Login (Email + Password)
+                _loginService.ValidateLogin(loginDto);
+                
+                // If Validated, this gets the login info (ID, UserName, RoleID)
+                LoggedInUserDTO user = _loginService.GetLoginInfo(loginDto.Email);
+                HttpContext.Session.SetInt32("UserID", user.ID );
+                HttpContext.Session.SetString("UserName", user.UserName);
                 HttpContext.Session.SetInt32("RoleID", user.RoleID);
-                return RedirectToPage("/Index");
+
+                    return RedirectToPage("/Index");
             }
 
-            if (user == null)
+            catch (ArgumentException exception)
             {
-                ModelState.AddModelError(string.Empty, "Invalid email or password");
+                ModelState.AddModelError(string.Empty, exception.Message);
                 return Page();
             }
-
-            return Page();
         }
     }
 }

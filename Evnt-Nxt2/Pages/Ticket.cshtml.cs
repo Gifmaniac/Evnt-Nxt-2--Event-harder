@@ -1,15 +1,10 @@
-using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Business_.ViewModel;
 using Evnt_Nxt2.Mapper;
 using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
 using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages

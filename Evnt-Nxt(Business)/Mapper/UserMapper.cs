@@ -16,7 +16,7 @@ namespace Evnt_Nxt_Business_.Mapper
 
         public static User FromDtoToLogin(UserDTO user)
         {
-            return new User(user.Email, user.Hashedpassword);
+            return new User(user.Email, user.HashedPassword);
         }
 
         public static User FromViewModel(string email, string username, string password, string firstName, string lastName,

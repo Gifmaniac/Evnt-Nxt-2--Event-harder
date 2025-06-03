@@ -13,6 +13,11 @@ namespace Evnt_Nxt2.Mapper
                 newUser.BirthDay);
         }
 
+        public static UserDTO LoginDto(LoginViewModel newLogin)
+        {
+            return new UserDTO(newLogin.Email, newLogin.Password);
+        }
+
         public static UserDTO RegisterDto(RegisterViewModel newUser)
         {
             return new UserDTO(newUser.UserName, newUser.Password, newUser.Email, newUser.FirstName, newUser.LastName,
