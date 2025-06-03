@@ -10,8 +10,6 @@ namespace Evnt_Nxt_Business_.Interfaces
 {
     public interface ITicketService
     {
-        public void BuyTicket(User user, int eventID, int quantity);
-
-        public TicketPurchaseValidator TryTicketPurchase(TicketPurchaseRequestDto request);
+        public void TryTicketPurchase(TicketPurchaseRequestDto request);
     }
 }

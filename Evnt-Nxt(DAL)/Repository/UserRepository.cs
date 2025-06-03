@@ -67,7 +67,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public UserDTO GetUserById(int id)
         {
-            const string query = "SELECT * FROM [User] WHERE ID = @id";
+            const string query = "SELECT ID FROM [User] WHERE ID = @id";
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
@@ -81,7 +81,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     {
                         if (reader.Read())
                         {
-                            return UserMapper.FullMap(reader);
+                            return new UserDTO(Convert.ToInt32(reader["ID"]));
                         }
                     }
                 }

@@ -21,38 +21,38 @@ namespace Evnt_Nxt_Business_.Services
             _eventTicketService = eventTicketService;
 
         }
-
-        public TicketPurchaseValidator TryTicketPurchase(TicketPurchaseRequestDto request)
+        public void TryTicketPurchase(TicketPurchaseRequestDto request)
         {
-            List<EventTicket> availableTickets = _eventTicketService.GetAvailableEventTickets(request.EventId);
+            if (request.Quantity < 1 || request.Quantity > 5)
+                throw new ArgumentException("The ticket order quantity must be between 1 and 5.");
 
-            EventTicket selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketId);
+            var availableTickets = _eventTicketService.GetAvailableEventTickets(request.EventId);
+            var selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketId);
 
-            List<string>errors = TicketPurchaseValidator.Validate(request, selectedTicket);
+            List<string> errors = new();
 
-            if (!errors.Any())
-                return errors;
-        }
+            if (selectedTicket == null)
+                errors.Add("Ticket does not exist.");
 
-        public void BuyTicket(User user, int eventTicketID, int quantity)
-        {
-            if (user == null || eventTicketID == null || quantity < 1)
+            if (selectedTicket != null && request.Quantity > selectedTicket.Amount)
+                errors.Add("Not enough tickets available.");
+
+            if (errors.Any())
+                throw new ArgumentException(string.Join(" | ", errors));
+
+
+            var user = _userService.GetUserIDEmailFirstAndLastName(request.UserId);
+
+            // Create DTO
+            var ticket = new TicketDTO
             {
-                return;
-            }
+                UserID = request.UserId,
+                EventTicketID = request.TicketId,
+                PurchaseDate = DateOnly.FromDateTime(DateTime.Today)
+            };
 
-            for (int i = 0; i < quantity; i++)
-            {
-                var ticket = new TicketDTO
-                {
-                    UserID = user.ID,
-                    EventTicketID = eventTicketID,
-                    PurchaseDate = DateOnly.FromDateTime(DateTime.Today)
-                };
-
-                _ticketRepository.AddTicketToUser(ticket, 1);
-                _ticketRepository.DecreaseAvailableTickets(eventTicketID, 1);
-            }
+            _ticketRepository.AddTicketToUser(ticket, request.Quantity);
+            _ticketRepository.DecreaseAvailableTickets(request.TicketId, request.Quantity);
         }
     }
 }
