@@ -29,7 +29,7 @@ namespace Evnt_Nxt2.Pages
         {
 
             if (!ModelState.IsValid)
-            return Page();
+                return Page();
 
             UserDTO userDto = UserModelMapper.RegisterDto(UserRegisterViewModel);
 

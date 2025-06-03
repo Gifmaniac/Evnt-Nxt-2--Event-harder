@@ -23,7 +23,7 @@ public class EventService
 
         if (dto == null)
         {
-            throw new ArgumentException($"Event has not been found please try again.");
+            throw new ArgumentException("Event has not been found please try again.");
         }
 
         var domainEvent = EventMapper.CreateEventWithIDAndNameFromDto(dto);

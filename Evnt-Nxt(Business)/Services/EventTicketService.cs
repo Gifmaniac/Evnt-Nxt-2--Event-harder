@@ -32,7 +32,7 @@ namespace Evnt_Nxt_Business_.Services
 
             if (dtoList == null)
             {
-                throw new ArgumentException($"Event has not been found please try again.");
+                throw new ArgumentException("Event has not been found please try again.");
             }
 
             return result;

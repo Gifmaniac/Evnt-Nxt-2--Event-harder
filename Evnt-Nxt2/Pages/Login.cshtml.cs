@@ -18,7 +18,8 @@ namespace Evnt_Nxt2.Pages
         }
 
 
-        [BindProperty] public LoginViewModel UserLogin { get; set; }
+        [BindProperty] 
+        public LoginViewModel UserLogin { get; set; }
 
         public void OnGet()
         {

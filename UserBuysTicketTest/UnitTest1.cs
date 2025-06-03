@@ -3,6 +3,7 @@ using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
+using EvntNxt.DTO;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
 

@@ -17,32 +17,19 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private bool ValidateEmail(string email)
-        {
-            try
-            {
-                var newMail = new System.Net.Mail.MailAddress(email);
-                return newMail.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private List<string> IsMailValidated(string email)
+        private static List<string> IsMailValidated(string email)
         {
             List<string> errors = new();
 
-            if (!ValidateEmail(email))
+            if (!Regex.IsMatch(email, @"^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$"))
             {
-                errors.Add("Invalid email address.");
+                errors.Add("Invalid email");
             }
             return errors;
         }
 
 
-        private List<string> ValidateUsername(string username)
+        private static List<string> ValidateUsername(string username)
         {
             List<string> errors = new();
 
@@ -69,7 +56,7 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private List<string> ValidatePassWordCheck(string password)
+        private static List<string> ValidatePassWordCheck(string password)
         {
             List<string> errors = new();
 
