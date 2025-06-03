@@ -1,5 +1,4 @@
-﻿using Evnt_Nxt_DAL_.DTO;
-using EvntNxt.DTO;
+﻿using EvntNxt.DTO;
 using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Mapper
@@ -10,7 +9,7 @@ namespace Evnt_Nxt_DAL_.Mapper
         {
             return new UserDTO((string)reader["UserName"], (string)reader["Password"], (string)reader["Email"],
                 (string)reader["FirstName"],
-                (string)reader["LastName"], (DateOnly)reader["BirthDate"]);
+                (string)reader["LastName"], (DateOnly)reader["BirthDay"]);
         }
     }
 }

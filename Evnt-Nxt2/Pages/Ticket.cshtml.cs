@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Logging;
 using System.Net.Sockets;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -51,35 +52,26 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
-            // Gets the available ticket from the event.
-            var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
-            EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
-
-            // Selects the tickets that user wants to buy
-            var selectedTicket = EventTickets.FirstOrDefault(ticket => ticket.ID == EventTicketID);
-
-            // Validates if there are enough tickets.
-            if (TicketsToBuy < 1 || TicketsToBuy > 5 || TicketsToBuy > selectedTicket.Amount)
+            var userRequest = new TicketPurchaseRequestDto
             {
-                ModelState.AddModelError("", "Invalid ticket selection or not enough tickets available.");
-                return Page();
-            }
-            // Gets the user (currently hard coded since I dont have a login yet)
-            var currentUser = _userService.GetUserIDEmailFirstAndLastName(1);
-            
-            // Checks if the purchase went through and the ticket has been created.
+                UserId = 1, // placeholder
+                EventId = EventID,
+                TicketId = EventTicketID,
+                Quantity = TicketsToBuy
+            };
+
             try
             {
-                _ticketService.BuyTicket(currentUser, selectedTicket.ID, TicketsToBuy);
-                return RedirectToPage("TicketConfirmation");
+                _ticketService.TryTicketPurchase(userRequest);
+                return RedirectToPage("/Index");
             }
-            catch (Exception ex)
+            catch (ArgumentException exception)
             {
-                ModelState.AddModelError("", "Something went wrong while processing your ticket.");
+                foreach (var error in exception.Message.Split(" | "))
+                    ModelState.AddModelError(string.Empty, error);
+
                 return Page();
             }
-
         }
-
     }
 }

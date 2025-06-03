@@ -20,15 +20,16 @@ namespace Evnt_Nxt_DAL_.Repository
 
                 connection.Open();
 
-                using (var command = new SqlCommand(query, connection))
+                for (int i = 0; i < quantity; i++)
                 {
-                    command.Parameters.AddWithValue("@UserID", ticket.UserID);
-                    command.Parameters.AddWithValue("@TicketType", ticket.EventTicketID);
-                    command.Parameters.AddWithValue("@PurchaseDate", ticket.PurchaseDate);
-                    command.Parameters.AddWithValue("@ID", ticket.EventTicketID);
-                    command.Parameters.AddWithValue("@Quantity", quantity);
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserID", ticket.UserID);
+                        command.Parameters.AddWithValue("@TicketType", ticket.EventTicketID);
+                        command.Parameters.AddWithValue("@PurchaseDate", ticket.PurchaseDate);
 
-                    command.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
