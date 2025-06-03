@@ -27,9 +27,9 @@ namespace Evnt_Nxt_DAL_.Repository
             return result;
         }
 
-        public UserDTO GetUserById(int id)
+        public UserDTO GetUserByName(string name)
         {
-            const string query = "SELECT ID FROM [User] WHERE ID = @id";
+            const string query = "SELECT Username, ID FROM [User] WHERE Username = @Name";
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
             {
@@ -37,13 +37,13 @@ namespace Evnt_Nxt_DAL_.Repository
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@Name", name);
 
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            return new UserDTO(Convert.ToInt32(reader["ID"]));
+                            return new UserDTO((string)reader["Username"], Convert.ToInt32(reader["ID"]));
                         }
                     }
                 }

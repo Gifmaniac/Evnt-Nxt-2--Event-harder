@@ -1,4 +1,5 @@
-﻿using Evnt_Nxt_Business_.DomainClass;
+﻿using System.Runtime.CompilerServices;
+using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxt.DTO;
@@ -14,12 +15,10 @@ namespace Evnt_Nxt_Business_.Services
             _userRepository = userRepository;
         }
 
-        public User GetID(int userID)
+        public UserDTO GetUserName(string username)
         {
-            UserDTO dto = _userRepository.GetUserById(userID);
-            var user = UserMapper.FromDtoToBasic(dto);
+            return _userRepository.GetUserByName(username);
 
-            return user;
         }
     }
 }

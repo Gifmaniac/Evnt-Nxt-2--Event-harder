@@ -43,8 +43,8 @@ namespace Evnt_Nxt_DAL_
 
         public const string GetEventIDNameDate = @"                        
                 Event.ID AS EventID,
-                Event.Name AS EventName
-                Event.Date as EventDate";
+                Event.Name AS EventName,
+                Event.Date AS EventDate";
 
         public const string GetOrganizerIDName = @"
                 Organizer.ID AS OrganizerID,

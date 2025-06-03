@@ -21,6 +21,8 @@ namespace Evnt_Nxt_Business_.Services
             _eventTicketService = eventTicketService;
 
         }
+
+
         public void TryTicketPurchase(TicketPurchaseRequestDto request)
         {
             List<string> errors = new();
@@ -46,10 +48,7 @@ namespace Evnt_Nxt_Business_.Services
             if (errors.Any())
                 throw new ArgumentException(string.Join(" | ", errors));
 
-            // If everything checks out gets the UserID
-            var user = _userService.GetID(request.UserID);
-
-            // Create DTO
+            // If everything checks out the program creates the DTO
             var ticket = new TicketDTO
             {
                 UserID = request.UserID,
@@ -62,6 +61,25 @@ namespace Evnt_Nxt_Business_.Services
 
             // Decreases the stock by the quantity
             _ticketRepository.DecreaseAvailableTickets(request.TicketID, request.Quantity);
+        }
+
+        public List<UserProfileTicketDTO> ValidateUserTicket(string username)
+        {
+            // Validates if the userID is correct
+            var user = _userService.GetUserName(username);
+            if (user == null)
+                throw new ArgumentException("User not found");
+
+            // Gets all the tickets from the user
+            var allTickets = _ticketRepository.GetTicketByUserID(user.ID);
+
+            // Filters out duplicated tickets for the same event
+            var uniqueEvents = allTickets
+                .GroupBy(userTicket => userTicket.EventID)
+                .Select(group => group.First())
+                .ToList();
+
+            return uniqueEvents;
         }
     }
 }

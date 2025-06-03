@@ -1,0 +1,27 @@
+﻿.user-card {
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+    .user-card h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+        border-bottom: 1px solid white;
+        padding-bottom: 5px;
+    }
+
+    .user-card ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .user-card li {
+        margin: 5px 0;
+        padding: 6px 10px;
+        background-color: #111;
+        border-radius: 6px;
+    }

@@ -11,5 +11,6 @@ namespace Evnt_Nxt_Business_.Interfaces
     public interface ITicketService
     {
         public void TryTicketPurchase(TicketPurchaseRequestDto request);
+        public List<UserProfileTicketDTO> ValidateUserTicket(string username);
     }
 }

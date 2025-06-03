@@ -1,6 +1,27 @@
 ﻿@page "{username}"
 @model Evnt_Nxt2.Pages.ProfileModel
-@{
+@section Styles {
+    <link rel="stylesheet" href="~/css/profile.css" />
 }
 
-<h2 class ="">User Profile</h2>
+<div class="user-card">
+    <h2>@Model.UserPageModel.Username</h2>
+
+    <h4>Upcoming Events:</h4>
+
+    @if (Model.Tickets?.Any() == true)
+    {
+        <ul>
+            @foreach (var ticket in Model.Tickets)
+            {
+                <li>
+                    <strong>@ticket.EventName</strong> - @ticket.EventDate.ToShortDateString()
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>This user has no tickets.</p>
+    }
+</div>
