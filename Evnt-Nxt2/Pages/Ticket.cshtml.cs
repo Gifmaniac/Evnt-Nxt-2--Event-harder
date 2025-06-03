@@ -61,8 +61,15 @@ namespace Evnt_Nxt2.Pages
                 Quantity = TicketsToBuy
             };
 
-            var ticketOrder = _ticketService.TryTicketPurchase(userRequest);
 
+            try
+            {
+                var ticketOrder = _ticketService.TryTicketPurchase(userRequest);
+            }
+            catch(ArgumentException exception)
+            {
+
+            }
 
             // Gets the available ticket from the event.
             var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);

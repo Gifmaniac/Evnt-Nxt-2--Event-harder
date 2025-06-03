@@ -17,32 +17,19 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private bool ValidateEmail(string email)
-        {
-            try
-            {
-                var newMail = new System.Net.Mail.MailAddress(email);
-                return newMail.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
-        private List<string> IsMailValidated(string email)
+        private static List<string> IsMailValidated(string email)
         {
             List<string> errors = new();
 
-            if (!ValidateEmail(email))
-            {
-                errors.Add("Invalid email address.");
-            }
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$" )) 
+                errors.Add("Invalid email format.");
+
             return errors;
         }
 
 
-        private List<string> ValidateUsername(string username)
+        private static List<string> ValidateUsername(string username)
         {
             List<string> errors = new();
 
@@ -57,9 +44,8 @@ namespace Evnt_Nxt_Business_
 
             if (username.StartsWith(".") || username.StartsWith("_") ||
                 username.EndsWith(".") || username.EndsWith("_"))
-            {
                 errors.Add("Username cannot start or end with a dot or underscore.");
-            }
+
 
             var blockedWords = new[] { "admin", "root", "moderator", "fuck", "shit"};
 
@@ -69,7 +55,7 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private List<string> ValidatePassWordCheck(string password)
+        private static List<string> ValidatePassWordCheck(string password)
         {
             List<string> errors = new();
 

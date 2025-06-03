@@ -24,16 +24,13 @@ namespace Evnt_Nxt_Business_.Services
         public void VerifyRegister(UserDTO newUser)
         {
             if (_userRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.Username))
-            {
                 throw new ArgumentException("A user already exist with this mail and or username");
-            }
+            
             
             List<string> errors = _registerValidator.ValidateAll(newUser.Email, newUser.Hashedpassword, newUser.Username);
 
             if (errors.Any())
-            {
                 throw new ArgumentException(string.Join(" | ", errors));
-            }
         }
 
         public void RegisterUser(UserDTO newUser)

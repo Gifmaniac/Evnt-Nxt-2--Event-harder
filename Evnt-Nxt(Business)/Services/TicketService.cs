@@ -28,16 +28,10 @@ namespace Evnt_Nxt_Business_.Services
 
             EventTicket selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketId);
 
-            var TicketPurchaseResult = TicketPurchaseValidator.Validate(request, selectedTicket);
+            List<string>errors = TicketPurchaseValidator.Validate(request, selectedTicket);
 
-            if (!TicketPurchaseResult.Success)
-            {
-                return new TicketPurchaseValidator
-                {
-                    Success = false,
-                    ErrorMessage = TicketPurchaseResult.ErrorMessage
-                };
-            }
+            if (!errors.Any())
+                return errors;
         }
 
         public void BuyTicket(User user, int eventTicketID, int quantity)

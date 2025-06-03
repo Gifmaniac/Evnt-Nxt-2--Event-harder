@@ -14,11 +14,12 @@ namespace UserBuysTicketTest
     {
         private readonly Mock<ITicketRepository> _ticketRepoMock = new();
         private readonly Mock<UserService> _userServiceMock = new();
+        private readonly Mock<IEventTicketService> _eventTicketService = new();
         [Fact]
         public void BuyTicket()
         {
             // Arrange
-            var ticketService = new TicketService(_ticketRepoMock.Object, _userServiceMock.Object);
+            var ticketService = new ITicketService(_ticketRepoMock.Object, _userServiceMock.Object, _eventTicketService.Object);
 
             User user = new User(1, "test@test.nl", "Willem", "van den Broek");
             int eventTicketID = 12;
