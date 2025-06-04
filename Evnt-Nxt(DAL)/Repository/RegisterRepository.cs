@@ -1,9 +1,10 @@
-﻿using EvntNxtDTO;
+﻿using Evnt_Nxt_Business_.Interfaces;
+using EvntNxtDTO;
 using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
-    public class RegisterRepository
+    public class RegisterRepository : IRegisterRepository
     {
         public void RegisterUser(RegisterDTO user)
         {

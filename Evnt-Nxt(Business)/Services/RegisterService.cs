@@ -1,20 +1,16 @@
-﻿using System.Configuration;
-using Evnt_Nxt_Business_.DomainClass;
-using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
+﻿using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
-using EvntNxt.DTO;
 using EvntNxtDTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
     public class RegisterService
     {
-        private readonly RegisterRepository _registerRepository;
+        private readonly IRegisterRepository _registerRepository;
         private readonly IPasswordHasher _passwordHasher;
-        private readonly RegisterValidator _registerValidator;
+        private readonly IRegisterValidator _registerValidator;
 
-        public RegisterService(RegisterRepository registerRepository, IPasswordHasher passwordHasher, RegisterValidator registerValidator)
+        public RegisterService(IRegisterRepository registerRepository, IPasswordHasher passwordHasher, IRegisterValidator registerValidator)
         {
             _registerRepository = registerRepository;
             _passwordHasher = passwordHasher;

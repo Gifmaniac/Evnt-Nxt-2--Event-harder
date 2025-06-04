@@ -20,9 +20,13 @@ namespace Evnt_Nxt_Business_.Services
         {
             // Fetches the user login data. (Email + Password)
             LoginDTO dto = _userLoginRepository.FetchUserLoginData(loginDto.Email);
-            
+
             // If the user exist verifies the password.
-            _passwordHasher.VerifyPassword(loginDto.Password, dto.Password);
+            bool passwordMatches = _passwordHasher.VerifyPassword(loginDto.Password, dto.Password);
+            if (!passwordMatches)
+            {
+                throw new Exception("Invalid email or password.");
+            }
         }
 
         public LoggedInUserDTO GetLoginInfo(string email)

@@ -1,9 +1,10 @@
 ﻿using System.Text.RegularExpressions;
+using Evnt_Nxt_Business_.Interfaces;
 
 
 namespace Evnt_Nxt_Business_
 {
-    public class RegisterValidator
+    public class RegisterValidator : IRegisterValidator
     {
 
         public List<string> ValidateAll(string email, string password, string username)
@@ -44,9 +45,8 @@ namespace Evnt_Nxt_Business_
 
             if (username.StartsWith(".") || username.StartsWith("_") ||
                 username.EndsWith(".") || username.EndsWith("_"))
-            {
                 errors.Add("Username cannot start or end with a dot or underscore.");
-            }
+            
 
             var blockedWords = new[] { "admin", "root", "moderator", "fuck", "shit"};
 

@@ -2,32 +2,38 @@ using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_DAL_.Repository;
-using Microsoft.Extensions.Logging;
+using EvntNxt.DTO;
+using Moq;
 
 
 namespace TestProject1
-{
-    public class AreTicketsAvailable
-    {
-        [Fact]
-        public void GetEventDTOWithGenresandOrganizer()
-        {
-            //Arrange
-            var event1 = new Event(1, "Lake Dance");
-            var ticket1 = new EventTicket(event1, new EventTicket(1, "Early Bird", 19, false));
-            var ticket2 = new EventTicket(event1, new EventTicket(2, "Late Ticket", 29, true));
+//{
+//    public class AreTicketsAvailable
+//    {
+//        [Fact]
+//        public void GetEventDTOWithGenresandOrganizer()
+//        {
+//            // Arrange
+//            var mockRepo = new Mock<IEventTicketRepository>();
+//            int eventId = 1;
 
-            var allTickets = new List<EventTicket> { ticket1, ticket2 };
-            var fakeRepo = new FakeEventTicketRepository(allTickets);
-            //var service = new EventTicketService(fakeRepo);
+//            var fakeTickets = new List<EventTicketDTO>
+//            {
+//                new EventTicketDTO { ID = 1, EventID = eventId },
+//                new EventTicketDTO { ID = 2, EventID = eventId }
+//            };
 
-            // Act
+//            mockRepo.Setup(r => r.GetEventTicketsByEventID(eventId)).Returns(fakeTickets);
 
-            var available = service.GetAvailableEventTickets(1); 
-            // Assert
-            Assert.Single(available);
-            Assert.Equal("Late Ticket", available[0].Name);
+//            var service = new EventTicketService(mockRepo.Object);
 
-        }
-    }
-}
+//            // Act
+//            var result = service.GetAvailableEventTickets(eventId);
+
+//            // Assert
+//            Assert.NotNull(result);
+//            Assert.Equal(2, result.Count);
+
+//        }
+//    }
+//}

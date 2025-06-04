@@ -10,7 +10,7 @@ function updateTotalPrice(ticketID, ticketPrice) {
     const quantity = parseInt(quantityInput.value) || 0;
     const total = ticketPrice * quantity;
 
-    totalPriceDisplay.textContent = `Total: €{total}`;
+    totalPriceDisplay.textContent = `Total: €${total}`;
 
     if (quantity > available) {
         message.textContent = "There are not enough tickets available for your current order, try lowering your order.";

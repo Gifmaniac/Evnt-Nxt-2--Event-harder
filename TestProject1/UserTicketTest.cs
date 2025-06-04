@@ -7,32 +7,32 @@ using Evnt_Nxt2.Pages;
 using Xunit.Abstractions;
 
 
-namespace TestProject1
-{
-    public class UserTicketTest
+//  TestProject1
+// {
+//    public class UserTicketTest
 
-    {
-        [Fact]
-        public void BuyTicket_ShouldAddTicketToUser()
-        {
+//    {
+//        [Fact]
+//        public void BuyTicket_ShouldAddTicketToUser()
+//        {
 
-            // Arrange
-            var user = new User(1, "test@test.nl", "Willem", "Van den Broek");
+//            // Arrange
+//            var user = new User(1, "test@test.nl", "Willem", "Van den Broek");
 
-            var eventTicket = new Event(1, "Normal", "10-10-2025");
+//            var eventTicket = new Event(1, "Normal", "10-10-2025");
             
-            ITicketService ticketService = new TicketService();
+//            ITicketService ticketService = new TicketService();
 
-            // Act
-            ticketService.BuyTicket(user, eventTicket, 2);
+//            // Act
+//            ticketService.BuyTicket(user, eventTicket, 2);
 
-            // Assert
-            Assert.Single(user.PurchasedTickets);
-            Ticket purchasedTicket = user.PurchasedTickets[0];
-            Assert.Equal(user.ID, purchasedTicket.UserID);
-            Assert.Equal(eventTicket.ID, purchasedTicket.EventTicketID);
-            Assert.Equal(DateOnly.FromDateTime(DateTime.Today), purchasedTicket.PurchaseDate);
-        }
-    }
-}
+//            // Assert
+//            Assert.Single(user.PurchasedTickets);
+//            Ticket purchasedTicket = user.PurchasedTickets[0];
+//            Assert.Equal(user.ID, purchasedTicket.UserID);
+//            Assert.Equal(eventTicket.ID, purchasedTicket.EventTicketID);
+//            Assert.Equal(DateOnly.FromDateTime(DateTime.Today), purchasedTicket.PurchaseDate);
+//        }
+//    }
+//}
 

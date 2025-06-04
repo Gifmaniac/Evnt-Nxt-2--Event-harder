@@ -17,7 +17,7 @@ builder.Services.AddScoped<EventTicketRepository>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<LoginRepository>();
-builder.Services.AddScoped<RegisterRepository>();
+builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
 
 // Services
 builder.Services.AddScoped<ArtistService>();
@@ -32,7 +32,7 @@ builder.Services.AddScoped<RegisterService>();
 
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-builder.Services.AddScoped<RegisterValidator>();
+builder.Services.AddScoped<IRegisterValidator, RegisterValidator>();
 
 
 builder.Services.AddRazorPages();
