@@ -6,13 +6,14 @@ namespace Evnt_Nxt_DAL_.Repository
 
     public class EventRepository
     {
+
         public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
             var result = new List<EventWithOrganizerAndGenreDTO>();
             var eventDict = new Dictionary<int, EventWithOrganizerAndGenreDTO>();
-            string eventquery = SQLQueries.GetEventIDNameDateLocationProvince;
-            string organizerquery = SQLQueries.GetOrganizerIDName;
-            string genrequery = SQLQueries.GetGenreIDName;
+            const string eventquery = SQLQueries.GetEventIDNameDateLocationProvince;
+            const string organizerquery = SQLQueries.GetOrganizerIDName;
+            const string genrequery = SQLQueries.GetGenreIDName;
 
 
             using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
@@ -21,7 +22,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     $@"SELECT
                         {eventquery},
                         {organizerquery},
-                        {genrequery}        
+                        {genrequery},
                     FROM Event
                     JOIN EventGenre ON Event.ID = EventGenre.EventID
                     JOIN Genre ON Genre.ID = EventGenre.GenreID

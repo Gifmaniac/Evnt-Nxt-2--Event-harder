@@ -1,0 +1,15 @@
+﻿@page
+@model Evnt_Nxt2.Pages.OrganizerPanel.AddEventModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/organizerPanel.css" />
+}
+
+    @foreach (var e in Model.Events)
+    {
+        <div>
+            <h3>@e.Name</h3>
+            <p>Date: @e.Date</p>
+            <p>Province: @e.Province</p>
+            <p>Genres: @string.Join(", ", e.Genres.Select(g => g.Name))</p>
+        </div>
+    }

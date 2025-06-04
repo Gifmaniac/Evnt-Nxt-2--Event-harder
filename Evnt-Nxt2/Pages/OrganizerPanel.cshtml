@@ -1,0 +1,36 @@
+﻿@page
+@model Evnt_Nxt2.Pages.OrganizerPanel.OrganizerPanelModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/organizerPanel.css" />
+}
+
+<h2>Session Test</h2>
+<p>UserID: Context.Session.GetInt32("UserID")</p>
+<p>UserName: Context.Session.GetString("UserName")</p>
+<p>RoleID: Context.Session.GetInt32("RoleID")</p>
+
+<div class="sidebar">
+    <h2>Organizer Panel</h2>
+    <a asp-page="/OrganizerPanel/AddEvent">Add Event</a>
+    <a href="/events">Update Event</a>
+    <a href="/profile">Remove Event</a>
+    <a href="/logout">Logout</a>
+</div>
+
+@if (Model.Events != null && Model.Events.Any())
+{
+    <div style="color: white;">
+        @foreach (var eventDto in Model.Events)
+        {
+            <div class="event-card">
+                <h3>@eventDto.EventName</h3>
+                <p><strong>Date:</strong> @eventDto.EventDate</p>
+                <p><strong>Organizer:</strong> @eventDto.OrganizerName</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No events found.</p>
+}
