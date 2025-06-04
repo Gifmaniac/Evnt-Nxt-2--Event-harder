@@ -5,6 +5,7 @@ using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
 
 
 namespace Evnt_Nxt_Business_.Services
@@ -22,15 +23,23 @@ namespace Evnt_Nxt_Business_.Services
         }
 
 
-        public Artist GetArtistByName(string name)
+        public (bool Success, string ErrorMessage, ArtistDTO? Artist) GetArtistByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("Artist name has not bin found please try again.");
-            }
+                return (false, "Artist name must be provided.", null);
+
             var artist = _artistRepo.GetArtistByName(name);
 
-            return new Artist(artist.ID, artist.Name);
+            if (artist == null)
+                return (false, "Artist not found.", null);
+
+            var dto = new ArtistDTO
+            {
+                ID = artist.ID,
+                Name = artist.Name
+            };
+
+            return (true, null, dto);
         }
 
         public List<Artist> CreateAllArtistsWithGenre()

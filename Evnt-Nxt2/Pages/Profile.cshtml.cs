@@ -41,6 +41,11 @@ namespace Evnt_Nxt2.Pages
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return Page();
             }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong, please try again later.");
+                return Page();
+            }
         }
     }
 }

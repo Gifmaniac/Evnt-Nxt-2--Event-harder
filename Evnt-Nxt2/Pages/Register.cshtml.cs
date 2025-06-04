@@ -44,22 +44,23 @@ namespace Evnt_Nxt2.Pages
 
             try
             {
-                // Validates all the register info
-                _registerService.VerifyRegister(userDto);
+                var result = _registerService.VerifyRegister(userDto);
 
-                // If validated registers the user with all the register info
+                if (!result.succes)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+
+                    return Page();
+                }
                 _registerService.RegisterUser(userDto);
-
                 return RedirectToPage("/Index");
             }
-
-            catch(ArgumentException exception)
+            catch (Exception ex)
             {
-                var errors = exception.Message.Split(" | ");
-                foreach (var error in errors)
-                {
-                    ModelState.AddModelError(string.Empty, error);
-                }
+                ModelState.AddModelError(string.Empty, "Something went wrong. Please try again later.");
                 return Page();
             }
         }

@@ -10,7 +10,7 @@ namespace Evnt_Nxt_Business_.Interfaces
 {
     public interface ITicketService
     {
-        public void TryTicketPurchase(TicketPurchaseRequestDto request);
+        public (bool Success, List<string> Errors) TryTicketPurchase(TicketPurchaseRequestDto request);
         public List<UserProfileTicketDTO> ValidateUserTicket(string username);
     }
 }

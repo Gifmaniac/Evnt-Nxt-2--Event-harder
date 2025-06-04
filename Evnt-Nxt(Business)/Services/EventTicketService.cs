@@ -31,7 +31,7 @@ namespace Evnt_Nxt_Business_.Services
 
             if (dtoList == null)
             {
-                throw new ArgumentException("Event has not been found please try again.");
+                return null;
             }
 
             var result = EventTicketMapper.CreateEventTicketsBuyPage(dtoList);

@@ -23,20 +23,21 @@ namespace Evnt_Nxt2.Pages.Artist
             {
                 return NotFound();
             }
-            var artist = _artistService.GetArtistByName(name);
 
-            if (artist == null)
+            // Gets the artist by name
+            var result = _artistService.GetArtistByName(name);
+
+            if (!result.Success || result.Artist == null)
             {
                 return NotFound();
             }
-            else
+
+            Artist = new ArtistViewModel()
             {
-                Artist = new ArtistViewModel()
-                {
-                    ID = artist.ID,
-                    Name = artist.Name,
-                };
-            }
+                ID = result.Artist.ID,
+                Name = result.Artist.Name,
+            };
+
             return Page();
         }
     }

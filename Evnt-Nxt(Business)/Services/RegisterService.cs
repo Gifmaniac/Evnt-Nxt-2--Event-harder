@@ -1,4 +1,5 @@
-﻿using Evnt_Nxt_Business_.Interfaces;
+﻿using System.Configuration;
+using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxtDTO;
 
@@ -18,16 +19,18 @@ namespace Evnt_Nxt_Business_.Services
 
         }
 
-        public void VerifyRegister(RegisterDTO newUser)
+        public (bool succes, List<String> Errors) VerifyRegister(RegisterDTO newUser)
         {
-            // Verifies the user info
-            if (_registerRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-                throw new ArgumentException("A user already exists with this email or username.");
-            
-            List<string> errors = _registerValidator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName);
+            var errors = new List<string>();
 
-            if (errors.Any())
-                throw new ArgumentException(string.Join(" | ", errors));
+            if (_registerRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
+            {
+                errors.Add("A user already exists with this email or username.");
+            }
+
+            errors.AddRange(_registerValidator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName));
+
+            return (errors.Count == 0, errors);
         }
 
         public void RegisterUser(RegisterDTO newUser)

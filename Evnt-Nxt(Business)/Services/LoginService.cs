@@ -16,17 +16,24 @@ namespace Evnt_Nxt_Business_.Services
             _userLoginRepository = user;
         }
 
-        public void ValidateLogin(LoginDTO loginDto)
+        public (bool Success, string ErrorMessage) ValidateLogin(LoginDTO loginDto)
         {
-            // Fetches the user login data. (Email + Password)
-            LoginDTO dto = _userLoginRepository.FetchUserLoginData(loginDto.Email);
+            // Tries to fetch the user login data
+            LoginDTO userInDb = _userLoginRepository.FetchUserLoginData(loginDto.Email);
 
-            // If the user exist verifies the password.
-            bool passwordMatches = _passwordHasher.VerifyPassword(loginDto.Password, dto.Password);
+            if (userInDb == null)
+            {
+                return (false, "Account does not exist");
+            }
+
+            // If the user exist verifies the password with the Email.
+            bool passwordMatches = _passwordHasher.VerifyPassword(loginDto.Password, userInDb.Password);
             if (!passwordMatches)
             {
-                throw new Exception("Invalid email or password.");
+                return (false, "Invalid email or password.");
             }
+
+            return (true, null);
         }
 
         public LoggedInUserDTO GetLoginInfo(string email)

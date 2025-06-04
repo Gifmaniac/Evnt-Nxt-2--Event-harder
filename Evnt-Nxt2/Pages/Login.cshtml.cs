@@ -39,21 +39,26 @@ namespace Evnt_Nxt2.Pages
 
             try
             {
-                // Validates the Login (Email + Password)
-                _loginService.ValidateLogin(loginDto);
-                
-                // If Validated, this gets the login info (ID, UserName, RoleID)
-                LoggedInUserDTO user = _loginService.GetLoginInfo(loginDto.Email);
-                HttpContext.Session.SetInt32("UserID", user.ID );
-                HttpContext.Session.SetString("UserName", user.UserName);
-                HttpContext.Session.SetInt32("RoleID", user.RoleID);
+                var result = _loginService.ValidateLogin(loginDto);
+
+                if (!result.Success)
+                {
+                    ModelState.AddModelError(string.Empty, result.ErrorMessage);
+                    return Page();
+                }
+
+                var validatedDto = _loginService.GetLoginInfo(loginDto.Email);
+
+                // Login has been validated, the user session is created.
+                HttpContext.Session.SetInt32("UserID", validatedDto.ID);
+                HttpContext.Session.SetString("UserName", validatedDto.UserName);
+                HttpContext.Session.SetInt32("RoleID",validatedDto.RoleID);
 
                 return RedirectToPage("/Index");
             }
-
-            catch (ArgumentException exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, exception.Message);
+                ModelState.AddModelError(string.Empty, "Something went wrong, please try again later.");
                 return Page();
             }
         }

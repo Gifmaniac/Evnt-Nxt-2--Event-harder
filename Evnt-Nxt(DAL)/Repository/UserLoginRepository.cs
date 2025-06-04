@@ -1,4 +1,5 @@
-﻿using EvntNxtDTO;
+﻿using System.Diagnostics.CodeAnalysis;
+using EvntNxtDTO;
 using Microsoft.Data.SqlClient;
 
 namespace Evnt_Nxt_DAL_.Repository
@@ -33,7 +34,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     }
                 }
             }
-            throw new ArgumentException("User not found for the provided email.");
+            return null;
         }
 
         public LoggedInUserDTO GetLoginInfoByEmail(string email)
@@ -64,7 +65,8 @@ namespace Evnt_Nxt_DAL_.Repository
                     }
                 }
             }
-            throw new ArgumentException("User not found for the provided email.");
+
+            return null;
         }
 
     }

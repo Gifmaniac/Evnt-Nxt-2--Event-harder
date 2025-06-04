@@ -16,17 +16,15 @@ namespace Evnt_Nxt2.Pages
         private readonly ITicketService _ticketService;
         private readonly UserService _userService;
 
-        [BindProperty]
-        public int EventID { get; set; }
-        [BindProperty]
-        public int TicketsToBuy { get; set; }
-        [BindProperty]
-        public int EventTicketID { get; set; }
+        [BindProperty] public int EventID { get; set; }
+        [BindProperty] public int TicketsToBuy { get; set; }
+        [BindProperty] public int EventTicketID { get; set; }
 
         public List<EventTicketViewModel> EventTickets { get; set; } = new();
         public EventViewModel Event { get; set; }
 
-        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService, ITicketService ticketService)
+        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService,
+            ITicketService ticketService)
         {
             _eventTicketService = eventTicketService;
             _eventService = eventService;
@@ -57,24 +55,27 @@ namespace Evnt_Nxt2.Pages
 
             var userRequest = new TicketPurchaseRequestDto
             {
-                UserID = sessionUserId.Value, 
+                UserID = sessionUserId.Value,
                 EventID = EventID,
                 TicketID = EventTicketID,
                 Quantity = TicketsToBuy
             };
 
-            try
+            var result = _ticketService.TryTicketPurchase(userRequest);
+
+            if (!result.Success)
             {
-                _ticketService.TryTicketPurchase(userRequest);
-                return RedirectToPage("/Index");
-            }
-            catch (ArgumentException exception)
-            {
-                foreach (var error in exception.Message.Split(" | "))
+                foreach (var error in result.Errors)
+                {
                     ModelState.AddModelError(string.Empty, error);
+                }
 
                 return Page();
             }
+
+            // Purchase was successful
+            return RedirectToPage("/Index");
         }
     }
 }
+

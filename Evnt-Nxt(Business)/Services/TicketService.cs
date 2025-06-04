@@ -23,7 +23,7 @@ namespace Evnt_Nxt_Business_.Services
         }
 
 
-        public void TryTicketPurchase(TicketPurchaseRequestDto request)
+        public (bool Success, List<string> Errors) TryTicketPurchase(TicketPurchaseRequestDto request)
         {
             List<string> errors = new();
 
@@ -37,16 +37,21 @@ namespace Evnt_Nxt_Business_.Services
             // Gives the ticket a unique ID
             var selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketID);
 
-            // Checks if the current ticket exists
+            // Checks if the current ticket exists, and if there are enough tickets available
             if (selectedTicket == null)
+            {
                 errors.Add("Ticket does not exist.");
-
-            // Checks if there are enough tickets available for sale.
-            if (selectedTicket != null && request.Quantity > selectedTicket.Amount && selectedTicket.IsAvailable == false)
-                errors.Add("Not enough tickets available.");
+            }
+            else
+            {
+                if (request.Quantity > selectedTicket.Amount || !selectedTicket.IsAvailable)
+                    errors.Add("Not enough tickets available.");
+            }
 
             if (errors.Any())
-                throw new ArgumentException(string.Join(" | ", errors));
+            {
+                return (false, errors);
+            }
 
             // If everything checks out the program creates the DTO
             var ticket = new TicketDTO
@@ -61,6 +66,8 @@ namespace Evnt_Nxt_Business_.Services
 
             // Decreases the stock by the quantity
             _ticketRepository.DecreaseAvailableTickets(request.TicketID, request.Quantity);
+
+            return (true, new List<string>());
         }
 
         public List<UserProfileTicketDTO> ValidateUserTicket(string username)
@@ -68,7 +75,9 @@ namespace Evnt_Nxt_Business_.Services
             // Validates if the userID is correct
             var user = _userService.GetUserName(username);
             if (user == null)
-                throw new ArgumentException("User not found");
+            {
+                return null;
+            }
 
             // Gets all the tickets from the user
             var allTickets = _ticketRepository.GetTicketByUserID(user.ID);
