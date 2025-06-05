@@ -4,7 +4,6 @@ using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
 using Evnt_Nxt_DAL_.DTO;
 using System.Collections.Generic;
-using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Services;
 
@@ -36,16 +35,9 @@ public class EventService
     {
         var dtoList = _eventRepo.GetEventsWithOrganizerAndGenreDtos();
         var events = EventMapper.CreateEventsWithOrganizerAndGenreFromDto(dtoList);
-        
+
+
         return events;
-    }
-
-    public List<EventWithOrganizerAndGenreDTO> GetEventsForOrganizerPanel(int organizerID)
-    {
-        var dtoList = _eventRepo.GetEventsWithOrganizerAndGenreDtos(true);
-
-        return dtoList.Where(dto => dto.Organizer.ID == organizerID).ToList();
-
     }
 
 }

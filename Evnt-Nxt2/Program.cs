@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using Evnt_Nxt_Business_;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
@@ -19,7 +18,6 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<LoginRepository>();
 builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
-builder.Services.AddScoped<OrganizerOverviewRepository>();
 
 // Services
 builder.Services.AddScoped<ArtistService>();
@@ -30,8 +28,7 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 builder.Services.AddScoped<RegisterService>();
-builder.Services.AddScoped<ArtistService>();
-builder.Services.AddScoped<OrganizerOverviewService>();
+
 
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
@@ -56,13 +53,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseSession();
 
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseSession();
 
 app.UseAuthorization();
 

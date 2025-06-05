@@ -36,9 +36,9 @@ namespace Evnt_Nxt_DAL_
 
         public const string GetEventTicketNamePriceAmountIsAvailable = @"
                 EventTicket.ID AS EventTicketTypeID,
-                EventTicket.Name AS EventTicketTypeName,
-                EventTicket.Price AS EventTicketPrice,
-                EventTicket.Amount AS EventTicketAmount,
+                EventTicket.Name AS EventTicketTypeName
+                EventTicket.Price AS EventTicketPrice
+                EventTicket.Amount AS EventTicketAmount
                 EventTicket.IsAvailable AS EventTicketIsAvailable";
 
         public const string GetEventIDNameDate = @"                        

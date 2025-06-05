@@ -32,11 +32,6 @@
                     <a asp-page="/Login">Login</a>
                 }
 
-                @if (Context.Session.GetInt32("UserID") != null && Context.Session.GetInt32("RoleID") == 2)
-                {
-                    <a asp-page="/OrganizerPanel">Organizer Panel</a>
-                }
-
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="Type here!" />

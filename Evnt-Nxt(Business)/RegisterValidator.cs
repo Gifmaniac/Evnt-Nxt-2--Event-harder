@@ -43,6 +43,7 @@ namespace Evnt_Nxt_Business_
             if (username.Length > 20)
             {
                 errors.Add("Username must not exceed 20 characters.");
+
             }
 
             if (!Regex.IsMatch(username, "^[a-zA-Z0-9_.]+$"))
