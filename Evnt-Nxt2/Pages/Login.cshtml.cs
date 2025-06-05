@@ -50,7 +50,7 @@ namespace Evnt_Nxt2.Pages
                 var validatedDto = _loginService.GetLoginInfo(loginDto.Email);
 
                 // Login has been validated, the user session is created.
-                HttpContext.Session.SetInt32("UserID", validatedDto.ID);
+                HttpContext.Session.SetInt32("ID", validatedDto.ID);
                 HttpContext.Session.SetString("UserName", validatedDto.UserName);
                 HttpContext.Session.SetInt32("RoleID",validatedDto.RoleID);
 

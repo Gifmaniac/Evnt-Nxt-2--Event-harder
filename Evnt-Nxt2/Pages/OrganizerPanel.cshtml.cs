@@ -1,0 +1,36 @@
+using Evnt_Nxt_Business_.Services;
+using EvntNxtDTO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace Evnt_Nxt2.Pages
+{
+    public class OrganizerPanelModel : PageModel
+    {
+        private readonly OrganizerOverviewService _eventOverviewService;
+
+        public List<OrganizerOverviewPanelDTO> Events { get; set; }
+
+        public OrganizerPanelModel()
+        {
+            _eventOverviewService = new OrganizerOverviewService();
+        }
+
+        public IActionResult OnGet()
+        {
+            var organizerID = HttpContext.Session.GetInt32("ID");
+            var roleID = HttpContext.Session.GetInt32("RoleID");
+
+            if (organizerID == null || roleID != 2)
+            {
+                return RedirectToPage("/Unauthorized");
+            }
+
+
+            Events = _eventOverviewService.GetEventsByOrganizerId(organizerID.Value);
+
+            return Page();
+        }
+    }
+
+}

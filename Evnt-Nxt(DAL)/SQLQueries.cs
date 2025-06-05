@@ -48,7 +48,7 @@ namespace Evnt_Nxt_DAL_
 
         public const string GetOrganizerIDName = @"
                 Organizer.ID AS OrganizerID,
-                Organizer.Name AS OrganizerName";
+                Organizer.OrganizerName AS OrganizerName";
 
         public const string GetGenreIDName = @"                        
                 Genre.ID AS GenreID,

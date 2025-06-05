@@ -1,0 +1,32 @@
+﻿@page
+@model Evnt_Nxt2.Pages.OrganizerPanelModel
+@section Styles {
+    <link rel="stylesheet" href="~/css/organizer.css" />
+}
+
+@if (Model.Events != null && Model.Events.Any())
+{
+    <div class="event-container" style="color: white">
+        @foreach (var eventDto in Model.Events)
+        {
+            <div class="event-box">
+                <h2>@eventDto.EventName</h2>
+                <h4>@eventDto.EventDate.ToString("dd MMM yyyy")</h4>
+
+                <ul class="ticket-list">
+                    @foreach (var ticket in eventDto.TicketTypes)
+                    {
+                        <li>
+                            <strong>@ticket.TicketType</strong><br />
+                            Available: @ticket.AvailableTickets<br />
+                            Sold: @ticket.SoldTickets<br />
+                            Remaining: @ticket.RemainingTickets
+                        </li>
+                    }
+                    <a asp-page="/Event/Edit" asp-route-id="@eventDto.EventID" class="edit-button">Edit Event</a>
+                </ul>
+            </div>
+        }
+    </div>
+    }
+}
