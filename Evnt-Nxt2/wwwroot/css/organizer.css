@@ -33,3 +33,66 @@
     border-radius: 8px;
     display: inline-block;
 }
+
+.edit-event-form {
+    background-color: #222;
+    color: white;
+    padding: 25px;
+    margin: 50px auto;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+    .edit-event-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .edit-event-form input.form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background-color: #333;
+        color: white;
+    }
+
+    .edit-event-form input[type="date"] {
+        background-color: #333;
+        color: white;
+    }
+
+    .edit-event-form button {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        width: 100%;
+    }
+
+
+.ticket-card {
+    background-color: darkgrey;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+    .ticket-card h4 {
+        margin-bottom: 10px;
+        color: White;
+    }
+
+.form-group {
+    margin-bottom: 12px;
+}

@@ -27,12 +27,13 @@ namespace Evnt_Nxt_DAL_.Repository
                             U.ID AS OrganizerUserID,
                             EventTicket.Name AS TicketType,
                             EventTicket.Amount AS AvailableTickets,
+                            EventTicket.Price AS EventTicketPrice,
                             COUNT(Ticket.ID) AS SoldTickets
                         FROM Event
                         LEFT JOIN [User] U ON Event.OrganizerID = U.ID
                         JOIN EventTicket ON EventTicket.EventID = Event.ID
                         LEFT JOIN Ticket ON Ticket.TicketType = EventTicket.ID
-                        WHERE OrganizerID = @organizerID
+                        WHERE U.ID = @OrganizerUserID
                         GROUP BY 
                             Event.ID, 
                             Event.Name, 
@@ -40,13 +41,14 @@ namespace Evnt_Nxt_DAL_.Repository
                             U.ID, 
 	                        U.Username, 
                             EventTicket.Name, 
-                            EventTicket.Amount
+                            EventTicket.Amount,
+                            EventTicket.Price
                         ORDER BY Event.Date, Event.Name, TicketType";
 
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@OrganizerID", organizerID);
+                    command.Parameters.AddWithValue("@OrganizerUserID", organizerID);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -79,7 +81,8 @@ namespace Evnt_Nxt_DAL_.Repository
                             {
                                 TicketType = (string)reader["TicketType"],
                                 AvailableTickets = Convert.ToInt32(reader["AvailableTickets"]),
-                                SoldTickets = Convert.ToInt32(reader["SoldTickets"])
+                                SoldTickets = Convert.ToInt32(reader["SoldTickets"]),
+                                Price = Convert.ToDecimal(reader["EventTicketPrice"])
                             });
                         }
                     }

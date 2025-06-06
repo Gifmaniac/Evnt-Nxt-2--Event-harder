@@ -47,14 +47,18 @@ body {
 
 .footer {
     background-color: black;
+    color: white;
     text-align: center;
-    color:white;
-    
+    padding: 20px 0;
 }
 
-.footer.li{
-    color: white;
-}
+    .footer ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        display: inline-block;
+        text-align: left;
+    }
 
 html {
   font-size: 14px;

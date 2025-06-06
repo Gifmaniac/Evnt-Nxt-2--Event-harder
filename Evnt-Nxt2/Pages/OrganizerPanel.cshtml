@@ -20,10 +20,9 @@
                             <strong>@ticket.TicketType</strong><br />
                             Available: @ticket.AvailableTickets<br />
                             Sold: @ticket.SoldTickets<br />
-                            Remaining: @ticket.RemainingTickets
                         </li>
                     }
-                    <a asp-page="/Event/Edit" asp-route-id="@eventDto.EventID" class="edit-button">Edit Event</a>
+                    <a asp-page="/OrganizerPanel/Edit" asp-route-id="@eventDto.EventID" class="edit-button">Edit Event</a>
                 </ul>
             </div>
         }

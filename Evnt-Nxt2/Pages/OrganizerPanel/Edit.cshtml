@@ -1,0 +1,56 @@
+﻿@page
+@model Evnt_Nxt2.Pages.OrganizerPanel.EditModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/organizer.css" />
+}
+
+<h2>Edit Event</h2>
+
+<div class="edit-event-form">
+    <form method="post">
+        <input type="hidden" asp-for="EditEvent.EventID" />
+
+        <div>
+            <label asp-for="EditEvent.EventName"></label>
+            <input asp-for="EditEvent.EventName" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="EditEvent.EventDate"></label>
+            <input asp-for="EditEvent.EventDate" type="date" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="EditEvent.EventLocation"></label>
+            <input asp-for="EditEvent.EventLocation" class="form-control" />
+        </div>
+
+        <div>
+            <label asp-for="EditEvent.EventProvince"></label>
+            <input asp-for="EditEvent.EventProvince" class="form-control" />
+        </div>
+
+        @for (int i = 0; i < Model.EditEvent.TicketTypes.Count; i++)
+        {
+            <div class="ticket-card">
+                <h4>Ticket Type: @Model.EditEvent.TicketTypes[i].TicketType</h4>
+
+                <input type="hidden" asp-for="EditEvent.TicketTypes[i].TicketID" />
+
+                <div class="form-group">
+                    <label asp-for="EditEvent.TicketTypes[i].AvailableTickets">Available Tickets</label>
+                    <input asp-for="EditEvent.TicketTypes[i].AvailableTickets" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EditEvent.TicketTypes[i].Price">Price (€)</label>
+                    <input asp-for="EditEvent.TicketTypes[i].Price" class="form-control" />
+                </div>
+            </div>
+        }
+
+
+        <button type="submit">Save</button>
+    </form>
+</div>

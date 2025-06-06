@@ -28,6 +28,9 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<IEventTicketService, EventTicketService>();
 builder.Services.AddScoped<RegisterService>();
+builder.Services.AddScoped<OrganizerOverviewService>();
+
+
 
 
 // Utilities
