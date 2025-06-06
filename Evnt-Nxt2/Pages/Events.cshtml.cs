@@ -19,7 +19,10 @@ namespace Evnt_Nxt2.Pages
         public void OnGet()
         {
             var eventPage = _eventService.CreateEventsWithOrganizerAndGenre();
-            Events = EventViewModelMapper.ToEventViewModelList(eventPage);
+            foreach (var events in eventPage)
+            {
+                Events = EventViewModelMapper.ToEventViewModelList(eventPage);
+            }
         }
     }
 }

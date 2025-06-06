@@ -96,3 +96,11 @@
 .form-group {
     margin-bottom: 12px;
 }
+
+.success-message {
+    text-align: center;
+    color: white;
+    background-color: green
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}

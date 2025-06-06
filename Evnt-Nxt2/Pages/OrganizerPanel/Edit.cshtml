@@ -7,9 +7,18 @@
 
 <h2>Edit Event</h2>
 
+@if (ViewData["SuccessMessage"] != null)
+{
+    <div
+         class="success-message">
+        @ViewData["SuccessMessage"]
+    </div>
+}
+
 <div class="edit-event-form">
     <form method="post">
         <input type="hidden" asp-for="EditEvent.EventID" />
+        <input type="hidden" asp-for="EditEvent.OrganizerID" />
 
         <div>
             <label asp-for="EditEvent.EventName"></label>
@@ -37,6 +46,7 @@
                 <h4>Ticket Type: @Model.EditEvent.TicketTypes[i].TicketType</h4>
 
                 <input type="hidden" asp-for="EditEvent.TicketTypes[i].TicketID" />
+                <input type ="hidden" asp-for = "EditEvent.TicketTypes[i].TicketType"/>
 
                 <div class="form-group">
                     <label asp-for="EditEvent.TicketTypes[i].AvailableTickets">Available Tickets</label>
@@ -49,7 +59,6 @@
                 </div>
             </div>
         }
-
 
         <button type="submit">Save</button>
     </form>

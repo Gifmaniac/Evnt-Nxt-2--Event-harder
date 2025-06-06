@@ -31,14 +31,18 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
 
 
             if (organizerID == null || roleID != 2)
+            {
                 return RedirectToPage("/Unauthorized");
+            }
 
             var dto = _eventOverviewService
                 .GetEventsByOrganizerId(userID.Value)
                 .FirstOrDefault(e => e.EventID == id);
 
             if (dto == null || dto.OrganizerID != organizerID.Value)
+            {
                 return RedirectToPage("/Unauthorized");
+            }
 
 
             EditEvent = new EventEditViewModel
@@ -57,7 +61,50 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
                     Price = t.Price
                 }).ToList()
             };
-            
+
+            return Page();
+        }
+
+        public IActionResult OnPost()
+        {
+            var userID = HttpContext.Session.GetInt32("ID");
+            var roleID = HttpContext.Session.GetInt32("RoleID");
+            var organizerID = HttpContext.Session.GetInt32("OrganizerID");
+
+            var eventEditDTO = new OrganizerOverviewPanelDTO()
+            {
+                EventID = EditEvent.EventID,
+                EventName = EditEvent.EventName,
+                EventDate = EditEvent.EventDate,
+                EventLocation = EditEvent.EventLocation,
+                EventProvince = EditEvent.EventProvince,
+                OrganizerID = EditEvent.OrganizerID,
+                OrganizerUserID = EditEvent.OrganizerUserID,
+                TicketTypes = EditEvent.TicketTypes.Select(t => new TicketTypeOverviewDTO
+                {
+                    TicketType = t.TicketType,
+                    AvailableTickets = t.AvailableTickets,
+                    Price = t.Price
+                }).ToList(),
+                Genres = EditEvent.Genres
+            };
+
+            if (organizerID == null || roleID != 2)
+            {
+                return RedirectToPage("/Unauthorized");
+            }
+
+            if (eventEditDTO.OrganizerID != organizerID.Value)
+            {
+                return RedirectToPage("/Unauthorized");
+            }
+
+
+            _eventOverviewService.UpdateEvent(eventEditDTO);
+            ViewData["SuccessMessage"] = "Changes have been successfully saved.";
+
+
+
             return Page();
         }
     }
