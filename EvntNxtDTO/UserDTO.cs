@@ -11,6 +11,10 @@
         public string LastName { get; set; }
         public DateOnly Birthday {get; set; }
 
+        public UserDTO(int id)
+        {
+            ID = id;
+        }
         public UserDTO(string username, int id)
         {
             Username = username;

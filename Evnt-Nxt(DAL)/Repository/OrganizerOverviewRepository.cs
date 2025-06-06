@@ -19,36 +19,37 @@ namespace Evnt_Nxt_DAL_.Repository
                 connection.Open();
 
                 var query = @"
-                        SELECT
-                            Event.ID AS EventID,
-                            Event.Name AS EventName,
-                            Event.Date AS EventDate,
-                            U.Username AS OrganizerName,
-                            U.ID AS OrganizerUserID,
-                            EventTicket.Name AS TicketType,
-                            EventTicket.Amount AS AvailableTickets,
-                            EventTicket.Price AS EventTicketPrice,
-                            COUNT(Ticket.ID) AS SoldTickets
-                        FROM Event
-                        LEFT JOIN [User] U ON Event.OrganizerID = U.ID
-                        JOIN EventTicket ON EventTicket.EventID = Event.ID
-                        LEFT JOIN Ticket ON Ticket.TicketType = EventTicket.ID
-                        WHERE U.ID = @OrganizerUserID
-                        GROUP BY 
-                            Event.ID, 
-                            Event.Name, 
-                            Event.Date, 
-                            U.ID, 
-	                        U.Username, 
-                            EventTicket.Name, 
-                            EventTicket.Amount,
-                            EventTicket.Price
-                        ORDER BY Event.Date, Event.Name, TicketType";
+                       SELECT
+                         Event.ID AS EventID,
+                         Event.Name AS EventName,
+                         Event.Date AS EventDate,
+                         Organizer.ID AS OrganizerID,
+                         Organizer.OrganizerName AS OrganizerName,
+                         EventTicket.Name AS TicketType,
+                         EventTicket.Amount AS AvailableTickets,
+                         EventTicket.Price AS EventTicketPrice,
+                         COUNT(Ticket.ID) AS SoldTickets
+                     FROM Event
+                     JOIN Organizer ON Event.OrganizerID = Organizer.ID
+                     JOIN [User] ON Organizer.UserID = [User].ID
+                     JOIN EventTicket ON EventTicket.EventID = Event.ID
+                     LEFT JOIN Ticket ON Ticket.TicketType = EventTicket.ID
+                     Where @OrganizerID = organizerID
+                     GROUP BY 
+                         Event.ID, 
+                         Event.Name, 
+                         Event.Date, 
+                         Organizer.ID,
+                         Organizer.OrganizerName,
+                         EventTicket.Name, 
+                         EventTicket.Amount,
+                         EventTicket.Price
+                     ORDER BY Event.Date, Event.Name, TicketType";
 
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@OrganizerUserID", organizerID);
+                    command.Parameters.AddWithValue("@OrganizerID", organizerID);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -69,7 +70,7 @@ namespace Evnt_Nxt_DAL_.Repository
                                     EventDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["EventDate"])),
                                     OrganizerID = organizerID,
                                     OrganizerName = (string)reader["OrganizerName"],
-                                    OrganizerUserID = Convert.ToInt32(reader["OrganizerUserID"]),
+                                    OrganizerUserID = Convert.ToInt32(reader["OrganizerID"]),
                                     TicketTypes = new List<TicketTypeOverviewDTO>()
                                 };
 

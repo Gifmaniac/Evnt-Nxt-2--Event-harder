@@ -18,6 +18,7 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<LoginRepository>();
 builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
+builder.Services.AddScoped<OrganizerOverviewRepository>();
 
 // Services
 builder.Services.AddScoped<ArtistService>();

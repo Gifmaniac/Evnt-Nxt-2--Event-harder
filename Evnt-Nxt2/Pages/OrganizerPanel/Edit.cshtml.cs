@@ -25,14 +25,16 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
 
         public IActionResult OnGet(int id)
         {
-            var organizerID = HttpContext.Session.GetInt32("ID");
+            var userID = HttpContext.Session.GetInt32("ID");
             var roleID = HttpContext.Session.GetInt32("RoleID");
+            var organizerID = HttpContext.Session.GetInt32("OrganizerID");
+
 
             if (organizerID == null || roleID != 2)
                 return RedirectToPage("/Unauthorized");
 
             var dto = _eventOverviewService
-                .GetEventsByOrganizerId(organizerID.Value)
+                .GetEventsByOrganizerId(userID.Value)
                 .FirstOrDefault(e => e.EventID == id);
 
             if (dto == null || dto.OrganizerID != organizerID.Value)
@@ -55,9 +57,7 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
                     Price = t.Price
                 }).ToList()
             };
-
-
-
+            
             return Page();
         }
     }

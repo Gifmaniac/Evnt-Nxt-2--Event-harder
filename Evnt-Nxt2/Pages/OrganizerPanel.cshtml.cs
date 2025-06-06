@@ -11,9 +11,9 @@ namespace Evnt_Nxt2.Pages
 
         public List<OrganizerOverviewPanelDTO> Events { get; set; }
 
-        public OrganizerPanelModel()
+        public OrganizerPanelModel(OrganizerOverviewService eventOverviewService )
         {
-            _eventOverviewService = new OrganizerOverviewService();
+            _eventOverviewService = eventOverviewService;
         }
 
         public IActionResult OnGet()

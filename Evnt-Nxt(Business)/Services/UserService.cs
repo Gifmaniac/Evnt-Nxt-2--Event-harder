@@ -20,5 +20,10 @@ namespace Evnt_Nxt_Business_.Services
             return _userRepository.GetUserByName(username);
 
         }
+
+        public int GetOrganizerIDFromUserID(int userID)
+        {
+            return _userRepository.GetOrganizerIDbyUserID(userID);
+        }
     }
 }
