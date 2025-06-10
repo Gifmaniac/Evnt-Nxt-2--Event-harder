@@ -11,14 +11,14 @@ namespace Evnt_Nxt_Business_
         {
             var errors = new List<string>();
 
-            errors.AddRange(IsMailValidated(email));
+            errors.AddRange(ValidateMail(email));
             errors.AddRange(ValidateUsername(username));
-            errors.AddRange(ValidatePassWordCheck(password));
+            errors.AddRange(ValidatePasswordCheck(password));
 
             return errors;
         }
 
-        private static List<string> IsMailValidated(string email)
+        private static List<string>ValidateMail(string email)
         {
             List<string> errors = new();
 
@@ -67,7 +67,7 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private static List<string> ValidatePassWordCheck(string password)
+        private static List<string> ValidatePasswordCheck(string password)
         {
             List<string> errors = new();
 
