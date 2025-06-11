@@ -28,13 +28,13 @@ namespace Evnt_Nxt_Business_.Services
         public List<EventTicket> GetAvailableEventTickets(int eventID)
         {
             var dtoList = _eventTicketRepo.GetEventTicketsByEventID(eventID);
-            var result = EventTicketMapper.CreateEventTicketsBuyPage(dtoList);
 
             if (dtoList == null)
             {
-                throw new ArgumentException($"Event has not been found please try again.");
+                return null;
             }
 
+            var result = EventTicketMapper.CreateEventTicketsBuyPage(dtoList);
             return result;
         }
     }

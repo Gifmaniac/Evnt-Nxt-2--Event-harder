@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Evnt_Nxt_Business_.Mapper;
-using Evnt_Nxt_DAL_.DTO;
-using Evnt_Nxt_DAL_.Interfaces;
-using Evnt_Nxt_DAL_.Repository;
+﻿using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Services
 {

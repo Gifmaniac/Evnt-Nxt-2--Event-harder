@@ -5,16 +5,22 @@
     <link rel="stylesheet" href="~/css/event.css" />
 }
 
-@{
-    <ul class ="event-list">
-        @foreach (var Event in Model.Events)
-        {
-            <li>
-                <a asp-page="/Events/Details" asp-route-id="@Event.ID">@Event.Name</a>
-                <a asp-page="/Organizer/Details" asp-route-Name="@Event.Organizer.Name">@Event.Organizer.Name</a>
-                <span class="span">Province: @Event.Province</span>
-                <span class="span">Datum: @Event.Date</span>
-            </li>
-        }
-        </ul>
-}
+<ul class="event-list">
+    @foreach (var Event in Model.Events)
+    {
+        <li>
+            <strong>Event:</strong>
+            <a asp-page="/Events/Details" asp-route-id="@Event.ID">@Event.Name</a>
+
+            <strong>Organizer:</strong>
+            <a asp-page="/Organizer/Details" asp-route-Name="@Event.Organizer.Name">@Event.Organizer.Name</a>
+
+            <strong>Province:</strong>
+            <span>@Event.Province</span>
+
+            <strong>Date:</strong>
+            <span>@Event.Date</span>
+        </li>
+    }
+</ul>
+

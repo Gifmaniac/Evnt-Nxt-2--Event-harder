@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evnt_Nxt_DAL_.DTO
+namespace EvntNxtDTO
 {
-    public class OrganizerDTO
+    public class LoggedInUserDTO
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public int Tel { get; set; }
+        public string UserName { get; set; }
+        public int RoleID { get; set; }
     }
 }

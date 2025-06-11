@@ -1,26 +1,45 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
+using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
     public class LoginService
     {
         private readonly IPasswordHasher _passwordHasher;
-        private readonly UserService _userService;
-        public LoginService(IPasswordHasher password, UserService user)
+        private readonly LoginRepository _userLoginRepository;
+        public LoginService(IPasswordHasher password, LoginRepository user)
         {
             _passwordHasher = password;
-            _userService = user;
+            _userLoginRepository = user;
         }
 
-        public bool VerifyLogin(string email, string password)
+        public (bool Success, string ErrorMessage) ValidateLogin(LoginDTO loginDto)
         {
-            User user = _userService.GetByEmail(email);
+            // Tries to fetch the user login data
+            LoginDTO userInDb = _userLoginRepository.FetchUserLoginData(loginDto.Email);
 
-            if (user == null) 
-                return false;
+            if (userInDb == null)
+            {
+                return (false, "Account does not exist");
+            }
 
-            return _passwordHasher.VerifyPassword(password, user.HashedPassword);
+            // If the user exist verifies the password with the Email.
+            bool passwordMatches = _passwordHasher.VerifyPassword(loginDto.Password, userInDb.Password);
+            if (!passwordMatches)
+            {
+                return (false, "Invalid email or password.");
+            }
+
+            return (true, null);
+        }
+
+        public LoggedInUserDTO GetLoginInfo(string email)
+        {
+            // Gets the user info (ID, UserID, Username)
+            return _userLoginRepository.GetLoginInfoByEmail(email);
         }
     }
 }

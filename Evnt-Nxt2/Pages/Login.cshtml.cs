@@ -3,49 +3,64 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Http;
+using Evnt_Nxt_DAL_.Repository;
+using Evnt_Nxt2.Mapper;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages
 {
     public class LoginModel : PageModel
     {
         private readonly LoginService _loginService;
-        private readonly UserService _userService;
 
-        public LoginModel(LoginService loginService, UserService userService)
+        public LoginModel(LoginService loginService)
         {
             _loginService = loginService;
-            _userService = userService;
         }
 
 
-        [BindProperty] public LoginViewModel UserLogin { get; set; }
+        [BindProperty] 
+        public LoginViewModel UserLogin { get; set; }
 
         public void OnGet()
         {
         }
 
         public IActionResult OnPost()
-        { 
+        {
+            if (!ModelState.IsValid)
+                return Page();
 
-            bool isLoginValid = _loginService.VerifyLogin(UserLogin.Email, UserLogin.Password);
-
-            var user = _userService.GetByEmail(UserLogin.Email);
-
-            if (isLoginValid)
+            var loginDto = new LoginDTO
             {
-                HttpContext.Session.SetInt32("UserID", user.ID);
-                HttpContext.Session.SetString("Email", user.Email);
-                HttpContext.Session.SetInt32("RoleID", user.RoleID);
+                Email = UserLogin.Email,
+                Password = UserLogin.Password
+            };
+
+            try
+            {
+                var result = _loginService.ValidateLogin(loginDto);
+
+                if (!result.Success)
+                {
+                    ModelState.AddModelError(string.Empty, result.ErrorMessage);
+                    return Page();
+                }
+
+                var validatedDto = _loginService.GetLoginInfo(loginDto.Email);
+
+                // Login has been validated, the user session is created.
+                HttpContext.Session.SetInt32("UserID", validatedDto.ID);
+                HttpContext.Session.SetString("UserName", validatedDto.UserName);
+                HttpContext.Session.SetInt32("RoleID",validatedDto.RoleID);
+
                 return RedirectToPage("/Index");
             }
-
-            if (user == null)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Invalid email or password");
+                ModelState.AddModelError(string.Empty, "Something went wrong, please try again later.");
                 return Page();
             }
-
-            return Page();
         }
     }
 }

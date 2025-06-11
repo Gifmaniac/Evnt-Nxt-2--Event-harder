@@ -13,10 +13,13 @@
     @foreach (ArtistViewModel artist in Model.ArtistList)
     {
         <li>
+            <strong>Artist:</strong>
             <a asp-page="/Artist/Details" asp-route-name="@artist.Name">@artist.Name</a>
+
+            <strong>Genre(s):</strong>
             @foreach (var genre in artist.Genres)
             {
-                <a asp-page="/Genres/Details" asp-route-id="@genre.Name">@genre.Name</a>
+                <span>@genre.Name</span>
             }
         </li>
     }

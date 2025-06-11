@@ -1,16 +1,11 @@
-using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Business_.ViewModel;
 using Evnt_Nxt2.Mapper;
 using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Logging;
-using System.Net.Sockets;
-using System.Security.Claims;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -21,17 +16,15 @@ namespace Evnt_Nxt2.Pages
         private readonly ITicketService _ticketService;
         private readonly UserService _userService;
 
-        [BindProperty]
-        public int EventID { get; set; }
-        [BindProperty]
-        public int TicketsToBuy { get; set; }
-        [BindProperty]
-        public int EventTicketID { get; set; }
+        [BindProperty] public int EventID { get; set; }
+        [BindProperty] public int TicketsToBuy { get; set; }
+        [BindProperty] public int EventTicketID { get; set; }
 
         public List<EventTicketViewModel> EventTickets { get; set; } = new();
         public EventViewModel Event { get; set; }
 
-        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService, ITicketService ticketService)
+        public TicketModel(IEventTicketService eventTicketService, EventService eventService, UserService userService,
+            ITicketService ticketService)
         {
             _eventTicketService = eventTicketService;
             _eventService = eventService;
@@ -52,43 +45,37 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
+            var sessionUserId = HttpContext.Session.GetInt32("UserID");
 
-            // Gets the user (currently hard coded since I dont have a login yet)
-            var userID = User.FindFirst("userID")?.Value;
-            int parsedID = int.Parse(userID);
-            var currentUser = _userService.GetUserIDEmailFirstAndLastName(parsedID);
+            if (sessionUserId == null)
+            {
+                ModelState.AddModelError(string.Empty, "User not logged in.");
+                return RedirectToPage("/Login");
+            }
 
-            //// Gets the available ticket from the event.
-            //var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
-            //EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
+            var userRequest = new TicketPurchaseRequestDto
+            {
+                UserID = sessionUserId.Value,
+                EventID = EventID,
+                TicketID = EventTicketID,
+                Quantity = TicketsToBuy
+            };
 
-            //// Sets the ID for the ticket that the user wants to buy
-            //var selectedTicket = EventTickets.FirstOrDefault(ticket => ticket.ID == EventTicketID);
+            var result = _ticketService.TryTicketPurchase(userRequest);
 
-            //// Validates if there are tickets selected by the user and if there are enough tickets for the order.
-            //if (TicketsToBuy < 1 || TicketsToBuy > 5 || TicketsToBuy > selectedTicket.Amount)
-            //{
-            //    ModelState.AddModelError("", "Invalid ticket selection or not enough tickets available.");
-            //    return Page();
-            //}
-            //// Gets the user (currently hard coded since I dont have a login yet)
-            //var userID = User.FindFirst("userID")?.Value;
-            //int parsedID = int.Parse(userID);
-            //var currentUser = _userService.GetUserIDEmailFirstAndLastName(parsedID);
+            if (!result.Success)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                }
 
-            //// Checks if the purchase went through and the ticket has been created.
-            //try
-            //{
-            //    _ticketService.BuyTicket(currentUser, selectedTicket.ID, TicketsToBuy);
-            //    return RedirectToPage("TicketConfirmation");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ModelState.AddModelError("", "Something went wrong while processing your ticket.");
-            //    return Page();
-            //}
+                return Page();
+            }
 
+            // Purchase was successful
+            return RedirectToPage("/Index");
         }
-
     }
 }
+

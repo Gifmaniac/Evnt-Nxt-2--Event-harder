@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_DAL_.DTO;
 using Evnt_Nxt_DAL_.Interfaces;
-using Evnt_Nxt_DAL_.Repository;
+using EvntNxt.DTO;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
@@ -16,31 +11,84 @@ namespace Evnt_Nxt_Business_.Services
     {
         public List<TicketDTO> TesTicketDtos = new();
         private readonly ITicketRepository _ticketRepository;
+        private readonly IEventTicketService _eventTicketService;
+        private readonly UserService _userService;
 
-        public TicketService(ITicketRepository ticketRepository)
+        public TicketService(ITicketRepository ticketRepository, UserService userService, IEventTicketService eventTicketService)
         {
             _ticketRepository = ticketRepository;
+            _userService = userService;
+            _eventTicketService = eventTicketService;
+
         }
 
-        public void BuyTicket(User user, int eventTicketID, int quantity)
+
+        public (bool Success, List<string> Errors) TryTicketPurchase(TicketPurchaseRequestDto request)
         {
-            if (user == null || eventTicketID == null || quantity < 1)
+            List<string> errors = new();
+
+            // Checks for the right order amount
+            if (request.Quantity < 1 || request.Quantity > 5)
+                errors.Add("The ticket order quantity must be between 1 and 5.");
+            
+            // If the order amount is valid, the application gets the order
+            var availableTickets = _eventTicketService.GetAvailableEventTickets(request.EventID);
+
+            // Gives the ticket a unique ID
+            var selectedTicket = availableTickets.FirstOrDefault(ticket => ticket.ID == request.TicketID);
+
+            // Checks if the current ticket exists, and if there are enough tickets available
+            if (selectedTicket == null)
             {
-                return;
+                errors.Add("Ticket does not exist.");
+            }
+            else
+            {
+                if (request.Quantity > selectedTicket.Amount || !selectedTicket.IsAvailable)
+                    errors.Add("Not enough tickets available.");
             }
 
-            for (int i = 0; i < quantity; i++)
+            if (errors.Any())
             {
-                var ticket = new TicketDTO
-                {
-                    UserID = user.ID,
-                    EventTicketID = eventTicketID,
-                    PurchaseDate = DateOnly.FromDateTime(DateTime.Today)
-                };
-
-                _ticketRepository.AddTicketToUser(ticket, 1);
-                _ticketRepository.DecreaseAvailableTickets(eventTicketID, 1);
+                return (false, errors);
             }
+
+            // If everything checks out the program creates the DTO
+            var ticket = new TicketDTO
+            {
+                UserID = request.UserID,
+                EventTicketID = request.TicketID,
+                PurchaseDate = DateOnly.FromDateTime(DateTime.Today)
+            };
+
+            // Adds the Ticket to the User
+            _ticketRepository.AddTicketToUser(ticket, request.Quantity);
+
+            // Decreases the stock by the quantity
+            _ticketRepository.DecreaseAvailableTickets(request.TicketID, request.Quantity);
+
+            return (true, new List<string>());
+        }
+
+        public List<UserProfileTicketDTO> ValidateUserTicket(string username)
+        {
+            // Validates if the userID is correct
+            var user = _userService.GetUserName(username);
+            if (user == null)
+            {
+                return null;
+            }
+
+            // Gets all the tickets from the user
+            var allTickets = _ticketRepository.GetTicketByUserID(user.ID);
+
+            // Filters out duplicated tickets for the same event
+            var uniqueEvents = allTickets
+                .GroupBy(userTicket => userTicket.EventID)
+                .Select(group => group.First())
+                .ToList();
+
+            return uniqueEvents;
         }
 
     }

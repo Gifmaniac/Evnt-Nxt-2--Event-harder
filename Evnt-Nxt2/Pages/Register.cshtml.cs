@@ -1,8 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt2.ViewModel;
+using Evnt_Nxt2.Mapper;
+using EvntNxt.DTO;
+using EvntNxtDTO;
 
 
 namespace Evnt_Nxt2.Pages
@@ -16,7 +18,7 @@ namespace Evnt_Nxt2.Pages
             _registerService = registerService;
         }
 
-        [BindProperty] [Required]
+        [BindProperty] 
         public RegisterViewModel UserRegisterViewModel { get; set; }
 
         public void OnGet()
@@ -27,19 +29,40 @@ namespace Evnt_Nxt2.Pages
         public IActionResult OnPost()
         {
 
-            bool isValid = _registerService.VerifyRegister(UserRegisterViewModel);
+            if (!ModelState.IsValid)
+                return Page();
 
-            if (!isValid)
+            RegisterDTO userDto = new RegisterDTO
             {
-                List<string> errors = _registerService.GetValidationErrors(UserRegisterViewModel.Email, UserRegisterViewModel.UserName, UserRegisterViewModel.Password);
+                Email = UserRegisterViewModel.Email,
+                Password = UserRegisterViewModel.Password,
+                UserName = UserRegisterViewModel.UserName,
+                BirthDay = UserRegisterViewModel.BirthDay,
+                FirstName = UserRegisterViewModel.FirstName,
+                LastName = UserRegisterViewModel.LastName,
+            };
+
+            try
+            {
+                var result = _registerService.VerifyRegister(userDto);
+
+                if (!result.succes)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+
+                    return Page();
+                }
+                _registerService.RegisterUser(userDto);
+                return RedirectToPage("/Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong. Please try again later.");
                 return Page();
             }
-
-            _registerService.RegisterUser(UserRegisterViewModel.Email, UserRegisterViewModel.UserName,
-                UserRegisterViewModel.Password, UserRegisterViewModel.FirstName, UserRegisterViewModel.LastName,
-                UserRegisterViewModel.BirthDay);
-
-            return RedirectToPage("/Index");
         }
     }
 }

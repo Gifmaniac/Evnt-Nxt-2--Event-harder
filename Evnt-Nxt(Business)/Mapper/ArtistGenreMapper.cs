@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using Evnt_Nxt_Business_.DomainClass;
-using Evnt_Nxt_DAL_.DTO;
+﻿using Evnt_Nxt_DAL_.DTO;
+using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Mapper
 {

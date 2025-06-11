@@ -1,54 +1,54 @@
-﻿using Evnt_Nxt_Business_.DomainClass;
+﻿using System.Configuration;
 using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
 using Evnt_Nxt_DAL_.Repository;
+using EvntNxtDTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
     public class RegisterService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IRegisterRepository _registerRepository;
         private readonly IPasswordHasher _passwordHasher;
-        private readonly RegisterValidator _registerValidator;
+        private readonly IRegisterValidator _registerValidator;
 
-        public RegisterService(UserRepository userRepository, IPasswordHasher passwordHasher, RegisterValidator registerValidator)
+        public RegisterService(IRegisterRepository registerRepository, IPasswordHasher passwordHasher, IRegisterValidator registerValidator)
         {
-            _userRepository = userRepository;
+            _registerRepository = registerRepository;
             _passwordHasher = passwordHasher;
             _registerValidator = registerValidator; 
 
         }
 
-        public List<string> GetValidationErrors(string email, string username, string password)
+        public (bool succes, List<String> Errors) VerifyRegister(RegisterDTO newUser)
         {
-            List<string> errors = _registerValidator.ValidateAll(email, password, username);
+            var errors = new List<string>();
 
-            return errors;
-        }
-
-        public bool VerifyRegister(string email, string username, string password)
-        {
-            if (_userRepository.CheckUserByEmailAndUserName(email, username))
+            if (_registerRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
             {
-                return false;
+                errors.Add("A user already exists with this email or username.");
             }
 
-            List<string> errors = _registerValidator.ValidateAll(email, password, username);
+            errors.AddRange(_registerValidator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName));
 
-            if (errors.Any())
-            {
-                return false;
-            }
-
-            return true;
+            return (errors.Count == 0, errors);
         }
 
-        public void RegisterUser(string email, string username, string password, string firstName, string lastName, DateOnly birthday)
+        public void RegisterUser(RegisterDTO newUser)
         {
-            string hashedPassword = _passwordHasher.HashPassword(password);
-            User domainUser = UserMapper.FromViewModel(email, username, hashedPassword, firstName, lastName, birthday);
-            var dto = UserMapper.RegisterToDto(domainUser);
-            _userRepository.RegisterUser(dto);
+            string hashedPassword = _passwordHasher.HashPassword(newUser.Password);
+
+            RegisterDTO dto = new RegisterDTO
+            {
+                Email = newUser.Email,
+                Password = hashedPassword,
+                UserName = newUser.UserName,
+                BirthDay = newUser.BirthDay,
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                RoleID = 1,                     // 1 Is default User
+            };
+
+            _registerRepository.RegisterUser(dto);
         }
     }
 }

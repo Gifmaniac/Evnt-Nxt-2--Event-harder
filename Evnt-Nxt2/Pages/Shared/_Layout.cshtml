@@ -22,7 +22,16 @@
                 <a asp-page="/Index">Home Page</a>
                 <a asp-page="/Artist">Artist</a>
                 <a asp-page="/Events">Events</a>
-                <a asp-page="/Login">Login</a>
+                @if (Context.Session.GetInt32("UserID") != null)
+                {
+                    <a asp-page="/Profile" asp-route-username="@Context.Session.GetString("UserName")">My Profile</a>
+                    <a asp-page="/Logout">Logout</a>
+                }
+                else
+                {
+                    <a asp-page="/Login">Login</a>
+                }
+
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="Type here!" />

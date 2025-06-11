@@ -1,15 +1,10 @@
-﻿using Evnt_Nxt_DAL_.DTO;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.SqlClient;
+using EvntNxt.DTO;
+using Evnt_Nxt_Business_.Interfaces;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
-    public class EventTicketRepository
+    public class EventTicketRepository : IEventTicketRepository
     {
 
 

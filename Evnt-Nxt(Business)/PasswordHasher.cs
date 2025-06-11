@@ -27,6 +27,7 @@ namespace Evnt_Nxt_Business_
 
             string hashedInput = HashPassword(password);
             return hashedInput == hashedPassword;
+
         }
     }
 }
