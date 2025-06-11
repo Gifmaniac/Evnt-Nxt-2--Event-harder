@@ -17,11 +17,16 @@
 <body>
 <header class="navbar-wrapper">
     <div class="navbar">
-        <div class="logo">Evnt-Nxt</div>
+        <a asp-page="/Index" class="logo">Evnt-Nxt</a>
         <nav class="nav-links">
-            <a asp-page="/Index">Home Page</a>
             <a asp-page="/Artist">Artist</a>
             <a asp-page="/Events">Events</a>
+
+            @if (Context.Session.GetInt32("ID") != null && Context.Session.GetInt32("RoleID") == 2)
+            { 
+                <a asp-page="/OrganizerPanel">Organizer Panel</a>
+            }
+
             @if (Context.Session.GetInt32("ID") != null)
             {
                 <a asp-page="/Profile" asp-route-username="@Context.Session.GetString("UserName")">My Profile</a>
@@ -30,11 +35,6 @@
             else
             {
                 <a asp-page="/Login">Login</a>
-            }
-
-            @if (Context.Session.GetInt32("ID") != null && Context.Session.GetInt32("RoleID") == 2)
-            {
-                <a asp-page="/OrganizerPanel">Organizer Panel</a>
             }
 
         </nav>

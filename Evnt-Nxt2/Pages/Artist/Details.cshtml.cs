@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.JavaScript;
+using Evnt_Nxt_Business_.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt_Prest.ViewModel;
@@ -8,11 +9,11 @@ namespace Evnt_Nxt2.Pages.Artist
 {
     public class DetailsModel : PageModel
     {
-        private readonly ArtistService _artistService;
+        private readonly IArtistService _artistService;
 
         public ArtistViewModel Artist { get; set; }
 
-        public DetailsModel(ArtistService artistService)
+        public DetailsModel(IArtistService artistService)
         {
             _artistService = artistService;
         }

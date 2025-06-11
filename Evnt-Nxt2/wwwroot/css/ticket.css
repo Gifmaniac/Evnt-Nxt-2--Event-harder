@@ -1,18 +1,32 @@
 .fakebtn {
-    display: inline-block;
     background-color: orangered;
-    width: 300px;
-    border-radius: 98px;
+    width: 30px;
+    border-radius: 90px;
     color: white;
     text-align: center;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+.ticket-box {
+    margin-bottom: 20px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: #333;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .ticket-box h2 {
+        margin-bottom: 10px;
+    }
+
+.validation-summary {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .text-white {

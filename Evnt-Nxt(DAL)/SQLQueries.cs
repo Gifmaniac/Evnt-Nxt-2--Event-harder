@@ -13,11 +13,11 @@ namespace Evnt_Nxt_DAL_
         public const string GetArtistAndGenreIDWithName = @"
                 Artist.ID AS ArtistID,
                 Artist.Name AS ArtistName,
-                Genres.ID AS GenreID,
-                Genres.Name AS GenreName
+                Genre.ID AS GenreID,
+                Genre.Name AS GenreName
                 FROM Artist
                 JOIN ArtistGenre ON Artist.ID = ArtistGenre.ArtistID    
-                JOIN Genres ON Genres.ID = ArtistGenre.GenreID";
+                JOIN Genre ON Genre.ID = ArtistGenre.GenreID";
 
 
         public const string GetEventIDNameDateLocationProvince = @" 
@@ -51,8 +51,8 @@ namespace Evnt_Nxt_DAL_
                 Organizer.OrganizerName AS OrganizerName";
 
         public const string GetGenreIDName = @"                        
-                Genres.ID AS GenreID,
-                Genres.Name AS GenreName";
+                Genre.ID AS GenreID,
+                Genre.Name AS GenreName";
 
         public const string GetEventIDName = @"                        
                 Event.ID AS EventID,

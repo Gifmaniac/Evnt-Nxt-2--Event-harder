@@ -25,10 +25,6 @@ namespace Evnt_Nxt2.Pages
         [BindProperty] 
         public LoginViewModel UserLogin { get; set; }
 
-        public void OnGet()
-        {
-        }
-
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)

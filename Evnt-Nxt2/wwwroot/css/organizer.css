@@ -49,7 +49,7 @@
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
-        text-align: left;
+        text-align: center;
     }
 
     .edit-event-form input.form-control {
@@ -57,9 +57,9 @@
         padding: 10px;
         margin-bottom: 15px;
         border-radius: 6px;
-        border: 1px solid #ccc;
         background-color: #333;
         color: white;
+        width: 80%;
     }
 
     .edit-event-form input[type="date"] {
@@ -96,6 +96,10 @@
 .form-group {
     margin-bottom: 12px;
 }
+
+    .form-group input.form-control {
+        width: 80%;
+    }
 
 .success-message {
     text-align: center;

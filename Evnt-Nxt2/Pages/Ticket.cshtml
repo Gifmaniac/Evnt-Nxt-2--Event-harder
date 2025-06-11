@@ -13,13 +13,14 @@
         .GroupBy(tickets => tickets.Name)
         .OrderBy(group => group.Min(tickets => tickets.Price));
 }
-        <h1> </h1>
+<h1 class="text-white" style="text-align: center;">Available Tickets</h1>
+<div asp-validation-summary="All" class="validation-summary"></div>
 
         @foreach (var group in ticketsByName)
         {
-                <div class="container ticket-type-block">
+            <div class="ticket-box">
                 <h1 class="text-white">@group.Key</h1>
-                    <ul>
+                    <ul style="list-style: none;">
                         @foreach (var ticket in group)
                         {
                             <li class="text-white">

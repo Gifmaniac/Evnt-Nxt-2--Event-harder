@@ -5,20 +5,22 @@
 }
 
     .event-list li {
-        background-color: slategrey;
+        background-color: darkgrey;
         width: 100%;
         padding: 15px;
         margin-bottom: 10px;
     }
 
         .event-list li a {
-            color: white;
+            color: black;
             font-size: 14px;
+            font-weight: bold;
             margin-right: 10px;
         }
 
     .event-list span {
-        color: white;
+        color: black;
         font-size: 14px;
+        font-weight: bold;
         margin-right: 10px;
     }

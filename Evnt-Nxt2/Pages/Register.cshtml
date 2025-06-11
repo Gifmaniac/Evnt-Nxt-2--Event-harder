@@ -3,16 +3,32 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/login.css" />
 }
+<div class="login-container text-white">
+    <h2>Register</h2>
 
-<form method="post">
-    <div asp-validation-summary="All" class="text-white"></div>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-white"></div>
 
-    <input asp-for="UserRegisterViewModel.Email" placeholder="Email" />
-    <input asp-for="UserRegisterViewModel.UserName" placeholder="Username" />
-    <input asp-for="UserRegisterViewModel.Password" placeholder="Password" type="password" />
-    <input asp-for="UserRegisterViewModel.FirstName" placeholder="First Name" />
-    <input asp-for="UserRegisterViewModel.LastName" placeholder="Last Name" />
-    <input asp-for="UserRegisterViewModel.BirthDay" type="date" />
+        <div class="form-group">
+            <label asp-for="UserRegisterViewModel.Email" class="text-white">Email</label>
+            <input asp-for="UserRegisterViewModel.Email" placeholder="Email" />
 
-    <button type="submit">Register</button>
-</form>
+            <label asp-for="UserRegisterViewModel.UserName" class="text-white">Username</label>
+            <input asp-for="UserRegisterViewModel.UserName" placeholder="Username" />
+
+            <label asp-for="UserRegisterViewModel.Password" class="text-white">Password</label>
+            <input asp-for="UserRegisterViewModel.Password" placeholder="Password" type="password" />
+
+            <label asp-for="UserRegisterViewModel.FirstName" class="text-white">First Name</label>
+            <input asp-for="UserRegisterViewModel.FirstName" placeholder="First Name" />
+
+            <label asp-for="UserRegisterViewModel.LastName" class="text-white">Last Name</label>
+            <input asp-for="UserRegisterViewModel.LastName" placeholder="Last Name" />
+
+            <label asp-for="UserRegisterViewModel.BirthDay" class="text-white">Birth Day</label>
+            <input asp-for="UserRegisterViewModel.BirthDay" type="date" value="2000-01-01"/>
+            <button type="submit">Register</button>
+        </div>
+
+    </form>
+</div>

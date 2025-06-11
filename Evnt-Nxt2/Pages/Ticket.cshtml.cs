@@ -6,6 +6,7 @@ using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EvntNxtDTO;
+using Microsoft.Extensions.Logging;
 
 namespace Evnt_Nxt2.Pages
 {
@@ -45,7 +46,7 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
-            var sessionUserId = HttpContext.Session.GetInt32("UserID");
+            var sessionUserId = HttpContext.Session.GetInt32("ID");
 
             if (sessionUserId == null)
             {
@@ -69,6 +70,9 @@ namespace Evnt_Nxt2.Pages
                 {
                     ModelState.AddModelError(string.Empty, error);
                 }
+
+                var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
+                EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
 
                 return Page();
             }
