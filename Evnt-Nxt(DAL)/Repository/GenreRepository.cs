@@ -8,7 +8,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public List<GenreDTO> GetAllGenreDtos()
         {
-            const string query = "SELECT ID, Name FROM Genre;";
+            const string query = "SELECT ID, Name FROM Genres";
 
             List<GenreDTO> result = new List<GenreDTO>();
 
@@ -33,8 +33,8 @@ namespace Evnt_Nxt_DAL_.Repository
         {
             var result = new List<GenreDTO>();
 
-            string query = @"SELECT Genre.ID, Genre.Name FROM Genre JOIN ArtistGenre
-                           ON Genre.ID = ArtistGenre.GenreID WHERE ArtistGenre.ArtistName";
+            string query = @"SELECT Genres.ID, Genres.Name FROM Genres JOIN ArtistGenre
+                           ON Genres.ID = ArtistGenre.GenreID WHERE ArtistGenre.ArtistName";
 
             using var connection = new SqlConnection(DatabaseContext.ConnectionString);
             using var command = new SqlCommand(query, connection);

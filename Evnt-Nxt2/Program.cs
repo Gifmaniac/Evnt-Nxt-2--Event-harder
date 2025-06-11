@@ -21,8 +21,7 @@ builder.Services.AddScoped<IRegisterRepository, RegisterRepository>();
 builder.Services.AddScoped<OrganizerOverviewRepository>();
 
 // Services
-builder.Services.AddScoped<ArtistService>();
-builder.Services.AddScoped<GenreService>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<LoginService>();

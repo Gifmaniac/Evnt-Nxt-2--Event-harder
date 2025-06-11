@@ -1,4 +1,3 @@
-using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt2.ViewModel;
 using EvntNxtDTO;
@@ -29,17 +28,17 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
             var roleID = HttpContext.Session.GetInt32("RoleID");
             var organizerID = HttpContext.Session.GetInt32("OrganizerID");
 
-
+            // TODO: RoleID aanpassen naar enums
             if (organizerID == null || roleID != 2)
             {
                 return RedirectToPage("/Unauthorized");
             }
 
-            var dto = _eventOverviewService
+            var eventDTO = _eventOverviewService
                 .GetEventsByOrganizerId(userID.Value)
                 .FirstOrDefault(e => e.EventID == id);
 
-            if (dto == null || dto.OrganizerID != organizerID.Value)
+            if (eventDTO == null || eventDTO.OrganizerID != organizerID.Value)
             {
                 return RedirectToPage("/Unauthorized");
             }
@@ -47,14 +46,14 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
 
             EditEvent = new EventEditViewModel
             {
-                EventID = dto.EventID,
-                EventName = dto.EventName,
-                EventDate = dto.EventDate,
-                EventLocation = dto.EventLocation,
-                EventProvince = dto.EventProvince,
-                OrganizerID = dto.OrganizerID,
-                OrganizerUserID = dto.OrganizerUserID,
-                TicketTypes = dto.TicketTypes.Select(t => new TicketTypeOverviewViewModel
+                EventID = eventDTO.EventID,
+                EventName = eventDTO.EventName,
+                EventDate = eventDTO.EventDate,
+                EventLocation = eventDTO.EventLocation,
+                EventProvince = eventDTO.EventProvince,
+                OrganizerID = eventDTO.OrganizerID,
+                OrganizerUserID = eventDTO.OrganizerUserID,
+                TicketTypes = eventDTO.TicketTypes.Select(t => new TicketTypeOverviewViewModel
                 {
                     TicketType = t.TicketType,
                     AvailableTickets = t.AvailableTickets,
@@ -102,8 +101,6 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
 
             _eventOverviewService.UpdateEvent(eventEditDTO);
             ViewData["SuccessMessage"] = "Changes have been successfully saved.";
-
-
 
             return Page();
         }

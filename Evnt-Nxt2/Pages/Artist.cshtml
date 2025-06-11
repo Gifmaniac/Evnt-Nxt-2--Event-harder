@@ -16,7 +16,7 @@
             <strong>Artist:</strong>
             <a asp-page="/Artist/Details" asp-route-name="@artist.Name">@artist.Name</a>
 
-            <strong>Genre(s):</strong>
+            <strong>Genres(s):</strong>
             @foreach (var genre in artist.Genres)
             {
                 <span>@genre.Name</span>

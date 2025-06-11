@@ -24,7 +24,7 @@ namespace Evnt_Nxt_DAL_.Repository
                         {genrequery}        
                     FROM Event
                     JOIN EventGenre ON Event.ID = EventGenre.EventID
-                    JOIN Genre ON Genre.ID = EventGenre.GenreID
+                    JOIN Genres ON Genres.ID = EventGenre.GenreID
                     JOIN Organizer ON Event.OrganizerID = Organizer.ID";
 
                 connection.Open();
@@ -55,7 +55,7 @@ namespace Evnt_Nxt_DAL_.Repository
                             ID = Convert.ToInt32(reader["GenreID"]),
                             Name = (string)reader["GenreName"]
                         };
-                        eventDTO.Genre.Add(genre);
+                        eventDTO.Genres.Add(genre);
 
                         var organizer = new OrganizerDTO
                         {

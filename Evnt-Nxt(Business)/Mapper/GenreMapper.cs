@@ -18,7 +18,7 @@ namespace Evnt_Nxt_Business_.Mapper
                 "EDM" => GenreEnums.EDM,
                 "HardStyle" => GenreEnums.HardStyle,
                 "Hard Techno" => GenreEnums.HardTechno,
-                _ => throw new ArgumentException($"Genre '{genreName}' is not recognized.")
+                _ => throw new ArgumentException($"Genres '{genreName}' is not recognized.")
             };
         }
 
@@ -35,7 +35,7 @@ namespace Evnt_Nxt_Business_.Mapper
                 GenreEnums.EDM => "EDM",
                 GenreEnums.HardStyle => "Hardstyle",
                 GenreEnums.HardTechno => "Hard Techno",
-                _ => throw new ArgumentException($"Genre '{genreEnum}' is not recognized.")
+                _ => throw new ArgumentException($"Genres '{genreEnum}' is not recognized.")
             };
         }
     }

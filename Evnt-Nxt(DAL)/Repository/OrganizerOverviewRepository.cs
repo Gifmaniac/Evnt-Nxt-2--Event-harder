@@ -23,7 +23,7 @@ namespace Evnt_Nxt_DAL_.Repository
                 connection.Open();
 
                 var query = @"
-                       SELECT
+                     SELECT
                          Event.ID AS EventID,
                          Event.Name AS EventName,
                          Event.Date AS EventDate,
@@ -40,7 +40,7 @@ namespace Evnt_Nxt_DAL_.Repository
                      JOIN [User] ON Organizer.UserID = [User].ID
                      JOIN EventTicket ON EventTicket.EventID = Event.ID
                      LEFT JOIN Ticket ON Ticket.TicketType = EventTicket.ID
-                     Where @OrganizerID = organizerID
+                     WHERE @OrganizerID = organizerID
                      GROUP BY 
                          Event.ID, 
                          Event.Name, 

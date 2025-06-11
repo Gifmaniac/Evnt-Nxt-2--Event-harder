@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System.Configuration.Internal;
+using System.Data.Common;
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxtDTO;
 
@@ -32,7 +33,7 @@ namespace Evnt_Nxt_Business_.Services
 
             if (organizerDTO == null)
             {
-                return (false, new List<string> { "No event has been found, please try again later." });
+                errors.Add("No event has been found, please try again later.");
             }
 
             if (string.IsNullOrWhiteSpace(organizerDTO.EventName))
@@ -43,6 +44,7 @@ namespace Evnt_Nxt_Business_.Services
             if (string.IsNullOrWhiteSpace(organizerDTO.EventLocation))
             {
                 errors.Add("Location is required.");
+
             }
 
             if (errors.Any())
@@ -53,7 +55,7 @@ namespace Evnt_Nxt_Business_.Services
             _eventOverviewRepository.ChangeEventDetails(organizerDTO);
             _eventOverviewRepository.ChangeTicketDetails(organizerDTO);
             
-            return (true, new List<string>());
+            return (true, errors);
 
         }
 

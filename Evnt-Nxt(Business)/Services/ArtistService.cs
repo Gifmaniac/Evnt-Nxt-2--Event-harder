@@ -10,7 +10,7 @@ using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Services
 {
-    public class ArtistService
+    public class ArtistService : IArtistService
 
     {
         private readonly ArtistRepository _artistRepo;

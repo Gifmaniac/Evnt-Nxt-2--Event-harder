@@ -25,7 +25,7 @@ namespace Evnt_Nxt_Business_.Mapper
                 "Drenthe" => ProvinceEnums.Drenthe,
                 "Groningen" => ProvinceEnums.Groningen,
                 "Friesland" => ProvinceEnums.Friesland,
-                _ => throw new ArgumentException($"Genre '{provinceName}' is not recognized.")
+                _ => throw new ArgumentException($"Genres '{provinceName}' is not recognized.")
             };
         }
     }

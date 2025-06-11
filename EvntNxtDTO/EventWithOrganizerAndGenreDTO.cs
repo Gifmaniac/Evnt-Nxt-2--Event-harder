@@ -10,6 +10,6 @@ namespace EvntNxt.DTO
         public string Province { get; set; }
 
         public OrganizerDTO Organizer { get; set; }
-        public List<GenreDTO> Genre { get; set; } = new();
+        public List<GenreDTO> Genres { get; set; } = new();
     }
 }

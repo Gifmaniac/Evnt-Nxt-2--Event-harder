@@ -10,6 +10,7 @@ namespace Evnt_Nxt_Business_.Services
     {
         private readonly IPasswordHasher _passwordHasher;
         private readonly LoginRepository _userLoginRepository;
+
         public LoginService(IPasswordHasher password, LoginRepository user)
         {
             _passwordHasher = password;
