@@ -88,7 +88,7 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
                 Genres = EditEvent.Genres
             };
 
-            if (organizerID == null || roleID != 2)
+            if (organizerID == null || (Roles)roleID != Roles.Organizer)
             {
                 return RedirectToPage("/Unauthorized");
             }

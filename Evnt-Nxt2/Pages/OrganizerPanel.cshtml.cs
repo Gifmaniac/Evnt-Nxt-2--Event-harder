@@ -21,7 +21,7 @@ namespace Evnt_Nxt2.Pages
             var organizerID = HttpContext.Session.GetInt32("ID");
             var roleID = HttpContext.Session.GetInt32("RoleID");
 
-            if (organizerID == null || roleID != 2)
+            if (organizerID == null || (Roles)roleID != Roles.Organizer)
             {
                 return RedirectToPage("/Unauthorized");
             }
