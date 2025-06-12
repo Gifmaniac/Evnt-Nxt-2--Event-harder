@@ -46,39 +46,53 @@ namespace Evnt_Nxt2.Pages
 
         public IActionResult OnPost()
         {
-            var sessionUserId = HttpContext.Session.GetInt32("ID");
-
-            if (sessionUserId == null)
+            try
             {
-                ModelState.AddModelError(string.Empty, "User not logged in.");
-                return RedirectToPage("/Login");
-            }
+                var sessionUserId = HttpContext.Session.GetInt32("ID");
 
-            var userRequest = new TicketPurchaseRequestDto
-            {
-                UserID = sessionUserId.Value,
-                EventID = EventID,
-                TicketID = EventTicketID,
-                Quantity = TicketsToBuy
-            };
-
-            var result = _ticketService.TryTicketPurchase(userRequest);
-
-            if (!result.Success)
-            {
-                foreach (var error in result.Errors)
+                if (sessionUserId == null)
                 {
-                    ModelState.AddModelError(string.Empty, error);
+                    ModelState.AddModelError(string.Empty, "User not logged in.");
+                    return RedirectToPage("/Login");
                 }
+
+                var userRequest = new TicketPurchaseRequestDto
+                {
+                    UserID = sessionUserId.Value,
+                    EventID = EventID,
+                    TicketID = EventTicketID,
+                    Quantity = TicketsToBuy
+                };
+
+                var result = _ticketService.TryTicketPurchase(userRequest);
+
+                if (!result.Success)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+
+                    var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
+                    EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
+
+                    return Page();
+                }
+
+                // Purchase was successful
+                return RedirectToPage("/Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong. Please try again later.");
+
+                // If the purchase fails the program will reload all the tickets for the user.
 
                 var availableTickets = _eventTicketService.GetAvailableEventTickets(EventID);
                 EventTickets = EventTicketsModelMapper.ToEventTicketsViewModelList(availableTickets);
 
                 return Page();
             }
-
-            // Purchase was successful
-            return RedirectToPage("/Index");
         }
     }
 }

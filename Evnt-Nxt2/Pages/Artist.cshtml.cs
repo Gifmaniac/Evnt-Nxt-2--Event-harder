@@ -22,18 +22,26 @@ namespace Evnt_Nxt2.Pages
 
         public void OnGet()
         {
-            var artist = _artistServices.CreateAllArtistsWithGenre();
-            ArtistList = artist.Select(artist => new ArtistViewModel
+            try
             {
-                ID = artist.ID,
-                Name = artist.Name,
-                Genres = artist.Genres.Select(genre => new GenreViewModel
-                {
+                var artist = _artistServices.CreateAllArtistsWithGenre();
 
-                    ID = genre.ID,
-                    Name = genre.Name,
-                }).ToList()
-            }).ToList();
+                ArtistList = artist.Select(artist => new ArtistViewModel
+                {
+                    ID = artist.ID,
+                    Name = artist.Name,
+                    Genres = artist.Genres.Select(genre => new GenreViewModel
+                    {
+                        ID = genre.ID,
+                        Name = genre.Name,
+                    }).ToList()
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong while loading artists.");
+                ArtistList = new(); // Avoid null reference on page
+            }
         }
     }
 }

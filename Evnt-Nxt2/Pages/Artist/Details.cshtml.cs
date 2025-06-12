@@ -25,21 +25,29 @@ namespace Evnt_Nxt2.Pages.Artist
                 return NotFound();
             }
 
-            // Gets the artist by name
-            var result = _artistService.GetArtistByName(name);
-
-            if (!result.Success || result.Artist == null)
+            try
             {
-                return NotFound();
+                // Gets the artist by name
+                var result = _artistService.GetArtistByName(name);
+
+                if (!result.Success || result.Artist == null)
+                {
+                    return NotFound();
+                }
+
+                Artist = new ArtistViewModel()
+                {
+                    ID = result.Artist.ID,
+                    Name = result.Artist.Name,
+                };
+
+                return Page();
             }
-
-            Artist = new ArtistViewModel()
+            catch (Exception ex)
             {
-                ID = result.Artist.ID,
-                Name = result.Artist.Name,
-            };
-
-            return Page();
+                ModelState.AddModelError(string.Empty, "Something went wrong while loading the artist.");
+                return Page();
+            }
         }
     }
 }

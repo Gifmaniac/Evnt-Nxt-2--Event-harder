@@ -70,25 +70,25 @@ namespace Evnt_Nxt_Business_.Services
             return (true, new List<string>());
         }
 
-        public List<UserProfileTicketDTO> ValidateUserTicket(string username)
-        {
-            // Validates if the userID is correct
-            var user = _userService.GetUserName(username);
-            if (user == null)
+            public List<UserProfileTicketDTO> ValidateUserTicket(string username)
             {
-                return null;
+                // Validates if the userID is correct
+                var user = _userService.GetUserName(username);
+                if (user == null)
+                {
+                    return null;
+                }
+
+                // Gets all the tickets from the user
+                var allTickets = _ticketRepository.GetTicketByUserID(user.ID);
+
+                // Filters out duplicated tickets for the same event
+                var uniqueEvents = allTickets
+                    .GroupBy(userTicket => userTicket.EventID)
+                    .Select(group => group.First())
+                    .ToList();
+
+                return uniqueEvents;
             }
-
-            // Gets all the tickets from the user
-            var allTickets = _ticketRepository.GetTicketByUserID(user.ID);
-
-            // Filters out duplicated tickets for the same event
-            var uniqueEvents = allTickets
-                .GroupBy(userTicket => userTicket.EventID)
-                .Select(group => group.First())
-                .ToList();
-
-            return uniqueEvents;
-        }
     }
 }

@@ -18,10 +18,15 @@ namespace Evnt_Nxt2.Pages
 
         public void OnGet()
         {
-            var eventPage = _eventService.CreateEventsWithOrganizerAndGenre();
-            foreach (var events in eventPage)
+            try
             {
+                var eventPage = _eventService.CreateEventsWithOrganizerAndGenre();
+
                 Events = EventViewModelMapper.ToEventViewModelList(eventPage);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong while loading events.");
             }
         }
     }

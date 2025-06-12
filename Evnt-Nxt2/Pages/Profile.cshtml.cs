@@ -2,6 +2,7 @@ using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
 using Evnt_Nxt2.ViewModel;
+using EvntNxt.DTO;
 using EvntNxtDTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -24,28 +25,36 @@ namespace Evnt_Nxt2.Pages
 
         public List<UserProfileTicketDTO> Tickets { get; set; } = new();
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string username)
         {
+
             if (string.IsNullOrWhiteSpace(UserPageModel.Username))
             {
                 return NotFound();
             }
 
+            UserDTO user;
+
             try
             {
-                Tickets = _ticketService.ValidateUserTicket(UserPageModel.Username);
-                return Page();
+                user = _userService.GetUserName(username); // if this fails, redirect
+                UserPageModel.Username = user.Username;
             }
-            catch (ArgumentException ex)
+            catch
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
-                return Page();
+                return RedirectToPage("/Index");
             }
-            catch (Exception ex)
+
+            try
             {
-                ModelState.AddModelError(string.Empty, "Something went wrong, please try again later.");
-                return Page();
+                Tickets = _ticketService.ValidateUserTicket(user.Username); // if this fails, stay on page
             }
+            catch
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong while loading tickets.");
+            }
+
+            return Page();
         }
     }
 }

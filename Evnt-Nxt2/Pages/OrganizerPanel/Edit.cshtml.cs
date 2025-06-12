@@ -18,8 +18,7 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
             _eventOverviewService = eventOverviewService;
         }
 
-        [BindProperty]
-        public EventEditViewModel EditEvent { get; set; }
+        [BindProperty] public EventEditViewModel EditEvent { get; set; }
 
 
         public IActionResult OnGet(int id)
@@ -70,7 +69,12 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
             var roleID = HttpContext.Session.GetInt32("RoleID");
             var organizerID = HttpContext.Session.GetInt32("OrganizerID");
 
-            var eventEditDTO = new OrganizerOverviewPanelDTO()
+            if (organizerID == null || (Roles)roleID != Roles.Organizer)
+            {
+                return RedirectToPage("/Unauthorized");
+            }
+
+            var eventEditDTO = new OrganizerOverviewPanelDTO
             {
                 EventID = EditEvent.EventID,
                 EventName = EditEvent.EventName,
@@ -88,19 +92,20 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
                 Genres = EditEvent.Genres
             };
 
-            if (organizerID == null || (Roles)roleID != Roles.Organizer)
-            {
-                return RedirectToPage("/Unauthorized");
-            }
-
             if (eventEditDTO.OrganizerID != organizerID.Value)
             {
                 return RedirectToPage("/Unauthorized");
             }
 
-
-            _eventOverviewService.UpdateEvent(eventEditDTO);
-            ViewData["SuccessMessage"] = "Changes have been successfully saved.";
+            try
+            {
+                _eventOverviewService.UpdateEvent(eventEditDTO);
+                ViewData["SuccessMessage"] = "Changes have been successfully saved.";
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Something went wrong while saving your changes.");
+            }
 
             return Page();
         }

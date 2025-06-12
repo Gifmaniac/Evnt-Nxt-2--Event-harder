@@ -8,19 +8,25 @@
 }
 <h1 style="color: white;">Artist List</h1>
 
-
 <ul class="artist-list">
-    @foreach (ArtistViewModel artist in Model.ArtistList)
+    @if (Model.ArtistList?.Any() == true)
     {
-        <li>
-            <strong>Artist:</strong>
-            <a asp-page="/Artist/Details" asp-route-name="@artist.Name">@artist.Name</a>
+        @foreach (ArtistViewModel artist in Model.ArtistList)
+        {
+            <li>
+                <strong>Artist:</strong>
+                <a asp-page="/Artist/Details" asp-route-name="@artist.Name">@artist.Name</a>
 
-            <strong>Genres(s):</strong>
-            @foreach (var genre in artist.Genres)
-            {
-                <span>@genre.Name</span>
-            }
-        </li>
+                <strong>Genre(s):</strong>
+                @foreach (var genre in artist.Genres)
+                {
+                    <span>@genre.Name</span>
+                }
+            </li>
+        }
+    }
+    else
+    {
+        <li>No artists could be loaded. Please try again later.</li>
     }
 </ul>

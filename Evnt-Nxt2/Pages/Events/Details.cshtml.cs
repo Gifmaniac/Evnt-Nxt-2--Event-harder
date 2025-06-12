@@ -21,21 +21,28 @@ namespace Evnt_Nxt2.Pages.Events
 
         public IActionResult OnGet(int id)
         {
-            var eventDomain = _eventService.GetEventByID(id);
-
-            if (eventDomain == null)
+            try
             {
-                return NotFound();
+                var eventDomain = _eventService.GetEventByID(id);
+
+                if (eventDomain == null)
+                {
+                    return NotFound();
+                }
+
+                EventViewModel = new EventViewModel
+                {
+                    ID = eventDomain.ID,
+                    Name = eventDomain.Name,
+                };
+
+                return Page();
             }
-
-           EventViewModel = new EventViewModel
+            catch (Exception ex)
             {
-                ID = eventDomain.ID,
-                Name = eventDomain.Name,
-            };
-
-            return Page();
+                ModelState.AddModelError(string.Empty, "Something went wrong while loading the event.");
+                return Page();
+            }
         }
-    
     }
 }
