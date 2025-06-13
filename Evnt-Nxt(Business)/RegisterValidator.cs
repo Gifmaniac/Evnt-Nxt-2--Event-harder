@@ -7,21 +7,17 @@ namespace Evnt_Nxt_Business_
     public class RegisterValidator : IRegisterValidator
     {
 
-        public List<string> ValidateAll(string password, string username)
+        public List<string> ValidateAll(string email, string password, string username)
         {
             var errors = new List<string>();
 
-<<<<<<< Updated upstream
             errors.AddRange(ValidateMail(email));
-=======
->>>>>>> Stashed changes
             errors.AddRange(ValidateUsername(username));
             errors.AddRange(ValidatePasswordCheck(password));
 
             return errors;
         }
 
-<<<<<<< Updated upstream
         private static List<string>ValidateMail(string email)
         {
             List<string> errors = new();
@@ -33,8 +29,6 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-=======
->>>>>>> Stashed changes
 
         private static List<string> ValidateUsername(string username)
         {
