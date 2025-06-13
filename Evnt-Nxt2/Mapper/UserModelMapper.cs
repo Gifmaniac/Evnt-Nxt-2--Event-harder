@@ -13,6 +13,7 @@ namespace Evnt_Nxt2.Mapper
                 newUser.BirthDay);
         }
 
+<<<<<<< Updated upstream
         public static UserDTO LoginDto(LoginViewModel newLogin)
         {
             return new UserDTO(newLogin.Email, newLogin.Password);
@@ -22,6 +23,11 @@ namespace Evnt_Nxt2.Mapper
         {
             return new UserDTO(newUser.UserName, newUser.Password, newUser.Email, newUser.FirstName, newUser.LastName,
                 newUser.BirthDay);
+=======
+        public static UserDTO NewUser(RegisterViewModel newUser)
+        {
+            return new UserDTO(newUser.Email, newUser.UserName, newUser.Password, newUser.FirstName, newUser.LastName, newUser.BirthDay);
+>>>>>>> Stashed changes
         }
     }
 }

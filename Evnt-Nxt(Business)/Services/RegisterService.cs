@@ -1,5 +1,10 @@
 ﻿using System.Configuration;
 using Evnt_Nxt_Business_.Interfaces;
+<<<<<<< Updated upstream
+=======
+using Evnt_Nxt_Business_.Mapper;
+using Evnt_Nxt_DAL_.DTO;
+>>>>>>> Stashed changes
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxtDTO;
 
@@ -19,6 +24,7 @@ namespace Evnt_Nxt_Business_.Services
 
         }
 
+<<<<<<< Updated upstream
         public (bool succes, List<String> Errors) VerifyRegister(RegisterDTO newUser)
         {
             var errors = new List<string>();
@@ -49,6 +55,30 @@ namespace Evnt_Nxt_Business_.Services
             };
 
             _registerRepository.RegisterUser(dto);
+=======
+
+        public void VerifyRegister(UserDTO newUser)
+        {
+            if (_userRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.Username))
+            {
+                throw new Exception("A user already exist with this mail and or username");
+            }
+
+            List<string> errors = _registerValidator.ValidateAll(newUser.Hashedpassword, newUser.Username);
+
+            if (errors.Any())
+            {
+                throw new Exception(string.Join(" | ", errors));
+            }
+        }
+
+        public void RegisterUser(UserDTO newUser)
+        {
+            string hashedPassword = _passwordHasher.HashPassword(newUser.Hashedpassword);
+            User domainUser = UserMapper.RegisterFromViewModel(newUser);
+            var dto = UserMapper.RegisterToDto(domainUser, hashedPassword);
+            _userRepository.RegisterUser(dto);
+>>>>>>> Stashed changes
         }
     }
 }
