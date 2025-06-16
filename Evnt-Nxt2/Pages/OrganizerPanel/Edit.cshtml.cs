@@ -34,7 +34,7 @@ namespace Evnt_Nxt2.Pages.OrganizerPanel
             }
 
             var eventDTO = _eventOverviewService
-                .GetEventsByOrganizerId(userID.Value)
+                .GetEventsByOrganizerID(userID.Value)
                 .FirstOrDefault(e => e.EventID == id);
 
             if (eventDTO == null || eventDTO.OrganizerID != organizerID.Value)
