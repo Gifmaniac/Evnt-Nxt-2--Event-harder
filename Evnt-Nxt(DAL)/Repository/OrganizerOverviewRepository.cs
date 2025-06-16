@@ -149,18 +149,18 @@ namespace Evnt_Nxt_DAL_.Repository
             }
         }
 
-        public void DeleteEventWithTickets(int eventId)
+        public void DeleteEventWithTickets(int eventID)
         {
             using var connection = new SqlConnection(DatabaseContext.ConnectionString);
 
             const string deleteTicket =
-                "DELETE FROM Ticket WHERE EventTicketID IN (SELECT EventTicketID FROM EventTickets WHERE EventID = @eventId)";
+                "DELETE FROM Ticket WHERE TicketType IN (SELECT ID FROM EventTicket WHERE EventID = @eventID)";
 
-            const string deleteEventTicket = 
-                "DELETE FROM EventTicket WHERE EventID = @eventId";
+            const string deleteEventTicket =
+                "DELETE FROM EventTicket WHERE EventID = @eventID";
 
             const string deleteEvent =
-                "DELETE FROM Event WHERE EventID = @eventId";
+                "DELETE FROM Event WHERE ID = @ID";
 
             connection.Open();
 
@@ -172,21 +172,21 @@ namespace Evnt_Nxt_DAL_.Repository
                 // 1. Delete Tickets
                 using (var cmd1 = new SqlCommand(deleteTicket, connection, transaction))
                 {
-                    cmd1.Parameters.AddWithValue("@eventId", eventId);
+                    cmd1.Parameters.AddWithValue("@eventID", eventID);
                     cmd1.ExecuteNonQuery();
                 }
 
                 // 2. Delete EventTickets
                 using (var cmd2 = new SqlCommand(deleteEventTicket, connection, transaction))
                 {
-                    cmd2.Parameters.AddWithValue("@eventId", eventId);
+                    cmd2.Parameters.AddWithValue("@eventID", eventID);
                     cmd2.ExecuteNonQuery();
                 }
 
                 // 3. Delete Event
                 using (var cmd3 = new SqlCommand(deleteEvent, connection, transaction))
                 {
-                    cmd3.Parameters.AddWithValue("@eventId", eventId);
+                    cmd3.Parameters.AddWithValue("@ID", eventID);
                     cmd3.ExecuteNonQuery();
                 }
 
