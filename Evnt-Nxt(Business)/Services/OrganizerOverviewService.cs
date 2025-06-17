@@ -17,7 +17,7 @@ namespace Evnt_Nxt_Business_.Services
             _userRepository = userRepository;
         }
 
-        public List<OrganizerOverviewPanelDTO> GetEventsByOrganizerId(int userID)
+        public List<OrganizerOverviewPanelDTO> GetEventsByOrganizerID(int userID)
         {
             var organizerID = _userRepository.GetOrganizerIDbyUserID(userID);
             var allEvents = _eventOverviewRepository.GetEventTicketOverviewByOrganizerID(organizerID);
@@ -59,6 +59,29 @@ namespace Evnt_Nxt_Business_.Services
 
         }
 
+        public (bool Success, List<string> Errors) DeleteEvent(int eventID, int userID, int organizerID)
+        {
+            var errors = new List<string>();
+
+            var organizerIDCheck = _userRepository.GetOrganizerIDbyUserID(userID);
+
+            if (organizerID != organizerIDCheck)
+            {
+                errors.Add("You do not have permission to delete this event.");
+                return (false, errors);
+            }
+
+            try
+            {
+                _eventOverviewRepository.DeleteEventWithTickets(eventID);
+                return (true, errors);
+            }
+            catch (Exception)
+            {
+                errors.Add("Something went wrong while deleting the event.");
+                return (false, errors);
+            }
+        }
 
     }
 }
