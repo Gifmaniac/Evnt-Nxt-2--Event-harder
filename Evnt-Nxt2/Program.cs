@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ArtistRepository>();
 builder.Services.AddScoped<GenreRepository>();
 builder.Services.AddScoped<EventRepository>();
-builder.Services.AddScoped<EventTicketRepository>();
+builder.Services.AddScoped<IEventTicketRepository, EventTicketRepository>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<LoginRepository>();

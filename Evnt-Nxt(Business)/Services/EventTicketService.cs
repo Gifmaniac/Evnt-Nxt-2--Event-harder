@@ -9,9 +9,9 @@ namespace Evnt_Nxt_Business_.Services
     public class EventTicketService : IEventTicketService
 
     {
-        private readonly EventTicketRepository _eventTicketRepo;
+        private readonly IEventTicketRepository _eventTicketRepo;
 
-        public EventTicketService(EventTicketRepository eventTicketRepo)
+        public EventTicketService(IEventTicketRepository eventTicketRepo)
         {
             _eventTicketRepo = eventTicketRepo;
         }

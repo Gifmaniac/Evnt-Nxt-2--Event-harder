@@ -7,7 +7,7 @@ using Xunit;
 public class TicketServiceTests
 {
     [Fact]
-    void VerifyRegister_WithValidInput_DoesNotThrow()
+    public void VerifyRegister_WithValidInput_DoesNotThrow()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
@@ -19,7 +19,7 @@ public class TicketServiceTests
         {
             Email = "test@example.com",
             UserName = "validUser",
-            Password = "StrongPassword"
+            Password = "StrongPassword1!"
         };
 
         mockRepo
@@ -38,7 +38,7 @@ public class TicketServiceTests
     }
 
     [Fact]
-    void VerifyRegister_WithValidInput_DoesThrow()
+    public void VerifyRegister_WithValidInput_DoesThrow()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
@@ -59,13 +59,13 @@ public class TicketServiceTests
 
         mockValidator
             .Setup(validator => validator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
-            .Returns(new List<string>()); // Simulates successful validation
+            .Returns(new List<string>() { "Password is too weak" });
 
         // Act
-        var exception = Record.Exception(() => service.VerifyRegister(newUser));
+        var (isValid, errors) = service.VerifyRegister(newUser);
 
         // Assert
-        var ex = Assert.Throws<ArgumentException>(() => service.VerifyRegister(newUser));
-        Assert.Equal("A user already exists with this email or username.", ex.Message);
+        Assert.False(isValid);
+        Assert.NotEmpty(errors);
     }
 }
