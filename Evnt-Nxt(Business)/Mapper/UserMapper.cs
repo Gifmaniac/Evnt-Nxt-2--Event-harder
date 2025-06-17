@@ -19,21 +19,16 @@ namespace Evnt_Nxt_Business_.Mapper
             return new User(user.Email, user.HashedPassword);
         }
 
-        public static User RegisterFromViewModel(UserDTO user)
+        public static User FromViewModel(string email, string username, string password, string firstName, string lastName,
+            DateOnly birthday)
         {
-            return new User(user.Username, user.Hashedpassword, user.Email, user.FirstName, user.LastName, user.Birthday);
+            return new User(username, password, email, firstName, lastName, birthday);
         }
 
-<<<<<<< Updated upstream
         public static UserDTO RegisterToDto(UserDTO user, string hashedPassword)
         {
             return new UserDTO(user.Username, hashedPassword, user.Email, user.FirstName, user.LastName, user.Birthday,
                 1); // RoleID 1 == Default user.
-=======
-        public static UserDTO RegisterToDto(User user, string hashedPassword)
-        {
-            return new UserDTO(user.Email, user.Username, hashedPassword, user.FirstName, user.LastName, user.Birthday, user.RoleID);
->>>>>>> Stashed changes
         }
 
     }

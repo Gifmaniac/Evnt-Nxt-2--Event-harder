@@ -38,13 +38,7 @@ namespace Evnt_Nxt2.Pages.Events
 
                 return Page();
             }
-<<<<<<< Updated upstream
             catch (Exception ex)
-=======
-
-           EventViewModel = new EventViewModel
-
->>>>>>> Stashed changes
             {
                 ModelState.AddModelError(string.Empty, "Something went wrong while loading the event.");
                 return Page();
