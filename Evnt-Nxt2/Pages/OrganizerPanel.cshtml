@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="~/css/organizer.css" />
 }
 
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" style="color: white;">
+        @Model.ErrorMessage
+    </div>
+}
+
 @if (Model.Events != null && Model.Events.Any())
 {
     <div class="event-container" style="color: white">
@@ -23,6 +30,10 @@
                         </li>
                     }
                     <a asp-page="/OrganizerPanel/Edit" asp-route-id="@eventDto.EventID" class="edit-button">Edit Event</a>
+                    <form method="post" asp-page-handler="Delete">`<input type="hidden" name="eventId" value="@eventDto.EventID" />
+                        <button type="submit" class="edit-button">Delete Event</button>
+                    </form>
+
                 </ul>
             </div>
         }
