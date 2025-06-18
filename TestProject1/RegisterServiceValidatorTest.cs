@@ -60,7 +60,7 @@ namespace TestProject1
         public void VerifyRegister_WithDuplicatedMail_ReturnsValidationError()
         {
             // Arrange
-            var repository = new InMemoryRegisterRepository(); // lightweight test
+            var repository = new InMemoryRegisterRepository(); // lightweight tes
             var validator = new RegisterValidator();           // The real validator
             var hasher = new PasswordHasher();                 // The real hasher
 
