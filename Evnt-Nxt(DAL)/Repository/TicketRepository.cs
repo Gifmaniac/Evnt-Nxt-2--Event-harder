@@ -8,6 +8,13 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class TicketRepository : ITicketRepository
     {
+        private readonly DatabaseContext _db;
+
+        public TicketRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public void AddTicketToUser(TicketDTO ticket, int quantity)
         {
             string query =
@@ -16,7 +23,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     VALUES 
                         (@UserID, @TicketType, @PurchaseDate)";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 
@@ -41,7 +48,7 @@ namespace Evnt_Nxt_DAL_.Repository
                                 SET Amount = Amount - @Quantity
                                 WHERE ID = @ID AND Amount >= @Quantity";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 
@@ -69,7 +76,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
             var tickets = new List<UserProfileTicketDTO>();
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
                 using (var command = new SqlCommand(query, connection))

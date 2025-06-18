@@ -6,13 +6,20 @@ namespace Evnt_Nxt_DAL_.Repository
     public class GenreRepository
     {
 
+        private readonly DatabaseContext _db;
+
+        public GenreRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public List<GenreDTO> GetAllGenreDtos()
         {
             const string query = "SELECT ID, Name FROM Genres";
 
             List<GenreDTO> result = new List<GenreDTO>();
 
-            using var connection = DatabaseContext.CreateOpenConnection();
+            using var connection = _db.CreateOpenConnection();
             using var command = new SqlCommand(query, connection);
             using var reader = command.ExecuteReader();
             {
@@ -36,7 +43,7 @@ namespace Evnt_Nxt_DAL_.Repository
             string query = @"SELECT Genres.ID, Genres.Name FROM Genres JOIN ArtistGenre
                            ON Genres.ID = ArtistGenre.GenreID WHERE ArtistGenre.ArtistName";
 
-            using var connection = new SqlConnection(DatabaseContext.ConnectionString);
+            using var connection = new SqlConnection(_db.ConnectionString);
             using var command = new SqlCommand(query, connection);
             {
                 command.Parameters.AddWithValue("@ArtistID", artistId);

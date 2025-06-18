@@ -7,7 +7,7 @@ using Xunit;
 public class TicketServiceTests
 {
     [Fact]
-    public void VerifyRegister_WithValidInput_DoesNotThrow()
+    public void VerifyRegister_WithValidInput_NoErrors()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
@@ -23,22 +23,23 @@ public class TicketServiceTests
         };
 
         mockRepo
-            .Setup(registerRepo => registerRepo.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-            .Returns(false); // user does NOT exist
+            .Setup(repo => repo.CheckUserByEmailAndUserName(It.IsAny<string>(), It.IsAny<string>()))
+            .Returns(false);    // user does not exist
 
         mockValidator
-            .Setup(validator => validator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
-            .Returns(new List<string>()); // Returns NO exceptions
+            .Setup(validator => validator.ValidateAll(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            .Returns(new List<string>()); // no validation errors
 
         // Act
-        var exception = Record.Exception(() => service.VerifyRegister(newUser));
+        var (isValid, errors) = service.VerifyRegister(newUser);
 
         // Assert
-        Assert.Null(exception);
+        Assert.True(isValid);
+        Assert.Empty(errors);
     }
 
     [Fact]
-    public void VerifyRegister_WithValidInput_DoesThrow()
+    public void VerifyRegister_WithValidInput_DoesErrors()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
@@ -54,11 +55,10 @@ public class TicketServiceTests
         };
 
         mockRepo
-            .Setup(registerRepo => registerRepo.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-            .Returns(true); // user does exist
+            .Setup(repo => repo.CheckUserByEmailAndUserName(It.IsAny<string>(), It.IsAny<string>())).Returns(true); // User Does Exist
 
         mockValidator
-            .Setup(validator => validator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
+            .Setup(validator => validator.ValidateAll(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
             .Returns(new List<string>() { "Password is too weak" });
 
         // Act

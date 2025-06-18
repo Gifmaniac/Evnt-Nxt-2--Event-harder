@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Evnt-Nxt(Business)\Evnt-Nxt(Business).csproj" />
-    <ProjectReference Include="..\EvntNxtDTO\EvntNxtDTO.csproj" />
+    <ProjectReference Include="..\EvntNxtDTO\EventNxtContracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using Evnt_Nxt_DAL_.DTO;
+﻿using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

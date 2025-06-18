@@ -36,6 +36,7 @@ builder.Services.AddScoped<OrganizerOverviewService>();
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IRegisterValidator, RegisterValidator>();
+builder.Services.AddScoped<DatabaseContext>();
 
 
 builder.Services.AddRazorPages();

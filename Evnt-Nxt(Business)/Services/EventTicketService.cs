@@ -2,7 +2,7 @@
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Mapper;
-using Evnt_Nxt_DAL_.Repository;
+
 
 namespace Evnt_Nxt_Business_.Services
 {

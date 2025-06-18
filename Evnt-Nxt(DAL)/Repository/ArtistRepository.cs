@@ -7,6 +7,14 @@ namespace Evnt_Nxt_DAL_.Repository
     public class ArtistRepository
 
     {
+
+        private readonly DatabaseContext _db;
+
+        public ArtistRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         // Recieves the artist with genre and puts them in a list. It also checks if an artist has multiple genres, if so we save the ID in a dictionary and add the genre to the id. 
 
 
@@ -19,7 +27,7 @@ namespace Evnt_Nxt_DAL_.Repository
             var result = new List<ArtistWithGenresDTO>();
             var artistDict = new Dictionary<int, ArtistWithGenresDTO>();
 
-            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var connection = _db.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             using (var reader = command.ExecuteReader())
             {
@@ -56,7 +64,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public ArtistDTO GetArtistByName(string name)
     {
-        using var connection = new SqlConnection(DatabaseContext.ConnectionString);
+        using var connection = new SqlConnection(_db.ConnectionString);
         string query = "SELECT ID, Name FROM artist WHERE Name = @Name";
 
         using var command = new SqlCommand(query, connection);

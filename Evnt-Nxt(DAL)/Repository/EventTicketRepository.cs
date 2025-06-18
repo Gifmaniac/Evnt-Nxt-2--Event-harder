@@ -1,12 +1,19 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Evnt_Nxt_Business_.Interfaces;
+using Microsoft.Data.SqlClient;
 using EvntNxt.DTO;
-using Evnt_Nxt_Business_.Interfaces;
+
 
 namespace Evnt_Nxt_DAL_.Repository
 {
     public class EventTicketRepository : IEventTicketRepository
     {
 
+        private readonly DatabaseContext _db;
+
+        public EventTicketRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
 
 
         public List<EventTicketDTO> GetTicketTypesWithEventIDNameDateDto()
@@ -25,7 +32,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
             var result = new List<EventTicketDTO>();
 
-            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var connection = _db.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             using (var reader = command.ExecuteReader())
             {
@@ -63,7 +70,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
             var result = new List<EventTicketDTO>();
 
-            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var connection = _db.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@EventID", eventID);

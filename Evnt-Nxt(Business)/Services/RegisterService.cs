@@ -23,12 +23,19 @@ namespace Evnt_Nxt_Business_.Services
         {
             var errors = new List<string>();
 
-            if (_registerRepository.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
+            // removes all the uppercases, this helps with not getting duplicated information in my database. 
+            var normalizedEmail = newUser.Email.ToLowerInvariant();
+            var normalizedUsername = newUser.UserName.ToLower();
+
+            // Validates normalized values
+            errors.AddRange(_registerValidator.ValidateAll(normalizedEmail, newUser.Password, normalizedUsername));
+
+            // Check for duplicates only if valid so far
+
+            if (!errors.Any() && _registerRepository.CheckUserByEmailAndUserName(normalizedEmail, normalizedUsername))
             {
                 errors.Add("A user already exists with this email or username.");
             }
-
-            errors.AddRange(_registerValidator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName));
 
             return (errors.Count == 0, errors);
         }

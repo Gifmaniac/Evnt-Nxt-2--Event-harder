@@ -1,6 +1,5 @@
-﻿using Evnt_Nxt_Business_.Enums;
-using Evnt_Nxt_Business_.Mapper;
-using System;
+﻿using System;
+using Evnt_Nxt_Contract.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

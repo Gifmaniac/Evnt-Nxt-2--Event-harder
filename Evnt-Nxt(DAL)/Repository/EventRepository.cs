@@ -6,6 +6,12 @@ namespace Evnt_Nxt_DAL_.Repository
 
     public class EventRepository
     {
+        private readonly DatabaseContext _db;
+
+        public EventRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
         public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
             var result = new List<EventWithOrganizerAndGenreDTO>();
@@ -15,7 +21,7 @@ namespace Evnt_Nxt_DAL_.Repository
             string genrequery = SQLQueries.GetGenreIDName;
 
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 string query =
                     $@"SELECT
@@ -74,7 +80,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public EventDTO GetEventByID(int ID)
         {
-            using var connection = new SqlConnection(DatabaseContext.ConnectionString);
+            using var connection = new SqlConnection(_db.ConnectionString);
             string query = "SELECT ID, Name FROM Event WHERE ID = @ID";
 
             using var command = new SqlCommand(query, connection);

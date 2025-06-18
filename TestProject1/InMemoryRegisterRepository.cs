@@ -12,9 +12,20 @@ namespace TestProject1
     {
         private readonly List<(string Email, string UserName)> Users = new();
 
+        public InMemoryRegisterRepository()
+        {
+            Users.Add(("w.vd.b@live.nl", "Willem"));
+            Users.Add(("test@example.com", "TestUser"));
+            Users.Add(("hello@world.com", "HelloWorld"));
+            Users.Add(("jane@doe.com", "JaneD"));
+        }
+
+
         public bool CheckUserByEmailAndUserName(string email, string username)
         {
-            return Users.Any(user => user.Email == email || user.UserName == username);
+            return Users.Any(user =>
+                user.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
+                user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
         }
 
         public void RegisterUser(RegisterDTO user)
