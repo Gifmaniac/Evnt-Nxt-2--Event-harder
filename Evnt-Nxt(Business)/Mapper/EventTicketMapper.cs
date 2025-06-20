@@ -13,8 +13,7 @@ namespace Evnt_Nxt_Business_.Mapper
             foreach (var dto in dtoList)
             {
                 var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
-                var EventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable);
-                var domainEventTicket = new EventTicket(EventTicket, @event);
+                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
                 
                 result.Add(domainEventTicket);
             }
@@ -40,8 +39,7 @@ namespace Evnt_Nxt_Business_.Mapper
             foreach (var dto in dtoList)
             {
                 var @event = new Event(dto.Event.ID, dto.Event.Name, dto.Event.Date);
-                var ticketInfo = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable);
-                var domainEventTicket = new EventTicket(ticketInfo, @event);
+                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, @event);
 
                 result.Add(domainEventTicket);
             }
