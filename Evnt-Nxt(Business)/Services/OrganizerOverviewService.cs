@@ -10,11 +10,13 @@ namespace Evnt_Nxt_Business_.Services
     {
         private readonly OrganizerOverviewRepository _eventOverviewRepository;
         private readonly UserRepository _userRepository;
+        private readonly EventRepository _eventRepository;
 
-        public OrganizerOverviewService(OrganizerOverviewRepository eventOverviewRepository, UserRepository userRepository)
+        public OrganizerOverviewService(OrganizerOverviewRepository eventOverviewRepository, UserRepository userRepository, EventRepository eventRepository)
         {
             _eventOverviewRepository = eventOverviewRepository;
             _userRepository = userRepository;
+            _eventRepository = eventRepository;
         }
 
         public List<OrganizerOverviewPanelDTO> GetEventsByOrganizerID(int userID)
@@ -68,6 +70,14 @@ namespace Evnt_Nxt_Business_.Services
             if (organizerID != organizerIDCheck)
             {
                 errors.Add("You do not have permission to delete this event.");
+                return (false, errors);
+            }
+
+            var eventExists = _eventRepository.GetEventByID(eventID);
+
+            if (eventExists == null)
+            {
+                errors.Add("The event you are trying to delete does not exist.");
                 return (false, errors);
             }
 

@@ -14,11 +14,18 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class OrganizerOverviewRepository
     {
+        private readonly DatabaseContext _db;
+
+        public OrganizerOverviewRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public List<OrganizerOverviewPanelDTO> GetEventTicketOverviewByOrganizerID(int organizerID)
         {
             var result = new List<OrganizerOverviewPanelDTO>();
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 
@@ -109,7 +116,7 @@ namespace Evnt_Nxt_DAL_.Repository
                         UPDATE Event 
                         SET Name = @Name, Date = @Date, Location = @Location, Province = @Province WHERE ID = @EventID";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             using (var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Name", organizerDto.EventName);
@@ -130,7 +137,7 @@ namespace Evnt_Nxt_DAL_.Repository
                         SET Amount = @Amount, Price = @Price  
                         WHERE EventID = @EventID AND Name = @TicketName";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 
@@ -151,16 +158,21 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public void DeleteEventWithTickets(int eventID)
         {
-            using var connection = new SqlConnection(DatabaseContext.ConnectionString);
+            using var connection = new SqlConnection(_db.ConnectionString);
 
+            // This subquery selects all EventTicket IDs that belong to a specific event and deletes them from the Ticket table.  
             const string deleteTicket =
                 "DELETE FROM Ticket WHERE TicketType IN (SELECT ID FROM EventTicket WHERE EventID = @eventID)";
 
             const string deleteEventTicket =
                 "DELETE FROM EventTicket WHERE EventID = @eventID";
 
+            const string deleteEventGenre =
+                "DELETE FROM EventGenre WHERE EventID = @eventID";
+
             const string deleteEvent =
                 "DELETE FROM Event WHERE ID = @ID";
+
 
             connection.Open();
 
@@ -183,11 +195,18 @@ namespace Evnt_Nxt_DAL_.Repository
                     cmd2.ExecuteNonQuery();
                 }
 
-                // 3. Delete Event
-                using (var cmd3 = new SqlCommand(deleteEvent, connection, transaction))
+                // 3. Deletes the Event Genre.
+                using (var cmd3 = new SqlCommand(deleteEventGenre, connection, transaction))
                 {
-                    cmd3.Parameters.AddWithValue("@ID", eventID);
+                    cmd3.Parameters.AddWithValue("@eventID", eventID);
                     cmd3.ExecuteNonQuery();
+                }
+
+                // 4. Delete Event
+                using (var cmd4 = new SqlCommand(deleteEvent, connection, transaction))
+                {
+                    cmd4.Parameters.AddWithValue("@ID", eventID);
+                    cmd4.ExecuteNonQuery();
                 }
 
                 transaction.Commit();

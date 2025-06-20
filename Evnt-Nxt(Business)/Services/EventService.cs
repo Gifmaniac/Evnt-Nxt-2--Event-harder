@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Evnt_Nxt_Business_.Services;
 
-public class EventService
+public class EventService : IEventService
 {
     private readonly EventRepository _eventRepo;
 

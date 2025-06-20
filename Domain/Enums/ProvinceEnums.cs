@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Evnt_Nxt_Business_.Enums
+namespace Evnt_Nxt_Contract.Enums
 {
     public enum ProvinceEnums
     {

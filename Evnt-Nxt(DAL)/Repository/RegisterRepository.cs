@@ -6,9 +6,16 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class RegisterRepository : IRegisterRepository
     {
+        private readonly DatabaseContext _db;
+
+        public RegisterRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public void RegisterUser(RegisterDTO user)
         {
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 string query = @"INSERT INTO [User]
                                 (Role, Username, Password, FirstName, LastName, Birthday, Email)
@@ -37,7 +44,8 @@ namespace Evnt_Nxt_DAL_.Repository
             const string query = @"SELECT 1 FROM [User]
                                     WHERE Email = @email OR Username = @username";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 

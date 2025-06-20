@@ -4,7 +4,7 @@ using Evnt_Nxt_Business_.Interfaces;
 
 namespace Evnt_Nxt_Business_
 {
-    public class RegisterValidator : IRegisterValidator
+    public  class RegisterValidator : IRegisterValidator
     {
 
         public List<string> ValidateAll(string email, string password, string username)
@@ -18,7 +18,7 @@ namespace Evnt_Nxt_Business_
             return errors;
         }
 
-        private static List<string>ValidateMail(string email)
+        private static List<string> ValidateMail(string email)
         {
             List<string> errors = new();
 

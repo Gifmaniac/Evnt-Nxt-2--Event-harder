@@ -1,4 +1,4 @@
-﻿using Evnt_Nxt_DAL_.DTO;
+﻿using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +61,16 @@ namespace Evnt_Nxt_Business_.DomainClass
             Amount = amount;
             IsAvailable = isAvailable;
             Event = @event;
+        }
+
+        public EventTicket(int id, string name, decimal price, int amount, bool isAvailable, int eventId)
+        {
+            ID = id;
+            Name = name;
+            Price = price;
+            IsAvailable = isAvailable;
+            Amount = amount;
+            EventID = eventId;
         }
     }
 }

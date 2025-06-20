@@ -1,9 +1,6 @@
 ﻿using System.Net;
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
-using Evnt_Nxt_Business_.Mapper;
-using Evnt_Nxt_DAL_.DTO;
-using Evnt_Nxt_DAL_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxt.DTO;
 
@@ -16,10 +13,9 @@ namespace Evnt_Nxt_Business_.Services
         private readonly ArtistRepository _artistRepo;
         private readonly GenreRepository _genreRepo;
 
-        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo)
+        public ArtistService(ArtistRepository artistRepo)
         {
             _artistRepo = artistRepo;
-            _genreRepo = genreRepo;
         }
 
 

@@ -6,6 +6,13 @@ namespace Evnt_Nxt_DAL_.Repository
 {
     public class LoginRepository
     {
+        private readonly DatabaseContext _db;
+
+        public LoginRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public LoginDTO FetchUserLoginData(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -13,7 +20,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
             const string query = @"SELECT Password FROM [User] WHERE Email = @email";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 
@@ -43,7 +50,7 @@ namespace Evnt_Nxt_DAL_.Repository
                            FROM [User] 
                            WHERE Email = @email";
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 connection.Open();
 

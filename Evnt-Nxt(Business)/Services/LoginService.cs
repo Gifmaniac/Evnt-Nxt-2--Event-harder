@@ -24,7 +24,7 @@ namespace Evnt_Nxt_Business_.Services
 
             if (userInDb == null)
             {
-                return (false, "Account does not exist");
+                return (false, "Invalid email or password.");
             }
 
             // If the user exist verifies the password with the Email.

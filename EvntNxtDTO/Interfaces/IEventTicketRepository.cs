@@ -10,5 +10,6 @@ namespace Evnt_Nxt_Business_.Interfaces
     public interface IEventTicketRepository
     {
         public List<EventTicketDTO> GetEventTicketsByEventID(int eventID);
+        public List<EventTicketDTO> GetTicketTypesWithEventIDNameDateDto();
     }
 }

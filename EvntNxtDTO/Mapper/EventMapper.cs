@@ -1,5 +1,6 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Enums;
+using Evnt_Nxt_Contract.Enums;
 using EvntNxt.DTO;
 
 namespace Evnt_Nxt_Business_.Mapper

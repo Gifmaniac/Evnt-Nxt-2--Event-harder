@@ -1,11 +1,19 @@
 ﻿using EvntNxt.DTO;
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
 
 namespace Evnt_Nxt_DAL_.Repository
 {
 
     public class EventRepository
     {
+        private readonly DatabaseContext _db;
+
+        public EventRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
+
         public List<EventWithOrganizerAndGenreDTO> GetEventsWithOrganizerAndGenreDtos()
         {
             var result = new List<EventWithOrganizerAndGenreDTO>();
@@ -15,7 +23,7 @@ namespace Evnt_Nxt_DAL_.Repository
             string genrequery = SQLQueries.GetGenreIDName;
 
 
-            using (var connection = new SqlConnection(DatabaseContext.ConnectionString))
+            using (var connection = new SqlConnection(_db.ConnectionString))
             {
                 string query =
                     $@"SELECT
@@ -64,8 +72,11 @@ namespace Evnt_Nxt_DAL_.Repository
                         };
 
                         eventDTO.Organizer = organizer;
-                    };
+                    }
+
+                    ;
                 }
+
                 connection.Close();
             }
 
@@ -74,26 +85,38 @@ namespace Evnt_Nxt_DAL_.Repository
 
         public EventDTO GetEventByID(int ID)
         {
-            using var connection = new SqlConnection(DatabaseContext.ConnectionString);
-            string query = "SELECT ID, Name FROM Event WHERE ID = @ID";
-
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", ID);
-
-            connection.Open();
-
-            EventDTO eventDTO = null;
-
-            using var reader = command.ExecuteReader();
-            if (reader.Read())
+            try
             {
-                eventDTO = new EventDTO
+                using var connection = new SqlConnection(_db.ConnectionString);
+                string query = "SELECT ID, Name FROM Event WHERE ID = @ID";
+
+                using var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ID", ID);
+
+                connection.Open();
+
+                EventDTO eventDTO = null;
+
+                using var reader = command.ExecuteReader();
+                if (reader.Read())
                 {
-                    ID = Convert.ToInt32(reader["ID"]),
-                    Name = (string)reader["Name"]
-                };
+                    eventDTO = new EventDTO
+                    {
+                        ID = Convert.ToInt32(reader["ID"]),
+                        Name = (string)reader["Name"]
+                    };
+                }
+
+                return eventDTO;
             }
-            return eventDTO;
+            catch (Exception ex)
+            {
+                // Log the error if you have logging set up
+                Debug.WriteLine($"[ERROR] GetEventByID failed: {ex.Message}");
+
+                // Optional: You could also rethrow or return null
+                return null;
+            }
         }
     }
 }

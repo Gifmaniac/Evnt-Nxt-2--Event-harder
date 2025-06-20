@@ -1,12 +1,19 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Evnt_Nxt_Business_.Interfaces;
+using Microsoft.Data.SqlClient;
 using EvntNxt.DTO;
-using Evnt_Nxt_Business_.Interfaces;
+
 
 namespace Evnt_Nxt_DAL_.Repository
 {
     public class EventTicketRepository : IEventTicketRepository
     {
 
+        private readonly DatabaseContext _db;
+
+        public EventTicketRepository(DatabaseContext db)
+        {
+            _db = db;
+        }
 
 
         public List<EventTicketDTO> GetTicketTypesWithEventIDNameDateDto()
@@ -25,7 +32,7 @@ namespace Evnt_Nxt_DAL_.Repository
 
             var result = new List<EventTicketDTO>();
 
-            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var connection = _db.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             using (var reader = command.ExecuteReader())
             {
@@ -58,12 +65,12 @@ namespace Evnt_Nxt_DAL_.Repository
             public List<EventTicketDTO> GetEventTicketsByEventID(int eventID)
         {
 
-            string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable FROM EventTicket 
+            string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable, EventID FROM EventTicket 
                             WHERE EventID = @EventID AND isAvailable = 1";
 
             var result = new List<EventTicketDTO>();
 
-            using (var connection = DatabaseContext.CreateOpenConnection())
+            using (var connection = _db.CreateOpenConnection())
             using (var command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@EventID", eventID);
@@ -79,7 +86,8 @@ namespace Evnt_Nxt_DAL_.Repository
                                 Name = (string)reader["Name"],
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 Amount = Convert.ToInt32(reader["Amount"]),
-                                IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
+                                IsAvailable = Convert.ToBoolean(reader["IsAvailable"]),
+                                EventID = Convert.ToInt32(reader["EventID"])
                             };
                             result.Add(dto);
                         }

@@ -1,5 +1,4 @@
 ﻿using Evnt_Nxt_Business_.DomainClass;
-using Evnt_Nxt_Business_.ViewModel;
 using Evnt_Nxt2.ViewModel;
 
 namespace Evnt_Nxt2.Mapper

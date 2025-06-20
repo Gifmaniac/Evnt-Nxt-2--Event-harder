@@ -20,13 +20,15 @@ namespace Evnt_Nxt_Business_.Mapper
             return result;
         }
 
+
+
         public static List<EventTicket> CreateEventTicketsBuyPage(List<EventTicketDTO> dtoList)
         {
             var result = new List<EventTicket>();
 
             foreach (var dto in dtoList)
             {
-                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.IsAvailable, dto.Amount);
+                var domainEventTicket = new EventTicket(dto.ID, dto.Name, dto.Price, dto.Amount, dto.IsAvailable, dto.EventID);
                 result.Add(domainEventTicket);
             }
             return result;

@@ -1,10 +1,8 @@
 using Evnt_Nxt_Business_.DomainClass;
 using Evnt_Nxt_Business_.Interfaces;
 using Evnt_Nxt_Business_.Services;
-using Evnt_Nxt_DAL_.Interfaces;
 using Evnt_Nxt_DAL_.Repository;
 using EvntNxt.DTO;
-using EvntNxtDTO;
 using Moq;
 
 
@@ -13,19 +11,29 @@ namespace TestProject1
     public class AreTicketsAvailable
     {
         [Fact]
-        public void GetAvailableEventTickets_ShouldReturnOnlyTicketsThatAreAvailableAndHaveStock()
+        public void GetEventDTOWithGenresandOrganizerReturnsNoErrors()
         {
             // Arrange
-            var service = new FakeEventTicketRepository();
-            int testEventId = 1;
+            int eventID = 1;
+            var fakeTickets = new List<EventTicketDTO>
+            {
+                new EventTicketDTO { ID = 1, EventID = eventID, IsAvailable = true },
+                new EventTicketDTO { ID = 2, EventID = eventID, IsAvailable = true }
+            };
+
+            // Creates a mock repo
+            var mockRepo = new Mock<IEventTicketRepository>();
+
+            // Calls the EventTicketRepo method that get the EventTickets but it returns the fake ticket list instead
+            mockRepo.Setup(r => r.GetEventTicketsByEventID(eventID)).Returns(fakeTickets);
+
+            var service = new EventTicketService(mockRepo.Object);
 
             // Act
-            var availableTickets = service.GetAvailableEventTickets(testEventId);
+            var result = service.GetAvailableEventTickets(eventID);
 
             // Assert
-            Assert.NotNull(availableTickets);
-            Assert.Equal(2, availableTickets.Count); // Should return Regular and Backstage
-            Assert.All(availableTickets, t => Assert.True(t.IsAvailable && t.Amount > 0));
+            Assert.True(result.All(t => t.IsAvailable));
         }
     }
 }

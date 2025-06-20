@@ -6,7 +6,6 @@ using Evnt_Nxt2.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EvntNxtDTO;
-using Microsoft.Extensions.Logging;
 
 namespace Evnt_Nxt2.Pages
 {

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserBuysTicketTest", "UserBuysTicketTest\UserBuysTicketTest.csproj", "{94A09FA8-BFFF-4283-BC3E-E655D3AB0731}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvntNxtDTO", "EvntNxtDTO\EvntNxtDTO.csproj", "{7CBB37C9-506B-4FE2-A085-7263466824D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventNxtContracts", "EvntNxtDTO\EventNxtContracts.csproj", "{7CBB37C9-506B-4FE2-A085-7263466824D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5FEA433A-4810-47AB-83C1-24932719BB1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7CBB37C9-506B-4FE2-A085-7263466824D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CBB37C9-506B-4FE2-A085-7263466824D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CBB37C9-506B-4FE2-A085-7263466824D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FEA433A-4810-47AB-83C1-24932719BB1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEA433A-4810-47AB-83C1-24932719BB1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FEA433A-4810-47AB-83C1-24932719BB1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FEA433A-4810-47AB-83C1-24932719BB1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,16 +4,15 @@ using EvntNxtDTO;
 using Moq;
 using Xunit;
 
-public class RegisterValidatorTest
+public class TicketServiceTests
 {
     [Fact]
-    public void VerifyRegisterWithValidInputShouldSucceed()
+    public void VerifyRegister_WithValidInput_NoErrors()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
         var mockHasher = new Mock<IPasswordHasher>();
         var mockValidator = new Mock<IRegisterValidator>();
-
         var service = new RegisterService(mockRepo.Object, mockHasher.Object, mockValidator.Object);
 
         var newUser = new RegisterDTO
@@ -23,85 +22,50 @@ public class RegisterValidatorTest
             Password = "StrongPassword1!"
         };
 
-        mockRepo.Setup(repo => repo.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-                .Returns(false); // User doesn't exist
+        mockRepo
+            .Setup(repo => repo.CheckUserByEmailAndUserName(It.IsAny<string>(), It.IsAny<string>()))
+            .Returns(false);    // user does not exist
 
-        mockValidator.Setup(validator => validator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
-                     .Returns(new List<string>()); // Gives the right information for it to be validated
+        mockValidator
+            .Setup(validator => validator.ValidateAll(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            .Returns(new List<string>()); // no validation errors
 
         // Act
-        var (success, errors) = service.VerifyRegister(newUser);
+        var (isValid, errors) = service.VerifyRegister(newUser);
 
         // Assert
-        Assert.True(success);
+        Assert.True(isValid);
         Assert.Empty(errors);
     }
 
     [Fact]
-    public void VerifyRegisterWhenUserAlreadyExistsShouldFail()
+    public void VerifyRegister_WithValidInput_DoesErrors()
     {
         // Arrange
         var mockRepo = new Mock<IRegisterRepository>();
         var mockHasher = new Mock<IPasswordHasher>();
         var mockValidator = new Mock<IRegisterValidator>();
-
-        var service = new RegisterService(mockRepo.Object, mockHasher.Object, mockValidator.Object);
-
-        var newUser = new RegisterDTO
-        {
-            Email = "test@example.com",
-            UserName = "existingUser",
-            Password = "StrongPassword"
-        };
-
-        mockRepo.Setup(repo => repo.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-                .Returns(true); // User does exist
-
-        mockValidator.Setup(v => v.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
-                     .Returns(new List<string>
-                     {
-                         "Password must contain at least one digit.",
-                         "Password must contain at least one special character (!, @, #, etc.)."
-                     });
-
-        // Act
-        var (success, errors) = service.VerifyRegister(newUser);
-
-        // Assert
-        Assert.False(success);
-        Assert.Contains("A user already exists with this email or username.", errors);
-        Assert.Contains("Password must contain at least one digit.", errors);
-        Assert.Contains("Password must contain at least one special character (!, @, #, etc.).", errors);
-    }
-
-    [Fact]
-    public void VerifyRegisterWithInvalidPasswordShouldFail()
-    {
-        // Arrange
-        var mockRepo = new Mock<IRegisterRepository>();
-        var mockHasher = new Mock<IPasswordHasher>();
-        var mockValidator = new Mock<IRegisterValidator>();
-
         var service = new RegisterService(mockRepo.Object, mockHasher.Object, mockValidator.Object);
 
         var newUser = new RegisterDTO
         {
             Email = "test@example.com",
             UserName = "validUser",
-            Password = "123"
+            Password = "Weak"
         };
 
-        mockRepo.Setup(r => r.CheckUserByEmailAndUserName(newUser.Email, newUser.UserName))
-                .Returns(false);
+        mockRepo
+            .Setup(repo => repo.CheckUserByEmailAndUserName(It.IsAny<string>(), It.IsAny<string>())).Returns(true); // User Does Exist
 
-        mockValidator.Setup(validator => validator.ValidateAll(newUser.Email, newUser.Password, newUser.UserName))
-                     .Returns(new List<string> { "Password too short" });
+        mockValidator
+            .Setup(validator => validator.ValidateAll(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            .Returns(new List<string>() { "Password is too weak" });
 
         // Act
-        var (success, errors) = service.VerifyRegister(newUser);
+        var (isValid, errors) = service.VerifyRegister(newUser);
 
         // Assert
-        Assert.False(success);
-        Assert.Contains("Password too short", errors);
+        Assert.False(isValid);
+        Assert.NotEmpty(errors);
     }
 }

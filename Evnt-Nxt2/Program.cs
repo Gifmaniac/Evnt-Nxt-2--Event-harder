@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ArtistRepository>();
 builder.Services.AddScoped<GenreRepository>();
 builder.Services.AddScoped<EventRepository>();
-builder.Services.AddScoped<EventTicketRepository>();
+builder.Services.AddScoped<IEventTicketRepository, EventTicketRepository>();
 builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 builder.Services.AddScoped<LoginRepository>();
@@ -36,6 +36,7 @@ builder.Services.AddScoped<OrganizerOverviewService>();
 // Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IRegisterValidator, RegisterValidator>();
+builder.Services.AddScoped<DatabaseContext>();
 
 
 builder.Services.AddRazorPages();
