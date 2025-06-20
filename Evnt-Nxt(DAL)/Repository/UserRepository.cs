@@ -55,7 +55,7 @@ namespace Evnt_Nxt_DAL_.Repository
                     {
                         if (reader.Read())
                         {
-                            int OrganizerID = reader.GetInt32(0);
+                            int OrganizerID = Convert.ToInt32(reader["ID"]);
                             return OrganizerID;
                         }
                     };

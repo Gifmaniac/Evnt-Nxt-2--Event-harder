@@ -24,8 +24,8 @@ namespace TestProject1
         public bool CheckUserByEmailAndUserName(string email, string username)
         {
             return Users.Any(user =>
-                user.Email.Equals(email, StringComparison.OrdinalIgnoreCase) ||
-                user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
+                user.Email.Equals(email) ||
+                user.UserName.Equals(username));
         }
 
         public void RegisterUser(RegisterDTO user)

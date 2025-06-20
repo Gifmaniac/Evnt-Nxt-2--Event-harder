@@ -65,7 +65,7 @@ namespace Evnt_Nxt_DAL_.Repository
             public List<EventTicketDTO> GetEventTicketsByEventID(int eventID)
         {
 
-            string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable FROM EventTicket 
+            string query = @"SELECT ID, EventID, Name, Price, Amount, isAvailable, EventID FROM EventTicket 
                             WHERE EventID = @EventID AND isAvailable = 1";
 
             var result = new List<EventTicketDTO>();
@@ -86,7 +86,8 @@ namespace Evnt_Nxt_DAL_.Repository
                                 Name = (string)reader["Name"],
                                 Price = Convert.ToDecimal(reader["Price"]),
                                 Amount = Convert.ToInt32(reader["Amount"]),
-                                IsAvailable = Convert.ToBoolean(reader["IsAvailable"])
+                                IsAvailable = Convert.ToBoolean(reader["IsAvailable"]),
+                                EventID = Convert.ToInt32(reader["EventID"])
                             };
                             result.Add(dto);
                         }

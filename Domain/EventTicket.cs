@@ -72,5 +72,15 @@ namespace Evnt_Nxt_Business_.DomainClass
             Amount = eventTicket.Amount;
             IsAvailable = eventTicket.IsAvailable;
         }
+
+        public EventTicket(int id, string name, decimal price, int amount, bool isAvailable, int eventId)
+        {
+            ID = id;
+            Name = name;
+            Price = price;
+            IsAvailable = isAvailable;
+            Amount = amount;
+            EventID = eventId;
+        }
     }
 }

@@ -13,10 +13,9 @@ namespace Evnt_Nxt_Business_.Services
         private readonly ArtistRepository _artistRepo;
         private readonly GenreRepository _genreRepo;
 
-        public ArtistService(ArtistRepository artistRepo, GenreRepository genreRepo)
+        public ArtistService(ArtistRepository artistRepo)
         {
             _artistRepo = artistRepo;
-            _genreRepo = genreRepo;
         }
 
 
